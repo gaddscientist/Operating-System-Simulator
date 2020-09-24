@@ -27,7 +27,7 @@ struct PCB {
     // Register data
     long *cpuRegisters[MAXREGISTERS];
     // Instructions text
-    char *instructions[MAXINSTRUCTIONS];
+    char instructions[MAXINSTRUCTIONS];
 };
 
 struct Process {
@@ -68,7 +68,7 @@ void itoa(int n, char s[]);
 void reverse(char s[]);
 
 // char* ParseTemplate(char* tp) {
-void ParseTemplate(char* tp, char* instructions[]) {
+void ParseTemplate(char* tp, char instructions[]) {
     // Opens passed file name or prints error
     FILE *fp = fopen(tp, "r");
     if(fp == NULL) {
@@ -78,15 +78,15 @@ void ParseTemplate(char* tp, char* instructions[]) {
 
     // Buffer to hold line
     char buff[128];
-    // Uses current time to as seed for rand()
-    srand(time(0));
-    int index = 0;
 
     while(fgets(buff, sizeof(buff), fp) != NULL) {
         char cycles[3];
         int randInt = (rand());
         while (randInt > 100) {
             randInt = randInt % 10;
+            if (randInt == 0) {
+                randInt = (rand());
+            }
         }
         randInt = randInt * 10;  // Find way to delete this line
         itoa(randInt, cycles);
@@ -94,11 +94,11 @@ void ParseTemplate(char* tp, char* instructions[]) {
         strcat(buff, " ");
         strcat(buff, cycles);
         // printf("%s\n", buff);
-        strcpy(instructions[index], buff);
-        printf("%s\n", instructions[index]);
-        index++;
+        strcat(instructions, buff);
+        strcat(instructions, "\n");
     }
 
+    // printf("%s\n", instructions);
     fclose(fp);
 }
 
@@ -114,26 +114,23 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    // Uses current time to as seed for rand()
+    srand(time(0));
+
     char* template = argv[1];
     int numProcesses =  *argv[2] - '0';
     struct Process* processes[2000];
     int index;
 
-    char* inst[MAXINSTRUCTIONS];
-    ParseTemplate(template, inst);
-
     printf("Number of processes is %d\n", numProcesses);
-    // for (index = 0; numProcesses > 0; numProcesses--, index++) {
-    //     processes[index] = Process_new();
-    //     ParseTemplate(template, processes[index]->pcb.instructions);
-    // //     THESE TWO LINES THROW WARNING. FIX AT SOME POINT
-    //     // strcpy(processes[index]->pcb.instructions ,instructions);
-    //     printf("%s", processes[index]->pcb.instructions);
-    // }
+    for (index = 0; numProcesses > 0; numProcesses--, index++) {
+        processes[index] = Process_new();
+        ParseTemplate(template, processes[index]->pcb.instructions);
+        printf("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
+    }
 
     return 0;
 }
-
 
 // NOTE: Following two functions pulled from K&R's The C Programming Lanugage
 
