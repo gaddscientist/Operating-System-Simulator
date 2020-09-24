@@ -21,7 +21,7 @@ struct PCB {
     // Number of cycles allowed before swap
     int givenCycles;
     // Register data
-    long *CpuRegisters[MAXREGISTERS];
+    long *cpuRegisters[MAXREGISTERS];
     // Instructions text
     char *instructions[MAXINSTRUCTIONS];
 };
@@ -31,7 +31,7 @@ struct Process {
     struct PCB pcb;
 };
 
-struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int cycle, int givenCycles, long *CpuRegisters, char *instructions) {
+struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int cycle, int givenCycles) {
     struct PCB* p = malloc(sizeof(struct PCB));
     p->pid = pid;
     p->currentState = currentState;
@@ -39,38 +39,25 @@ struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int 
     p->reqMem = reqMem;
     p->cycle = cycle;
     p->givenCycles = givenCycles;
-    memcpy(p->CpuRegisters, CpuRegisters, sizeof CpuRegisters[MAXREGISTERS]);
-    memcpy(p->instructions, instructions, sizeof instructions[MAXINSTRUCTIONS]);
+    long* cpuRegisters;
+    char* instructions;
+    memset(p->cpuRegisters, 0, sizeof cpuRegisters[MAXREGISTERS]);
+    memset(p->instructions, 0, sizeof instructions[MAXINSTRUCTIONS]);
     return p;
 }
 
-/*
-struct CpuRegister* CpuRegister_new() {
-
-}
-*/
 
 struct Process* Process_new() {
     struct Process* p = malloc(sizeof(struct Process));
-    // p->pcb.pid = next_pid++;
-    // p->pcb.currentState = new;
-    // p->pcb.progCount = 0;
-    // p->pcb.reqMem = 1000;
-    // p->pcb.cycle = 0;
-    // p->pcb.givenCycles = 75;
-    // memset(&p->pcb.CpuRegisters, sizeof p->pcb.CpuRegisters, 0);
-    // memset(&p->pcb.instructions, sizeof p->pcb.instructions, 0);
-    long* cpuRegisters = malloc(sizeof(cpuRegisters[MAXREGISTERS]));
-    char* instructions = malloc(sizeof(instructions[MAXINSTRUCTIONS]));
     state initialState = NEW;
     p->pid = next_pid++;
-    p->pcb = *PCB_new(p->pid, initialState, 0, 1000, 0, 75, cpuRegisters, instructions);
+    p->pcb = *PCB_new(p->pid, initialState, 0, 1000, 0, 75);
     return p;
 }
 
-// reanimate process
 
 // process destructor
+// free(p)
 
 
 
