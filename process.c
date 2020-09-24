@@ -5,6 +5,7 @@
 
 #define MAXREGISTERS 10
 #define MAXINSTRUCTIONS 100
+#define MAXPROCESSES 2000
 
 int next_pid = 0;
 int totalProcesses = 0;
@@ -35,6 +36,7 @@ struct Process {
     struct PCB pcb;
 };
 
+// Constructor for new PCB struct
 struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int cycle, int givenCycles) {
     struct PCB* p = malloc(sizeof(struct PCB));
     p->pid = pid;
@@ -51,6 +53,7 @@ struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int 
 }
 
 
+// Constructor for new Process struct
 struct Process* Process_new() {
     struct Process* p = malloc(sizeof(struct Process));
     p->pid = next_pid++;
@@ -59,6 +62,7 @@ struct Process* Process_new() {
     return p;
 }
 
+// Updates the state of the process associated with this PCB
 void UpdateState(struct PCB* pcb, state newState) {
     pcb->currentState = newState;
 }
@@ -67,7 +71,6 @@ void UpdateState(struct PCB* pcb, state newState) {
 void itoa(int n, char s[]);
 void reverse(char s[]);
 
-// char* ParseTemplate(char* tp) {
 void ParseTemplate(char* tp, char instructions[]) {
     // Opens passed file name or prints error
     FILE *fp = fopen(tp, "r");
@@ -79,6 +82,7 @@ void ParseTemplate(char* tp, char instructions[]) {
     // Buffer to hold line
     char buff[128];
 
+    // Gets lines one at a time
     while(fgets(buff, sizeof(buff), fp) != NULL) {
         char cycles[3];
         int randInt = (rand());
@@ -88,25 +92,29 @@ void ParseTemplate(char* tp, char instructions[]) {
                 randInt = (rand());
             }
         }
-        randInt = randInt * 10;  // Find way to delete this line
-        itoa(randInt, cycles);
-        strtok(buff, "\n");
+        randInt = randInt * 10;     // Find way to delete this line, shouldnt be necessary
+
+        itoa(randInt, cycles);      // Converts random integer to a string
+        strtok(buff, "\n");         // Removes newline character from fgets()
         strcat(buff, " ");
-        strcat(buff, cycles);
-        // printf("%s\n", buff);
-        strcat(instructions, buff);
+        strcat(buff, cycles);       // Concatenate instruction with random number of cycles
+        strcat(instructions, buff); // Adds randomized instruction to list of instructions
         strcat(instructions, "\n");
     }
 
-    // printf("%s\n", instructions);
-    fclose(fp);
+    fclose(fp); // Closes file pointer
 }
 
-// process destructor
-// free(p)
+// Process destructor
+void KillProcess(struct Process* p) {
+    // free(p->pcb);
+    free(p);
+    totalProcesses--;
+}
 
-// CLEAN UP THIS MESS
+// Driver function
 int main(int argc, char *argv[]) {
+    // Ensures correct sytax
     if (argc <= 2) {
         printf("Please specify a template and number of processes to be created\n");
         printf("Syntax: ./process template.txt number_of_processes\n");
@@ -117,17 +125,19 @@ int main(int argc, char *argv[]) {
     // Uses current time to as seed for rand()
     srand(time(0));
 
-    char* template = argv[1];
-    int numProcesses =  *argv[2] - '0';
-    struct Process* processes[2000];
-    int index;
+    char* template = argv[1];                   // User specified template
+    int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
+    struct Process* processes[MAXPROCESSES];    // Array of processes to be created
+    int index;                                  // Process index
 
-    printf("Number of processes is %d\n", numProcesses);
+    // Loop to create processes with randomized instruction cycles
     for (index = 0; numProcesses > 0; numProcesses--, index++) {
         processes[index] = Process_new();
         ParseTemplate(template, processes[index]->pcb.instructions);
         printf("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
     }
+    
+    printf("Number of processes is %d\n", totalProcesses);
 
     return 0;
 }
