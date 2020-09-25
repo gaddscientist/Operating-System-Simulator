@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <time.h>
 
-#define MAXREGISTERS 10
-#define MAXINSTRUCTIONS 100
-#define MAXPROCESSES 2000
+#define MAXREGISTERS 10         // Max number of registers to be stored in PCB array
+#define MAXINSTRUCTIONS 100     // Max number of instructions that can be stored in PCB
+#define MAXPROCESSES 2000       // Max number of processes that can be active at once
 
 int next_pid = 0;
 int totalProcesses = 0;
@@ -13,22 +13,14 @@ typedef enum {NEW, RUNNING, WAITING, READY, TERMINATED} state;
 state initialState = NEW;
 
 struct PCB {
-    // Unique identifier of process
-    int pid;
-    // Current state of process
-    state currentState;
-    // Location of next instruction
-    int progCount;
-    // Allocated memory
-    int reqMem;
-    // Current cycle
-    int cycle;
-    // Number of cycles allowed before swap
-    int givenCycles;
-    // Register data
-    long *cpuRegisters[MAXREGISTERS];
-    // Instructions text
-    char instructions[MAXINSTRUCTIONS];
+    int pid;                            // Unique identifier of process
+    state currentState;                 // Current state of process
+    int progCount;                      // Location of next instruction
+    int reqMem;                         // Allocated memory
+    int cycle;                          // Current cycle
+    int givenCycles;                    // Number of cycles allowed before swap
+    long *cpuRegisters[MAXREGISTERS];   // Register data
+    char instructions[MAXINSTRUCTIONS]; // Instructions text
 };
 
 struct Process {
@@ -86,6 +78,8 @@ void ParseTemplate(char* tp, char instructions[]) {
     while(fgets(buff, sizeof(buff), fp) != NULL) {
         char cycles[3];
         int randInt = (rand());
+
+        // Gets a random int between 10 and 90
         while (randInt > 100) {
             randInt = randInt % 10;
             if (randInt == 0) {
@@ -137,7 +131,7 @@ int main(int argc, char *argv[]) {
         printf("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
     }
     
-    printf("Number of processes is %d\n", totalProcesses);
+    printf("%d processes were created\n", totalProcesses);
 
     return 0;
 }
