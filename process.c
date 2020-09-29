@@ -2,31 +2,43 @@
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
+#include "process.h"
 
-#define MAXREGISTERS 10         // Max number of registers to be stored in PCB array
-#define MAXINSTRUCTIONS 100     // Max number of instructions that can be stored in PCB
-#define MAXPROCESSES 2000       // Max number of processes that can be active at once
 
+// Global variables
 int next_pid = 0;
 int totalProcesses = 0;
-typedef enum {NEW, RUNNING, WAITING, READY, TERMINATED} state;
-state initialState = NEW;
 
-struct PCB {
-    int pid;                            // Unique identifier of process
-    state currentState;                 // Current state of process
-    int progCount;                      // Location of next instruction
-    int reqMem;                         // Allocated memory
-    int cycle;                          // Current cycle
-    int givenCycles;                    // Number of cycles allowed before swap
-    long *cpuRegisters[MAXREGISTERS];   // Register data
-    char instructions[MAXINSTRUCTIONS]; // Instructions text
-};
+// Driver function
+int main(int argc, char *argv[]) {
+    // Ensures correct sytax
+    if (argc <= 2) {
+        printf("Please specify a template and number of processes to be created\n");
+        printf("Syntax: ./process template.txt number_of_processes\n");
+        printf("Example: ./process web_browser.txt 7\n");
+        exit(1);
+    }
 
-struct Process {
-    int pid;
-    struct PCB pcb;
-};
+    // Uses current time to as seed for rand()
+    srand(time(0));
+
+    char* template = argv[1];                   // User specified template
+    int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
+    struct Process* processes[MAXPROCESSES];    // Array of processes to be created
+    int index;                                  // Process index
+
+    // Loop to create processes with randomized instruction cycles
+    for (index = 0; numProcesses > 0; numProcesses--, index++) {
+        processes[index] = Process_new();
+        ParseTemplate(template, processes[index]->pcb.instructions);
+        printf("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
+    }
+    
+    printf("%d processes were created\n", totalProcesses);
+
+    return 0;
+}
+
 
 // Constructor for new PCB struct
 struct PCB* PCB_new(int pid, state currentState, int progCount, int reqMem, int cycle, int givenCycles) {
@@ -58,10 +70,6 @@ struct Process* Process_new() {
 void UpdateState(struct PCB* pcb, state newState) {
     pcb->currentState = newState;
 }
-
-// Function prototypes
-void itoa(int n, char s[]);
-void reverse(char s[]);
 
 void ParseTemplate(char* tp, char instructions[]) {
     // Opens passed file name or prints error
@@ -106,38 +114,8 @@ void KillProcess(struct Process* p) {
     totalProcesses--;
 }
 
-// Driver function
-int main(int argc, char *argv[]) {
-    // Ensures correct sytax
-    if (argc <= 2) {
-        printf("Please specify a template and number of processes to be created\n");
-        printf("Syntax: ./process template.txt number_of_processes\n");
-        printf("Example: ./process web_browser.txt 7\n");
-        exit(1);
-    }
-
-    // Uses current time to as seed for rand()
-    srand(time(0));
-
-    char* template = argv[1];                   // User specified template
-    int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
-    struct Process* processes[MAXPROCESSES];    // Array of processes to be created
-    int index;                                  // Process index
-
-    // Loop to create processes with randomized instruction cycles
-    for (index = 0; numProcesses > 0; numProcesses--, index++) {
-        processes[index] = Process_new();
-        ParseTemplate(template, processes[index]->pcb.instructions);
-        printf("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
-    }
-    
-    printf("%d processes were created\n", totalProcesses);
-
-    return 0;
-}
 
 // NOTE: Following two functions pulled from K&R's The C Programming Lanugage
-
 /* itoa:  convert n to characters in s */
 void itoa(int n, char s[])
 {
