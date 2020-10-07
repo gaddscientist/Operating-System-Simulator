@@ -89,6 +89,7 @@ void ParseTemplate(char* tp, char instructions[]) {
 
         // Gets a random int between 10 and 90
         while (randInt > 100) {
+            // CHANGE TO % 100 WHEN YOU WANT TO TEST FOOL
             randInt = randInt % 10;
             if (randInt == 0) {
                 randInt = (rand());
