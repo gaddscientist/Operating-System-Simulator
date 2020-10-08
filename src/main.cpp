@@ -27,18 +27,26 @@ int main(int argc, char *argv[]) {
     int index;                                  // Process index
 
     // Loop to create processes with randomized instruction cycles
-    for (index = 0; numProcesses > 0; numProcesses--, index++) {
-        processes[index] = new Process();
-        ParseTemplate(templateFile, processes[index]->pcb.instructions);
-        // std::cout << ("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
-        std::cout << "PID = " << processes[index]->pcb.pid << std::endl;
-        for (int i = 0; i < processes[index]->pcb.instructions.size(); i++) {
-            std::cout << processes[index]->pcb.instructions[i] << std::endl;
-        }
-        std::cout << std::endl;
-    }
+    // for (index = 0; numProcesses > 0; numProcesses--, index++) {
+    //     processes[index] = new Process();
+    //     ParseTemplate(templateFile, processes[index]->pcb.instructions);
+    //     // std::cout << ("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
+    //     std::cout << "PID = " << processes[index]->pcb.pid << std::endl;
+    //     for (int i = 0; i < processes[index]->pcb.instructions.size(); i++) {
+    //         std::cout << processes[index]->pcb.instructions[i] << std::endl;
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    Process tempProcess;
+    Process* processPtr = &tempProcess;
+    ParseTemplate(templateFile, processPtr->pcb.instructions);
+    tempProcess.calculateBurst();
+    std::cout << tempProcess.calculateBurst() << std::endl;
 
     std::cout << totalProcesses << " processes were created" << std::endl;
+
+
 
     return 0;
 }

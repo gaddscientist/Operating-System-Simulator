@@ -1,4 +1,6 @@
 #include "process.h"
+#include <iostream>
+#include <cmath>
 
 
 // Global variables
@@ -16,6 +18,17 @@ Process::Process () {
 // Process destructor
 Process::~Process() {
     totalProcesses--;
+}
+
+int Process::calculateBurst() {
+    double burst = 0; 
+    std::string::size_type sz;
+    for (int i = 0; i < this->pcb.instructions.size(); i++) {
+        int instrSize = std::stoi(this->pcb.instructions[i].substr(this->pcb.instructions[i].find(' ')), &sz);
+        burst += instrSize;
+    }
+    burst = std::round((burst / this->pcb.instructions.size()));
+    return (int)burst;
 }
 
 

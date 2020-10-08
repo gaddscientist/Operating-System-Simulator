@@ -10,10 +10,15 @@ class Process {
 public:
     int pid;
     PCB pcb;
+    int burstCycle;
+    int calculateBurst();
 
     // Default constructor
     Process ();
 
     // Destructor
     ~Process();
+
+private:
+    // Calculate the burst as the average cpu cycle
 };

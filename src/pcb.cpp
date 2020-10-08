@@ -1,4 +1,5 @@
 #include "pcb.h"
+#include "helpers.h"
 
 // PCB constructor
 PCB::PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, int GivenCycles){
