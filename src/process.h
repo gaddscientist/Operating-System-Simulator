@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include "pcb.h"
 
 #define MAXPROCESSES 2000       // Max number of processes that can be active at once
@@ -11,10 +12,13 @@ public:
     int pid;
     PCB pcb;
     int burstCycle;
+
     int calculateBurst();
 
     // Default constructor
     Process ();
+
+    Process (std::string templateFile);
 
     // Destructor
     ~Process();

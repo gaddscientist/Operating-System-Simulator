@@ -21,9 +21,9 @@ int main(int argc, char *argv[]) {
     // Uses current time to as seed for rand()
     srand(time(0));
 
-    const std::string templateFile = argv[1];                   // User specified template
+    const std::string templateFile = argv[1];   // User specified template
     int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
-    Process* processes[MAXPROCESSES];    // Array of processes to be created
+    Process* processes[MAXPROCESSES];           // Array of processes to be created
     int index;                                  // Process index
 
     // Loop to create processes with randomized instruction cycles
@@ -38,11 +38,10 @@ int main(int argc, char *argv[]) {
     //     std::cout << std::endl;
     // }
 
-    Process tempProcess;
+    Process tempProcess(templateFile);
     Process* processPtr = &tempProcess;
-    ParseTemplate(templateFile, processPtr->pcb.instructions);
-    tempProcess.calculateBurst();
-    std::cout << tempProcess.calculateBurst() << std::endl;
+    ParseTemplate(templateFile);
+    std::cout << tempProcess.burstCycle << std::endl;
 
     std::cout << totalProcesses << " processes were created" << std::endl;
 

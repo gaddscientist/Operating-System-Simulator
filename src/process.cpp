@@ -9,9 +9,10 @@ int totalProcesses = 0;
 state initialState = NEW;
 
 // Process constructor
-Process::Process () {
+Process::Process (std::string templateFile) {
     pid = next_pid++;
-    pcb = PCB(pid, initialState, 0, 1000, 0, 75);
+    pcb = PCB(pid, initialState, 0, 1000, 0, 75, templateFile);
+    burstCycle = calculateBurst();
     totalProcesses++;
 }
 

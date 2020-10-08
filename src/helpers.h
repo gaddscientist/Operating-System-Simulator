@@ -1,5 +1,5 @@
 #pragma once
 
 // Methods
-void ParseTemplate(const std::string tp, std::vector<std::string>& instructions);
+std::vector<std::string> ParseTemplate(const std::string tp);
 std::string Randomize(std::string& str);

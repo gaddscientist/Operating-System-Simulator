@@ -4,7 +4,8 @@
 #include "helpers.h"
 #include <iostream>
 
-void ParseTemplate(const std::string tp, std::vector<std::string>& instructions) {
+std::vector<std::string> ParseTemplate(const std::string tp) {
+    std::vector<std::string> instructions;
     // Opens passed file name or prints error
     std::ifstream in(tp);
     std::string str;
@@ -26,6 +27,8 @@ void ParseTemplate(const std::string tp, std::vector<std::string>& instructions)
 
     // Close the file
     in.close();
+
+    return instructions;
 }
 
 // Replaces seeds with appropriate instruction cycles

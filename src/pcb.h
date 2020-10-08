@@ -16,7 +16,7 @@ public:
     std::vector<std::string> instructions;    // Instructions text
 
     PCB () {}
-    PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, int GivenCycles);
+    PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, int GivenCycles, std::string templateFile);
 
 
     void UpdateState(PCB pcb, state newState);
