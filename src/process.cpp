@@ -18,7 +18,7 @@ Process::Process (std::string templateFile) {
 
 // Process destructor
 Process::~Process() {
-    totalProcesses--;
+    // totalProcesses--;
 }
 
 int Process::calculateBurst() {
@@ -31,12 +31,3 @@ int Process::calculateBurst() {
     burst = std::round((burst / this->pcb.instructions.size()));
     return (int)burst;
 }
-
-
-
-// Process destructor
-// void KillProcess(struct Process* p) {
-//     // free(p->pcb);
-//     free(p);
-//     totalProcesses--;
-// }

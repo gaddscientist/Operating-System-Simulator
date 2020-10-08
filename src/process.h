@@ -3,8 +3,6 @@
 #include <string>
 #include "pcb.h"
 
-#define MAXPROCESSES 2000       // Max number of processes that can be active at once
-
 extern state initialState;
 
 class Process {
@@ -13,11 +11,14 @@ public:
     PCB pcb;
     int burstCycle;
 
+    // Member functions
     int calculateBurst();
 
-    // Default constructor
-    Process ();
+    bool operator<(const Process& otherProcess) const {
+        return burstCycle < otherProcess.burstCycle;
+    }
 
+    // Constructor
     Process (std::string templateFile);
 
     // Destructor

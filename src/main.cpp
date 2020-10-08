@@ -5,6 +5,7 @@
 #include "process.h"
 #include "helpers.h"
 #include <vector>
+#include "scheduler.h"
 
 extern int totalProcesses;
 
@@ -18,30 +19,48 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
+    int x;
+    std::cout << "What type of scheduler?\n1.SJF\n2.RR" << std::endl;
+    std::cin >> x;
+    auto st = static_cast<schedulerType>(x);
+
+    // Create scheduler
+    Scheduler scheduler(st);
+    std::cout << scheduler.chosenScheduler << std::endl;
+
     // Uses current time to as seed for rand()
     srand(time(0));
 
     const std::string templateFile = argv[1];   // User specified template
+    // Might need to convert better for large numbers
     int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
-    Process* processes[MAXPROCESSES];           // Array of processes to be created
-    int index;                                  // Process index
+    // std::vector<Process> processes;             // Vector of created processes 
 
-    // Loop to create processes with randomized instruction cycles
-    // for (index = 0; numProcesses > 0; numProcesses--, index++) {
-    //     processes[index] = new Process();
-    //     ParseTemplate(templateFile, processes[index]->pcb.instructions);
-    //     // std::cout << ("PID=%d\n%s\n\n",processes[index]->pcb.pid, processes[index]->pcb.instructions);
-    //     std::cout << "PID = " << processes[index]->pcb.pid << std::endl;
-    //     for (int i = 0; i < processes[index]->pcb.instructions.size(); i++) {
-    //         std::cout << processes[index]->pcb.instructions[i] << std::endl;
-    //     }
-    //     std::cout << std::endl;
-    // }
+    // Loop to create processes
+    for (int index = 0; numProcesses > 0; numProcesses--, index++) {
+        // Creates process and adds to scheduler's "new" queue
+        Process newProcess(templateFile);
+        scheduler.newQueue.push_back(newProcess);
 
-    Process tempProcess(templateFile);
-    Process* processPtr = &tempProcess;
-    ParseTemplate(templateFile);
-    std::cout << tempProcess.burstCycle << std::endl;
+        // Prints out PID and Instructions
+        std::cout << "PID = " << scheduler.newQueue[index].pcb.pid << std::endl;
+        std::cout << "Bust time = " << scheduler.newQueue[index].burstCycle << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << "Sorted" << std::endl;
+    scheduler.sortProcesses();
+    int num = 5;
+    for (int index = 0; num > 0; num--, index++) {
+        // Prints out PID and Instructions
+        std::cout << "PID = " << scheduler.newQueue[index].pcb.pid << std::endl;
+        std::cout << "Bust time = " << scheduler.newQueue[index].burstCycle << std::endl;
+        std::cout << std::endl;
+    }
+
+    // Process tempProcess(templateFile);
+    // Process* processPtr = &tempProcess;
+    // ParseTemplate(templateFile);
+    // std::cout << tempProcess.burstCycle << std::endl;
 
     std::cout << totalProcesses << " processes were created" << std::endl;
 
