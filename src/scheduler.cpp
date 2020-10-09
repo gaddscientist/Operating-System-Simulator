@@ -72,13 +72,23 @@ void Scheduler::updateWaitingQueue() {
 }
 
 void Scheduler::updateReadyQueue() {
-
+    ;
 }
 
 
-// DELETE WHEN DONE TESTING
 void Scheduler::addProcessToReadyQueue(PCB p) {
-    this->readyQueue.push_back(p);
     p.setCurrentState(READY);
+    this->readyQueue.push_back(p);
     this->sortReadyProcesses();
+}
+
+void Scheduler::addProcessToWaitingQueue(PCB p) {
+    p.setCurrentState(WAITING);
+    this->waitingQueue.push_back(p);
+    this->sortWaitingProcesses();
+}
+
+void Scheduler::addProcessToTerminatedQueue(PCB p) {
+    p.setCurrentState(TERMINATED);
+    this->terminatedQueue.push_back(p);
 }

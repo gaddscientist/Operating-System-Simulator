@@ -5,14 +5,17 @@ class CPU {
     private:
         int clock;
         PCB pcb;
+        bool swapProcess;
 
         // Member functions
-        void clockTick();
         void execute();
+        void decrementCycles();
 
     public:
         // Default constructor
         CPU();
+
+        void clockTick();
 
         // Getters
         int getClock();

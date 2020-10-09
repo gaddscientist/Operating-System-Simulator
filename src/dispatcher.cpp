@@ -11,18 +11,18 @@ Dispatcher::Dispatcher() {
 //     pcb.setCurrentState(newState);
 // }
 
-void GetPcbFromReady() {
-    cpu.setPcb(*scheduler.getReadyQueue().begin());
+PCB Dispatcher::getPcbFromReady() {
+    return scheduler.getReadyQueue().front();
 }
 
 void Dispatcher::addProcessToReadyQueue(PCB p) {
-    scheduler.getReadyQueue().push_back(p);
     p.setCurrentState(READY);
+    scheduler.getReadyQueue().push_back(p);
     scheduler.sortReadyProcesses();
 }
 
 void Dispatcher::addProcessToWaitingQueue(PCB p) {
-    scheduler.getWaitingQueue().push_back(p);
     p.setCurrentState(WAITING);
+    scheduler.getWaitingQueue().push_back(p);
     scheduler.sortWaitingProcesses();
 }

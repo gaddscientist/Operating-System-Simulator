@@ -10,7 +10,8 @@
 
 // Global variables
 Scheduler scheduler;
-CPU cpu;
+// CPU cpu;
+Dispatcher dispatcher;
 
 // Driver function
 int main(int argc, char *argv[]) {
@@ -31,8 +32,6 @@ int main(int argc, char *argv[]) {
     scheduler.setSchedulerType(st);
     std::cout << scheduler.getChosenScheduler() << std::endl;
 
-    // Create Dispatcher
-    Dispatcher dispatcher;
 
     // Uses current time to as seed for rand()
     srand(time(0));
@@ -55,13 +54,20 @@ int main(int argc, char *argv[]) {
         // Prints out PID and Instructions
         std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
         std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
-        std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().type << std::endl;
+        std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().instrType << std::endl;
         std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
     }
 
     extern int totalProcesses;
     std::cout << totalProcesses << " processes were created" << std::endl;
     // END TESTING
+
+    CPU cpu;
+    while(totalProcesses > 4) {
+        cpu.clockTick();
+        std::cout << "Clock is: " << cpu.getClock() << std::endl;
+        // std::cout << "Total process is: " << totalProcesses << std::endl;
+    }
 
 
     return 0;

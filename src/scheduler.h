@@ -40,6 +40,7 @@ class Scheduler {
         void updateWaitingQueue();
 
 
-        // DELETE WHEN DONE TESTING
         void addProcessToReadyQueue(PCB p);
+        void addProcessToWaitingQueue(PCB p);
+        void addProcessToTerminatedQueue(PCB p);
 };

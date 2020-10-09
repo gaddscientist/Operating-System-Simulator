@@ -27,6 +27,11 @@ int PCB::calculateBurst() {
     return (int)burst;
 }
 
+
+void PCB::decrementCycles() {
+    this->progCount.remainingCycles--;
+}
+
 // Getters
 int PCB::getPid() {
     return this->pid;
@@ -64,7 +69,7 @@ int PCB::getIO() {
     return this->io;
 }
 
-instrType PCB::getInstructionType(int lineNum) {
+instructionType PCB::getInstructionType(int lineNum) {
     int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
     std::string tempStr = this->instructions[lineNum].substr(0, space);
     const char * str = tempStr.c_str();

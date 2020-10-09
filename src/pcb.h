@@ -3,11 +3,11 @@
 #include <string>
 
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
-enum instrType {CALCULATE, IO, INIT};
+enum instructionType {CALCULATE, IO, INIT};
 
 struct programCounter {
     int instrNum;
-    instrType type;
+    instructionType instrType;
     int remainingCycles;
 };
 
@@ -31,6 +31,8 @@ public:
     PCB () {}
     PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
 
+    void decrementCycles();
+
     // Getters
     int getPid();
     state getCurrentState();
@@ -41,7 +43,7 @@ public:
     std::deque<std::string> getInstructions();
     int getBurst();
     int getIO();
-    instrType getInstructionType(int lineNum);
+    instructionType getInstructionType(int lineNum);
     int getInstructionSize(int lineNum);
 
     // Setters
