@@ -10,9 +10,20 @@ PCB::PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, int
     cycle = Cycle;
     givenCycles = GivenCycles;
     instructions = ParseTemplate(templateFile);
+    burst = calculateBurst();
 }
 
-// Updates the state of the process associated with this PCB
-void PCB::UpdateState(PCB pcb, state newState) {
-    pcb.currentState = newState;
+int PCB::calculateBurst() {
+    double burst = 0; 
+    std::string::size_type sz;
+    for (int i = 0; i < this->instructions.size(); i++) {
+        int instrSize = std::stoi(this->instructions[i].substr(this->instructions[i].find(' ')), &sz);
+        burst += instrSize;
+    }
+    // burst = std::round((burst / this->pcb.instructions.size()));
+    return (int)burst;
+}
+
+bool PCB::operator<(const PCB& otherPCB) const {
+    return burst < otherPCB.burst;
 }

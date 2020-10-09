@@ -1,4 +1,3 @@
-#include <string>
 #include <fstream>
 #include <vector>
 #include "helpers.h"
@@ -48,4 +47,20 @@ std::string Randomize(std::string& str) {
     std::string randomizedStr = str.substr(0, firstSpace) + " " + std::to_string(randCycles);
 
     return randomizedStr;
+}
+
+
+void createProcesses(int numProcesses, std::string templateFile) {
+    extern Scheduler scheduler;
+    for (int index = 0; numProcesses > 0; numProcesses--, index++) {
+        // Creates process and adds to scheduler's "new" queue
+        Process newProcess(templateFile);
+        scheduler.addProcessToReadyQueue(newProcess.pcb);
+
+        // TESTING CODE
+        // Prints out PID and Instructions
+        std::cout << "PID = " << newProcess.pcb.pid << std::endl;
+        std::cout << "Burst time = " << newProcess.pcb.burst << std::endl;
+        std::cout << std::endl;
+    }
 }

@@ -6,8 +6,11 @@
 #include "helpers.h"
 #include <vector>
 #include "scheduler.h"
+#include "cpu.h"
+#include "dispatcher.h"
 
-extern int totalProcesses;
+Scheduler scheduler;
+CPU cpu;
 
 // Driver function
 int main(int argc, char *argv[]) {
@@ -25,8 +28,11 @@ int main(int argc, char *argv[]) {
     auto st = static_cast<schedulerType>(x);
 
     // Create scheduler
-    Scheduler scheduler(st);
+    scheduler.setSchedulerType(st);
     std::cout << scheduler.chosenScheduler << std::endl;
+
+    // Create Dispatcher
+    Dispatcher dispatcher;
 
     // Uses current time to as seed for rand()
     srand(time(0));
@@ -37,33 +43,24 @@ int main(int argc, char *argv[]) {
     // std::vector<Process> processes;             // Vector of created processes 
 
     // Loop to create processes
-    for (int index = 0; numProcesses > 0; numProcesses--, index++) {
-        // Creates process and adds to scheduler's "new" queue
-        Process newProcess(templateFile);
-        scheduler.newQueue.push_back(newProcess);
+    createProcesses(numProcesses, templateFile);
 
-        // Prints out PID and Instructions
-        std::cout << "PID = " << scheduler.newQueue[index].pcb.pid << std::endl;
-        std::cout << "Bust time = " << scheduler.newQueue[index].burstCycle << std::endl;
-        std::cout << std::endl;
-    }
-    std::cout << "Sorted" << std::endl;
-    scheduler.sortProcesses();
+
+
+
+    // TESTING
+    std::cout << std::endl;
     int num = 5;
     for (int index = 0; num > 0; num--, index++) {
         // Prints out PID and Instructions
-        std::cout << "PID = " << scheduler.newQueue[index].pcb.pid << std::endl;
-        std::cout << "Bust time = " << scheduler.newQueue[index].burstCycle << std::endl;
+        std::cout << "PID = " << scheduler.readyQueue[index].pid << std::endl;
+        std::cout << "Burst time = " << scheduler.readyQueue[index].burst << std::endl;
         std::cout << std::endl;
     }
 
-    // Process tempProcess(templateFile);
-    // Process* processPtr = &tempProcess;
-    // ParseTemplate(templateFile);
-    // std::cout << tempProcess.burstCycle << std::endl;
-
+    extern int totalProcesses;
     std::cout << totalProcesses << " processes were created" << std::endl;
-
+    // END TESTING
 
 
     return 0;
