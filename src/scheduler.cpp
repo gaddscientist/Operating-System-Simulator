@@ -48,15 +48,6 @@ void Scheduler::sortWaitingProcesses() {
     std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.getIO() < b.getIO(); });
 }
 
-void Scheduler::addProcessToReadyQueue(PCB p) {
-    this->readyQueue.push_back(p);
-    this->sortReadyProcesses();
-}
-
-void Scheduler::addProcessToWaitingQueue(PCB p) {
-    this->waitingQueue.push_back(p);
-    this->sortWaitingProcesses();
-}
 
 void Scheduler::updateQueues() {
     updateWaitingQueue();
@@ -66,7 +57,7 @@ void Scheduler::updateQueues() {
 void Scheduler::updateWaitingQueue() {
     // Move processes that are done waiting to back of ready queue
     while (waitingQueue.front().getIO() == 0) {
-        addProcessToReadyQueue(waitingQueue.front());
+        // addProcessToReadyQueue(waitingQueue.front());
         waitingQueue.pop_front();
     }
 
@@ -82,4 +73,12 @@ void Scheduler::updateWaitingQueue() {
 
 void Scheduler::updateReadyQueue() {
 
+}
+
+
+// DELETE WHEN DONE TESTING
+void Scheduler::addProcessToReadyQueue(PCB p) {
+    this->readyQueue.push_back(p);
+    p.setCurrentState(READY);
+    this->sortReadyProcesses();
 }

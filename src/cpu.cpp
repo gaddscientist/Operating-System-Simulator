@@ -9,9 +9,15 @@ CPU::CPU() {
 
 // On every cpu cycle
 void CPU::clockTick() {
-    this->clock++;
-
     scheduler.updateQueues();
+
+    this->execute();
+
+    this->clock++;
+}
+
+void CPU::execute() {
+    // if (this->pcb.getProgCount())
 }
 
 

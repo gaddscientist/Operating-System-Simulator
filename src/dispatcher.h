@@ -10,6 +10,8 @@ class Dispatcher {
         Dispatcher();
 
 
-        void UpdateState(PCB pcb, state newState);
+        // void UpdateState(PCB pcb, state newState);
         void GetPcbFromReady();
+        void addProcessToReadyQueue(PCB p);
+        void addProcessToWaitingQueue(PCB p);
 };

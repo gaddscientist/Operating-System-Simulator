@@ -3,12 +3,19 @@
 #include <string>
 
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
+enum instrType {CALCULATE, IO, INIT};
+
+struct programCounter {
+    int instrNum;
+    instrType type;
+    int remainingCycles;
+};
 
 class PCB {
 private:
     int pid;                                // Unique identifier of process
     state currentState;                     // Current state of process
-    int progCount;                          // Location of next instruction
+    programCounter progCount;               // Location of next instruction
     int reqMem;                             // Allocated memory
     int cycle;                              // Current cycle
     std::deque<int> cpuRegisters;           // Register data
@@ -22,23 +29,25 @@ private:
 public:
     // Constructors
     PCB () {}
-    PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, std::string templateFile);
+    PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
 
     // Getters
     int getPid();
     state getCurrentState();
-    int getProgCount();
+    programCounter getProgCount();
     int getReqMem();
     int getCycle();
     std::deque<int> getCpuRegisters();
     std::deque<std::string> getInstructions();
     int getBurst();
     int getIO();
+    instrType getInstructionType(int lineNum);
+    int getInstructionSize(int lineNum);
 
     // Setters
     void setPid(int pid);
     void setCurrentState(state currentState);
-    void setProgCount(int progCount);
+    void setProgCount(programCounter progCount);
     void setReqMem(int reqMem);
     void setCycle(int cycle);
     void setCpuRegisters(std::deque<int> cpuRegisters);

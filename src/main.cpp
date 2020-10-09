@@ -55,7 +55,8 @@ int main(int argc, char *argv[]) {
         // Prints out PID and Instructions
         std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
         std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
-        std::cout << std::endl;
+        std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().type << std::endl;
+        std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
     }
 
     extern int totalProcesses;

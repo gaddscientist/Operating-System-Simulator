@@ -34,10 +34,12 @@ class Scheduler {
         void sortReadyProcesses();
         void sortWaitingProcesses();
 
-        void addProcessToReadyQueue(PCB p);
-        void addProcessToWaitingQueue(PCB p);
 
         void updateQueues();
         void updateReadyQueue();
         void updateWaitingQueue();
+
+
+        // DELETE WHEN DONE TESTING
+        void addProcessToReadyQueue(PCB p);
 };

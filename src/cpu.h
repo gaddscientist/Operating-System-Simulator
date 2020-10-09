@@ -8,6 +8,7 @@ class CPU {
 
         // Member functions
         void clockTick();
+        void execute();
 
     public:
         // Default constructor

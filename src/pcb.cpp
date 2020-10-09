@@ -1,14 +1,17 @@
 #include "pcb.h"
 #include "helpers.h"
+#include <string.h>
+
+// delete this when done testing
+#include <iostream>
 
 // PCB constructor
-PCB::PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, std::string templateFile){
+PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     pid = PID;
     currentState = CurrentState;
-    progCount = ProgCount;
     reqMem = ReqMem;
-    cycle = Cycle;
     instructions = ParseTemplate(templateFile);
+    progCount = {0, getInstructionType(0), getInstructionSize(0)};
     burst = calculateBurst();
     io = 0;
 }
@@ -33,7 +36,7 @@ state PCB::getCurrentState() {
     return this->currentState;
 }
 
-int PCB::getProgCount() {
+programCounter PCB::getProgCount() {
     return this->progCount;
 }
 
@@ -61,6 +64,25 @@ int PCB::getIO() {
     return this->io;
 }
 
+instrType PCB::getInstructionType(int lineNum) {
+    int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
+    std::string tempStr = this->instructions[lineNum].substr(0, space);
+    const char * str = tempStr.c_str();
+    if (strcmp(str, "CALCULATE") == 0) {
+        return CALCULATE;
+    }
+    else if (strcmp(str, "IO") == 0) {
+        return IO;
+    }
+}
+
+int PCB::getInstructionSize(int lineNum) {
+    int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
+    std::string tempStr = this->instructions[lineNum].substr(space);
+    std::string::size_type sz;           // Size of string
+    return std::stoi(tempStr, &sz);
+}
+
 
 // Setters
 void PCB::setPid(int pid) {
@@ -71,7 +93,7 @@ void PCB::setCurrentState(state currentState) {
     this->currentState = currentState;
 }
 
-void PCB::setProgCount(int progCount) {
+void PCB::setProgCount(programCounter progCount) {
     this->progCount = progCount;
 }
 
