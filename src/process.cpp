@@ -12,7 +12,7 @@ state initialState = NEW;
 // Process constructor
 Process::Process (std::string templateFile) {
     pid = next_pid++;
-    pcb = PCB(pid, initialState, 0, 1000, 0, 75, templateFile);
+    pcb = PCB(pid, initialState, 0, 1000, 0, templateFile);
     totalProcesses++;
 }
 
@@ -21,3 +21,20 @@ Process::~Process() {
     // totalProcesses--;
 }
 
+
+// Getters
+int Process::getPid() {
+    return this->pid;
+}
+PCB Process::getPcb() {
+    return this->pcb;
+}
+
+// Setters
+void Process::setPid(int pid) {
+    this->pid = pid;
+}
+
+void Process::setPcb(PCB pcb) {
+    this->pcb = pcb;
+}

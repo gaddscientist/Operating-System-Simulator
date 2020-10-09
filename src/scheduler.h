@@ -1,27 +1,36 @@
 #pragma once
 
-#include <vector>
+#include <deque>
 #include "pcb.h"
 
 enum schedulerType {INVALID = 0, SJF, RR};
 
 class Scheduler {
-    public:
+    private:
         // clock
         // cpu
         schedulerType chosenScheduler;
-        std::vector<PCB> newQueue;
-        std::vector<PCB> readyQueue;
-        std::vector<PCB> waitingQueue;
+        std::deque<PCB> newQueue;
+        std::deque<PCB> readyQueue;
+        std::deque<PCB> waitingQueue;
         // If you want to keep track of finished processes
-        std::vector<PCB> terminatedQueue;
+        std::deque<PCB> terminatedQueue;
 
+    public:
         // Default constructor
         Scheduler ();
 
-        // Member functions
+        // Getters
+        std::deque<PCB> getNewQueue();
+        std::deque<PCB> getReadyQueue();
+        std::deque<PCB> getWaitingQueue();
+        std::deque<PCB> getTerminatedQueue();
+        schedulerType getChosenScheduler();
+
+        // Setters
         void setSchedulerType(schedulerType st);
 
+        // Member functions
         void sortReadyProcesses();
         void sortWaitingProcesses();
 

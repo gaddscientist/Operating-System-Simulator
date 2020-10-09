@@ -4,11 +4,11 @@
 #include <time.h>
 #include "process.h"
 #include "helpers.h"
-#include <vector>
 #include "scheduler.h"
 #include "cpu.h"
 #include "dispatcher.h"
 
+// Global variables
 Scheduler scheduler;
 CPU cpu;
 
@@ -25,11 +25,11 @@ int main(int argc, char *argv[]) {
     int x;
     std::cout << "What type of scheduler?\n1.SJF\n2.RR" << std::endl;
     std::cin >> x;
-    auto st = static_cast<schedulerType>(x);
+    schedulerType st = static_cast<schedulerType>(x);
 
     // Create scheduler
     scheduler.setSchedulerType(st);
-    std::cout << scheduler.chosenScheduler << std::endl;
+    std::cout << scheduler.getChosenScheduler() << std::endl;
 
     // Create Dispatcher
     Dispatcher dispatcher;
@@ -40,9 +40,9 @@ int main(int argc, char *argv[]) {
     const std::string templateFile = argv[1];   // User specified template
     // Might need to convert better for large numbers
     int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
-    // std::vector<Process> processes;             // Vector of created processes 
+    // std::deque<Process> processes;             // deque of created processes 
 
-    // Loop to create processes
+    // Function to create processes
     createProcesses(numProcesses, templateFile);
 
 
@@ -53,8 +53,8 @@ int main(int argc, char *argv[]) {
     int num = 5;
     for (int index = 0; num > 0; num--, index++) {
         // Prints out PID and Instructions
-        std::cout << "PID = " << scheduler.readyQueue[index].pid << std::endl;
-        std::cout << "Burst time = " << scheduler.readyQueue[index].burst << std::endl;
+        std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
+        std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
         std::cout << std::endl;
     }
 

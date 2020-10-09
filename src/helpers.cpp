@@ -1,10 +1,10 @@
 #include <fstream>
-#include <vector>
+#include <deque>
 #include "helpers.h"
 #include <iostream>
 
-std::vector<std::string> ParseTemplate(const std::string tp) {
-    std::vector<std::string> instructions;
+std::deque<std::string> ParseTemplate(const std::string tp) {
+    std::deque<std::string> instructions;
     // Opens passed file name or prints error
     std::ifstream in(tp);
     std::string str;
@@ -19,7 +19,7 @@ std::vector<std::string> ParseTemplate(const std::string tp) {
         if(str.size() > 0) {
             // Randomizes the number of instruction cycles for the given line
             std::string randStr = Randomize(str);
-            // Adds the randomized instruction to the vector of instructions
+            // Adds the randomized instruction to the deque of instructions
             instructions.push_back(randStr); 
         }
     }
@@ -55,12 +55,12 @@ void createProcesses(int numProcesses, std::string templateFile) {
     for (int index = 0; numProcesses > 0; numProcesses--, index++) {
         // Creates process and adds to scheduler's "new" queue
         Process newProcess(templateFile);
-        scheduler.addProcessToReadyQueue(newProcess.pcb);
+        scheduler.addProcessToReadyQueue(newProcess.getPcb());
 
         // TESTING CODE
         // Prints out PID and Instructions
-        std::cout << "PID = " << newProcess.pcb.pid << std::endl;
-        std::cout << "Burst time = " << newProcess.pcb.burst << std::endl;
+        std::cout << "PID = " << newProcess.getPcb().getPid() << std::endl;
+        std::cout << "Burst time = " << newProcess.getPcb().getBurst() << std::endl;
         std::cout << std::endl;
     }
 }

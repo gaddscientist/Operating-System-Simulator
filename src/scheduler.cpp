@@ -1,4 +1,4 @@
-#include <vector>
+#include <deque>
 #include <algorithm>
 #include "process.h"
 #include "scheduler.h"
@@ -7,22 +7,45 @@
 Scheduler::Scheduler() {
     // Note: For this iteration, we're assuming no memory constraint.
     // All procecsses will fit in ready queue
-    this->newQueue = std::vector<PCB>();
-    this->readyQueue = std::vector<PCB>();
-    this->waitingQueue = std::vector<PCB>();
-    this->terminatedQueue = std::vector<PCB>();
+    this->newQueue = std::deque<PCB>();
+    this->readyQueue = std::deque<PCB>();
+    this->waitingQueue = std::deque<PCB>();
+    this->terminatedQueue = std::deque<PCB>();
 }
 
+// Getters
+std::deque<PCB> Scheduler::getNewQueue() {
+    return this->newQueue;
+}
+
+std::deque<PCB> Scheduler::getReadyQueue() {
+    return this->readyQueue;
+}
+
+std::deque<PCB> Scheduler::getWaitingQueue() {
+    return this->waitingQueue;
+}
+
+std::deque<PCB> Scheduler::getTerminatedQueue() {
+    return this->terminatedQueue;
+}
+
+schedulerType Scheduler::getChosenScheduler() {
+    return this->chosenScheduler;
+}
+
+// Setters
 void Scheduler::setSchedulerType(schedulerType st) {
     this->chosenScheduler = st;
 }
 
+// Member functions
 void Scheduler::sortReadyProcesses() {
-    std::sort(this->readyQueue.begin(), this->readyQueue.end(), [](PCB a, PCB b){ return a.burst < b.burst; });
+    std::sort(this->readyQueue.begin(), this->readyQueue.end(), [](PCB a, PCB b){ return a.getBurst() < b.getBurst(); });
 }
 
 void Scheduler::sortWaitingProcesses() {
-    std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.io < b.io; });
+    std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.getIO() < b.getIO(); });
 }
 
 void Scheduler::addProcessToReadyQueue(PCB p) {
@@ -41,17 +64,18 @@ void Scheduler::updateQueues() {
 }
 
 void Scheduler::updateWaitingQueue() {
-    while (waitingQueue.front().io == 0) {
+    // Move processes that are done waiting to back of ready queue
+    while (waitingQueue.front().getIO() == 0) {
         addProcessToReadyQueue(waitingQueue.front());
         waitingQueue.pop_front();
     }
 
+    // Decrement the number of remaining io cycles for 
+    // all other processes still waiting
     for (int i = 0; i < this->waitingQueue.size(); i++) {
-        if (this->waitingQueue[i].io > 0) {
-            this->waitingQueue[i].io--;
-        }
-        else if (this->waitingQueue[i].io == 0) {
-
+        if (this->waitingQueue[i].getIO() > 0) {
+            int tempIO = this->waitingQueue[i].getIO();
+            this->waitingQueue[i].setIO(tempIO--);
         }
     }
 }

@@ -13,3 +13,22 @@ void CPU::clockTick() {
 
     scheduler.updateQueues();
 }
+
+
+// Getters
+int CPU::getClock() {
+    return this->clock;
+}
+
+PCB CPU::getPcb() {
+    return this->pcb;
+}
+
+// Setters
+void CPU::setClock(int clock) {
+    this->clock = clock;
+}
+
+void CPU::setPcb(PCB pcb) {
+    this->pcb = pcb;
+}
