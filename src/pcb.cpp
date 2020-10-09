@@ -11,6 +11,7 @@ PCB::PCB (int PID, state CurrentState, int ProgCount, int ReqMem, int Cycle, int
     givenCycles = GivenCycles;
     instructions = ParseTemplate(templateFile);
     burst = calculateBurst();
+    io = 0;
 }
 
 int PCB::calculateBurst() {
@@ -22,8 +23,4 @@ int PCB::calculateBurst() {
     }
     // burst = std::round((burst / this->pcb.instructions.size()));
     return (int)burst;
-}
-
-bool PCB::operator<(const PCB& otherPCB) const {
-    return burst < otherPCB.burst;
 }

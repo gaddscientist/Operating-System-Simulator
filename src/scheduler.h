@@ -20,8 +20,15 @@ class Scheduler {
         Scheduler ();
 
         // Member functions
-        void sortProcesses();
         void setSchedulerType(schedulerType st);
+
+        void sortReadyProcesses();
+        void sortWaitingProcesses();
+
         void addProcessToReadyQueue(PCB p);
+        void addProcessToWaitingQueue(PCB p);
+
         void updateQueues();
+        void updateReadyQueue();
+        void updateWaitingQueue();
 };
