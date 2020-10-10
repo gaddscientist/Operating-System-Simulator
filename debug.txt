@@ -1,0 +1,3189 @@
+What type of scheduler?
+1.SJF
+2.RR
+1
+
+1 processes were created
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 1
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 2
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 3
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 4
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 5
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 6
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 7
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 8
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 9
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 10
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 11
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 12
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 13
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 14
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 15
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 16
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 17
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 18
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 19
+
+
+PID = 0
+Burst Time = 276
+Instruction line 0
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 20
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 59
+Instruction type: 0
+PID: 0
+Remaining cycles: 59
+Executing
+Clock is: 21
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 58
+Instruction type: 0
+PID: 0
+Remaining cycles: 58
+Executing
+Clock is: 22
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 57
+Instruction type: 0
+PID: 0
+Remaining cycles: 57
+Executing
+Clock is: 23
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 56
+Instruction type: 0
+PID: 0
+Remaining cycles: 56
+Executing
+Clock is: 24
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 55
+Instruction type: 0
+PID: 0
+Remaining cycles: 55
+Executing
+Clock is: 25
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 54
+Instruction type: 0
+PID: 0
+Remaining cycles: 54
+Executing
+Clock is: 26
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 53
+Instruction type: 0
+PID: 0
+Remaining cycles: 53
+Executing
+Clock is: 27
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 52
+Instruction type: 0
+PID: 0
+Remaining cycles: 52
+Executing
+Clock is: 28
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 51
+Instruction type: 0
+PID: 0
+Remaining cycles: 51
+Executing
+Clock is: 29
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 50
+Instruction type: 0
+PID: 0
+Remaining cycles: 50
+Executing
+Clock is: 30
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 49
+Instruction type: 0
+PID: 0
+Remaining cycles: 49
+Executing
+Clock is: 31
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 48
+Instruction type: 0
+PID: 0
+Remaining cycles: 48
+Executing
+Clock is: 32
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 47
+Instruction type: 0
+PID: 0
+Remaining cycles: 47
+Executing
+Clock is: 33
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 46
+Instruction type: 0
+PID: 0
+Remaining cycles: 46
+Executing
+Clock is: 34
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 45
+Instruction type: 0
+PID: 0
+Remaining cycles: 45
+Executing
+Clock is: 35
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 44
+Instruction type: 0
+PID: 0
+Remaining cycles: 44
+Executing
+Clock is: 36
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 43
+Instruction type: 0
+PID: 0
+Remaining cycles: 43
+Executing
+Clock is: 37
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 42
+Instruction type: 0
+PID: 0
+Remaining cycles: 42
+Executing
+Clock is: 38
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 41
+Instruction type: 0
+PID: 0
+Remaining cycles: 41
+Executing
+Clock is: 39
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 40
+Instruction type: 0
+PID: 0
+Remaining cycles: 40
+Executing
+Clock is: 40
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 39
+Instruction type: 0
+PID: 0
+Remaining cycles: 39
+Executing
+Clock is: 41
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 38
+Instruction type: 0
+PID: 0
+Remaining cycles: 38
+Executing
+Clock is: 42
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 37
+Instruction type: 0
+PID: 0
+Remaining cycles: 37
+Executing
+Clock is: 43
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 36
+Instruction type: 0
+PID: 0
+Remaining cycles: 36
+Executing
+Clock is: 44
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 35
+Instruction type: 0
+PID: 0
+Remaining cycles: 35
+Executing
+Clock is: 45
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 34
+Instruction type: 0
+PID: 0
+Remaining cycles: 34
+Executing
+Clock is: 46
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 33
+Instruction type: 0
+PID: 0
+Remaining cycles: 33
+Executing
+Clock is: 47
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 32
+Instruction type: 0
+PID: 0
+Remaining cycles: 32
+Executing
+Clock is: 48
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 31
+Instruction type: 0
+PID: 0
+Remaining cycles: 31
+Executing
+Clock is: 49
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 30
+Instruction type: 0
+PID: 0
+Remaining cycles: 30
+Executing
+Clock is: 50
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 29
+Instruction type: 0
+PID: 0
+Remaining cycles: 29
+Executing
+Clock is: 51
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 28
+Instruction type: 0
+PID: 0
+Remaining cycles: 28
+Executing
+Clock is: 52
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 27
+Instruction type: 0
+PID: 0
+Remaining cycles: 27
+Executing
+Clock is: 53
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 26
+Instruction type: 0
+PID: 0
+Remaining cycles: 26
+Executing
+Clock is: 54
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 25
+Instruction type: 0
+PID: 0
+Remaining cycles: 25
+Executing
+Clock is: 55
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 24
+Instruction type: 0
+PID: 0
+Remaining cycles: 24
+Executing
+Clock is: 56
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 23
+Instruction type: 0
+PID: 0
+Remaining cycles: 23
+Executing
+Clock is: 57
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 22
+Instruction type: 0
+PID: 0
+Remaining cycles: 22
+Executing
+Clock is: 58
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 21
+Instruction type: 0
+PID: 0
+Remaining cycles: 21
+Executing
+Clock is: 59
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 60
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 61
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 62
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 63
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 64
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 65
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 66
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 67
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 68
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 69
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 70
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 71
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 72
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 73
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 74
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 75
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 76
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 77
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 78
+
+
+PID = 0
+Burst Time = 276
+Instruction line 1
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 79
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 22
+Instruction type: 0
+PID: 0
+Remaining cycles: 22
+Executing
+Clock is: 80
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 21
+Instruction type: 0
+PID: 0
+Remaining cycles: 21
+Executing
+Clock is: 81
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 82
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 83
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 84
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 85
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 86
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 87
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 88
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 89
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 90
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 91
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 92
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 93
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 94
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 95
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 96
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 97
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 98
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 99
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 100
+
+
+PID = 0
+Burst Time = 276
+Instruction line 2
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 101
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 43
+Instruction type: 0
+PID: 0
+Remaining cycles: 43
+Executing
+Clock is: 102
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 42
+Instruction type: 0
+PID: 0
+Remaining cycles: 42
+Executing
+Clock is: 103
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 41
+Instruction type: 0
+PID: 0
+Remaining cycles: 41
+Executing
+Clock is: 104
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 40
+Instruction type: 0
+PID: 0
+Remaining cycles: 40
+Executing
+Clock is: 105
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 39
+Instruction type: 0
+PID: 0
+Remaining cycles: 39
+Executing
+Clock is: 106
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 38
+Instruction type: 0
+PID: 0
+Remaining cycles: 38
+Executing
+Clock is: 107
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 37
+Instruction type: 0
+PID: 0
+Remaining cycles: 37
+Executing
+Clock is: 108
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 36
+Instruction type: 0
+PID: 0
+Remaining cycles: 36
+Executing
+Clock is: 109
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 35
+Instruction type: 0
+PID: 0
+Remaining cycles: 35
+Executing
+Clock is: 110
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 34
+Instruction type: 0
+PID: 0
+Remaining cycles: 34
+Executing
+Clock is: 111
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 33
+Instruction type: 0
+PID: 0
+Remaining cycles: 33
+Executing
+Clock is: 112
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 32
+Instruction type: 0
+PID: 0
+Remaining cycles: 32
+Executing
+Clock is: 113
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 31
+Instruction type: 0
+PID: 0
+Remaining cycles: 31
+Executing
+Clock is: 114
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 30
+Instruction type: 0
+PID: 0
+Remaining cycles: 30
+Executing
+Clock is: 115
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 29
+Instruction type: 0
+PID: 0
+Remaining cycles: 29
+Executing
+Clock is: 116
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 28
+Instruction type: 0
+PID: 0
+Remaining cycles: 28
+Executing
+Clock is: 117
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 27
+Instruction type: 0
+PID: 0
+Remaining cycles: 27
+Executing
+Clock is: 118
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 26
+Instruction type: 0
+PID: 0
+Remaining cycles: 26
+Executing
+Clock is: 119
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 25
+Instruction type: 0
+PID: 0
+Remaining cycles: 25
+Executing
+Clock is: 120
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 24
+Instruction type: 0
+PID: 0
+Remaining cycles: 24
+Executing
+Clock is: 121
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 23
+Instruction type: 0
+PID: 0
+Remaining cycles: 23
+Executing
+Clock is: 122
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 22
+Instruction type: 0
+PID: 0
+Remaining cycles: 22
+Executing
+Clock is: 123
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 21
+Instruction type: 0
+PID: 0
+Remaining cycles: 21
+Executing
+Clock is: 124
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 125
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 126
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 127
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 128
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 129
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 130
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 131
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 132
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 133
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 134
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 135
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 136
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 137
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 138
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 139
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 140
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 141
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 142
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 143
+
+
+PID = 0
+Burst Time = 276
+Instruction line 3
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 144
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 78
+Instruction type: 0
+PID: 0
+Remaining cycles: 78
+Executing
+Clock is: 145
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 77
+Instruction type: 0
+PID: 0
+Remaining cycles: 77
+Executing
+Clock is: 146
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 76
+Instruction type: 0
+PID: 0
+Remaining cycles: 76
+Executing
+Clock is: 147
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 75
+Instruction type: 0
+PID: 0
+Remaining cycles: 75
+Executing
+Clock is: 148
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 74
+Instruction type: 0
+PID: 0
+Remaining cycles: 74
+Executing
+Clock is: 149
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 73
+Instruction type: 0
+PID: 0
+Remaining cycles: 73
+Executing
+Clock is: 150
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 72
+Instruction type: 0
+PID: 0
+Remaining cycles: 72
+Executing
+Clock is: 151
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 71
+Instruction type: 0
+PID: 0
+Remaining cycles: 71
+Executing
+Clock is: 152
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 70
+Instruction type: 0
+PID: 0
+Remaining cycles: 70
+Executing
+Clock is: 153
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 69
+Instruction type: 0
+PID: 0
+Remaining cycles: 69
+Executing
+Clock is: 154
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 68
+Instruction type: 0
+PID: 0
+Remaining cycles: 68
+Executing
+Clock is: 155
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 67
+Instruction type: 0
+PID: 0
+Remaining cycles: 67
+Executing
+Clock is: 156
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 66
+Instruction type: 0
+PID: 0
+Remaining cycles: 66
+Executing
+Clock is: 157
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 65
+Instruction type: 0
+PID: 0
+Remaining cycles: 65
+Executing
+Clock is: 158
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 64
+Instruction type: 0
+PID: 0
+Remaining cycles: 64
+Executing
+Clock is: 159
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 63
+Instruction type: 0
+PID: 0
+Remaining cycles: 63
+Executing
+Clock is: 160
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 62
+Instruction type: 0
+PID: 0
+Remaining cycles: 62
+Executing
+Clock is: 161
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 61
+Instruction type: 0
+PID: 0
+Remaining cycles: 61
+Executing
+Clock is: 162
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 60
+Instruction type: 0
+PID: 0
+Remaining cycles: 60
+Executing
+Clock is: 163
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 59
+Instruction type: 0
+PID: 0
+Remaining cycles: 59
+Executing
+Clock is: 164
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 58
+Instruction type: 0
+PID: 0
+Remaining cycles: 58
+Executing
+Clock is: 165
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 57
+Instruction type: 0
+PID: 0
+Remaining cycles: 57
+Executing
+Clock is: 166
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 56
+Instruction type: 0
+PID: 0
+Remaining cycles: 56
+Executing
+Clock is: 167
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 55
+Instruction type: 0
+PID: 0
+Remaining cycles: 55
+Executing
+Clock is: 168
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 54
+Instruction type: 0
+PID: 0
+Remaining cycles: 54
+Executing
+Clock is: 169
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 53
+Instruction type: 0
+PID: 0
+Remaining cycles: 53
+Executing
+Clock is: 170
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 52
+Instruction type: 0
+PID: 0
+Remaining cycles: 52
+Executing
+Clock is: 171
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 51
+Instruction type: 0
+PID: 0
+Remaining cycles: 51
+Executing
+Clock is: 172
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 50
+Instruction type: 0
+PID: 0
+Remaining cycles: 50
+Executing
+Clock is: 173
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 49
+Instruction type: 0
+PID: 0
+Remaining cycles: 49
+Executing
+Clock is: 174
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 48
+Instruction type: 0
+PID: 0
+Remaining cycles: 48
+Executing
+Clock is: 175
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 47
+Instruction type: 0
+PID: 0
+Remaining cycles: 47
+Executing
+Clock is: 176
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 46
+Instruction type: 0
+PID: 0
+Remaining cycles: 46
+Executing
+Clock is: 177
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 45
+Instruction type: 0
+PID: 0
+Remaining cycles: 45
+Executing
+Clock is: 178
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 44
+Instruction type: 0
+PID: 0
+Remaining cycles: 44
+Executing
+Clock is: 179
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 43
+Instruction type: 0
+PID: 0
+Remaining cycles: 43
+Executing
+Clock is: 180
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 42
+Instruction type: 0
+PID: 0
+Remaining cycles: 42
+Executing
+Clock is: 181
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 41
+Instruction type: 0
+PID: 0
+Remaining cycles: 41
+Executing
+Clock is: 182
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 40
+Instruction type: 0
+PID: 0
+Remaining cycles: 40
+Executing
+Clock is: 183
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 39
+Instruction type: 0
+PID: 0
+Remaining cycles: 39
+Executing
+Clock is: 184
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 38
+Instruction type: 0
+PID: 0
+Remaining cycles: 38
+Executing
+Clock is: 185
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 37
+Instruction type: 0
+PID: 0
+Remaining cycles: 37
+Executing
+Clock is: 186
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 36
+Instruction type: 0
+PID: 0
+Remaining cycles: 36
+Executing
+Clock is: 187
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 35
+Instruction type: 0
+PID: 0
+Remaining cycles: 35
+Executing
+Clock is: 188
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 34
+Instruction type: 0
+PID: 0
+Remaining cycles: 34
+Executing
+Clock is: 189
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 33
+Instruction type: 0
+PID: 0
+Remaining cycles: 33
+Executing
+Clock is: 190
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 32
+Instruction type: 0
+PID: 0
+Remaining cycles: 32
+Executing
+Clock is: 191
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 31
+Instruction type: 0
+PID: 0
+Remaining cycles: 31
+Executing
+Clock is: 192
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 30
+Instruction type: 0
+PID: 0
+Remaining cycles: 30
+Executing
+Clock is: 193
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 29
+Instruction type: 0
+PID: 0
+Remaining cycles: 29
+Executing
+Clock is: 194
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 28
+Instruction type: 0
+PID: 0
+Remaining cycles: 28
+Executing
+Clock is: 195
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 27
+Instruction type: 0
+PID: 0
+Remaining cycles: 27
+Executing
+Clock is: 196
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 26
+Instruction type: 0
+PID: 0
+Remaining cycles: 26
+Executing
+Clock is: 197
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 25
+Instruction type: 0
+PID: 0
+Remaining cycles: 25
+Executing
+Clock is: 198
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 24
+Instruction type: 0
+PID: 0
+Remaining cycles: 24
+Executing
+Clock is: 199
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 23
+Instruction type: 0
+PID: 0
+Remaining cycles: 23
+Executing
+Clock is: 200
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 22
+Instruction type: 0
+PID: 0
+Remaining cycles: 22
+Executing
+Clock is: 201
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 21
+Instruction type: 0
+PID: 0
+Remaining cycles: 21
+Executing
+Clock is: 202
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 203
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 204
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 205
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 206
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 207
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 208
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 209
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 210
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 211
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 212
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 213
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 214
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 215
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 216
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 217
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 218
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 219
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 220
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 221
+
+
+PID = 0
+Burst Time = 276
+Instruction line 4
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 222
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 22
+Instruction type: 0
+PID: 0
+Remaining cycles: 22
+Executing
+Clock is: 223
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 21
+Instruction type: 0
+PID: 0
+Remaining cycles: 21
+Executing
+Clock is: 224
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 20
+Instruction type: 0
+PID: 0
+Remaining cycles: 20
+Executing
+Clock is: 225
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 19
+Instruction type: 0
+PID: 0
+Remaining cycles: 19
+Executing
+Clock is: 226
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 18
+Instruction type: 0
+PID: 0
+Remaining cycles: 18
+Executing
+Clock is: 227
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 17
+Instruction type: 0
+PID: 0
+Remaining cycles: 17
+Executing
+Clock is: 228
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 16
+Instruction type: 0
+PID: 0
+Remaining cycles: 16
+Executing
+Clock is: 229
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 15
+Instruction type: 0
+PID: 0
+Remaining cycles: 15
+Executing
+Clock is: 230
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 14
+Instruction type: 0
+PID: 0
+Remaining cycles: 14
+Executing
+Clock is: 231
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 13
+Instruction type: 0
+PID: 0
+Remaining cycles: 13
+Executing
+Clock is: 232
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 12
+Instruction type: 0
+PID: 0
+Remaining cycles: 12
+Executing
+Clock is: 233
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 11
+Instruction type: 0
+PID: 0
+Remaining cycles: 11
+Executing
+Clock is: 234
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 10
+Instruction type: 0
+PID: 0
+Remaining cycles: 10
+Executing
+Clock is: 235
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 9
+Instruction type: 0
+PID: 0
+Remaining cycles: 9
+Executing
+Clock is: 236
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 8
+Instruction type: 0
+PID: 0
+Remaining cycles: 8
+Executing
+Clock is: 237
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 7
+Instruction type: 0
+PID: 0
+Remaining cycles: 7
+Executing
+Clock is: 238
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 6
+Instruction type: 0
+PID: 0
+Remaining cycles: 6
+Executing
+Clock is: 239
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 5
+Instruction type: 0
+PID: 0
+Remaining cycles: 5
+Executing
+Clock is: 240
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 4
+Instruction type: 0
+PID: 0
+Remaining cycles: 4
+Executing
+Clock is: 241
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 3
+Instruction type: 0
+PID: 0
+Remaining cycles: 3
+Executing
+Clock is: 242
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 2
+Instruction type: 0
+PID: 0
+Remaining cycles: 2
+Executing
+Clock is: 243
+
+
+PID = 0
+Burst Time = 276
+Instruction line 5
+Num of instructions 6
+Instruction type = 0
+Instruction size = 1
+Instruction type: 0
+PID: 0
+Remaining cycles: 1
+Executing
+Clock is: 244
+
+
+PID = 0
+Burst Time = 276
+Instruction line 6
+Num of instructions 6
+Instruction type = 1
+Instruction size = 32
+Instruction type: 1
+IO before: 32
+TEST

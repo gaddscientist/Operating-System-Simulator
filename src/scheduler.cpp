@@ -4,6 +4,9 @@
 #include "scheduler.h"
 #include "pcb.h"
 
+// testing
+#include <iostream>
+
 Scheduler::Scheduler() {
     // Note: For this iteration, we're assuming no memory constraint.
     // All procecsses will fit in ready queue
@@ -56,9 +59,14 @@ void Scheduler::updateQueues() {
 
 void Scheduler::updateWaitingQueue() {
     // Move processes that are done waiting to back of ready queue
-    while (waitingQueue.front().getIO() == 0) {
-        // addProcessToReadyQueue(waitingQueue.front());
-        waitingQueue.pop_front();
+    if (!(this->waitingQueue.empty())) {
+        while (this->waitingQueue.front().getIO() == 0 && this->waitingQueue.size() > 0) {
+            std::cout << "TEST BEFORE" << std::endl;
+            std::cout << "waiting queue size " << this->waitingQueue.size() << std::endl;
+            // this->waitingQueue.front().incrementInstrNum();
+            this->addProcessToReadyQueue(this->waitingQueue.front());
+            this->waitingQueue.pop_front();
+        }
     }
 
     // Decrement the number of remaining io cycles for 
@@ -66,7 +74,8 @@ void Scheduler::updateWaitingQueue() {
     for (int i = 0; i < this->waitingQueue.size(); i++) {
         if (this->waitingQueue[i].getIO() > 0) {
             int tempIO = this->waitingQueue[i].getIO();
-            this->waitingQueue[i].setIO(tempIO--);
+            this->waitingQueue[i].setIO(--tempIO);
+            std::cout << "IO after: " << this->waitingQueue[i].getIO() << std::endl;
         }
     }
 }
@@ -85,6 +94,7 @@ void Scheduler::addProcessToReadyQueue(PCB p) {
 void Scheduler::addProcessToWaitingQueue(PCB p) {
     p.setCurrentState(WAITING);
     this->waitingQueue.push_back(p);
+    this->readyQueue.pop_front();
     this->sortWaitingProcesses();
 }
 

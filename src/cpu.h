@@ -6,10 +6,10 @@ class CPU {
         int clock;
         PCB pcb;
         bool swapProcess;
+        bool wait;
 
         // Member functions
         void execute();
-        void decrementCycles();
 
     public:
         // Default constructor

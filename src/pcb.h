@@ -32,6 +32,7 @@ public:
     PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
 
     void decrementCycles();
+    void incrementInstrNum();
 
     // Getters
     int getPid();

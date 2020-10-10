@@ -25,7 +25,8 @@ int main(int argc, char *argv[]) {
 
     int x;
     std::cout << "What type of scheduler?\n1.SJF\n2.RR" << std::endl;
-    std::cin >> x;
+    // std::cin >> x;
+    x = 1;
     schedulerType st = static_cast<schedulerType>(x);
 
     // Create scheduler
@@ -49,21 +50,21 @@ int main(int argc, char *argv[]) {
 
     // TESTING
     std::cout << std::endl;
-    int num = 5;
-    for (int index = 0; num > 0; num--, index++) {
-        // Prints out PID and Instructions
-        std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
-        std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
-        std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().instrType << std::endl;
-        std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
-    }
+    // int num = 5;
+    // for (int index = 0; num > 0; num--, index++) {
+    //     // Prints out PID and Instructions
+        // std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
+        // std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
+        // std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().instrType << std::endl;
+        // std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
+    // }
 
     extern int totalProcesses;
     std::cout << totalProcesses << " processes were created" << std::endl;
     // END TESTING
 
     CPU cpu;
-    while(totalProcesses > 4) {
+    while(totalProcesses > 0) {
         cpu.clockTick();
         std::cout << "Clock is: " << cpu.getClock() << std::endl;
         // std::cout << "Total process is: " << totalProcesses << std::endl;

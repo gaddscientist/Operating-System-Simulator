@@ -13,7 +13,7 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     instructions = ParseTemplate(templateFile);
     progCount = {0, getInstructionType(0), getInstructionSize(0)};
     burst = calculateBurst();
-    io = 0;
+    io = -1;
 }
 
 int PCB::calculateBurst() {
@@ -30,6 +30,12 @@ int PCB::calculateBurst() {
 
 void PCB::decrementCycles() {
     this->progCount.remainingCycles--;
+}
+
+void PCB::incrementInstrNum() {
+    this->progCount.instrNum++;
+    this->progCount.instrType = getInstructionType(this->progCount.instrNum);
+    this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum);
 }
 
 // Getters
