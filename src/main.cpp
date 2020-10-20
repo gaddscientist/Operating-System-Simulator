@@ -1,12 +1,13 @@
 #include <iostream>
-#include <string>
-#include <stdio.h>
-#include <time.h>
-#include "process.h"
+// #include <string>
+// #include <stdio.h>
+// #include <time.h>
+// #include "process.h"
 #include "helpers.h"
 #include "scheduler.h"
-#include "cpu.h"
+// #include "cpu.h"
 #include "dispatcher.h"
+#include "OS.h"
 
 // Global variables
 Scheduler scheduler;
@@ -23,33 +24,20 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    int x;
-    std::cout << "What type of scheduler?\n1.SJF\n2.RR" << std::endl;
-    // std::cin >> x;
-    x = 1;
-    schedulerType st = static_cast<schedulerType>(x);
-
-    // Create scheduler
-    scheduler.setSchedulerType(st);
-    std::cout << scheduler.getChosenScheduler() << std::endl;
-
-
-    // Uses current time to as seed for rand()
-    srand(time(0));
-
     const std::string templateFile = argv[1];   // User specified template
     // Might need to convert better for large numbers
     int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
     // std::deque<Process> processes;             // deque of created processes 
 
-    // Function to create processes
-    createProcesses(numProcesses, templateFile);
+    // Uses current time to as seed for rand()
+    srand(time(0));
 
-
-
+    // CREATE OS OBJECT AND RUN IT
+    OS os(templateFile, numProcesses);
+    os.start();
 
     // TESTING
-    std::cout << std::endl;
+    // std::cout << std::endl;
     // int num = 5;
     // for (int index = 0; num > 0; num--, index++) {
     //     // Prints out PID and Instructions
@@ -59,16 +47,14 @@ int main(int argc, char *argv[]) {
         // std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
     // }
 
-    extern int totalProcesses;
-    std::cout << totalProcesses << " processes were created" << std::endl;
     // END TESTING
 
-    CPU cpu;
-    while(totalProcesses > 0) {
-        cpu.clockTick();
-        std::cout << "Clock is: " << cpu.getClock() << std::endl;
-        // std::cout << "Total process is: " << totalProcesses << std::endl;
-    }
+    // CPU cpu;
+    // while(totalProcesses > 0) {
+    //     cpu.clockTick();
+    //     // std::cout << "Clock is: " << cpu.getClock() << std::endl;
+    //     // std::cout << "Total process is: " << totalProcesses << std::endl;
+    // }
 
 
     return 0;

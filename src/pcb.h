@@ -25,6 +25,8 @@ private:
 
     // Member functions
     int calculateBurst();
+    std::string Randomize(std::string& str);
+    std::deque<std::string> ParseTemplate(const std::string tp);
 
 public:
     // Constructors

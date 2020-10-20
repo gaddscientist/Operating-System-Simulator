@@ -4,6 +4,3 @@
 #include "scheduler.h"
 
 // Methods
-std::deque<std::string> ParseTemplate(const std::string tp);
-std::string Randomize(std::string& str);
-void createProcesses(int numProcesses, std::string templateFile);

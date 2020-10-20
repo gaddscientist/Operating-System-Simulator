@@ -1,0 +1,12 @@
+1. Rearrange hierarchy to better represent a real system
+main
+->start OS
+--->start cpu/clock/scheduler/dispatcher
+--->create processes from template
+
+2. Implement Round Robin scheduling
+2.5 Implement preemption for sjf
+
+3. Implement system clock instead of int counter
+
+4. Implement C++ threading. Consider running IO cycles on separate thread?

@@ -30,8 +30,8 @@ void CPU::clockTick() {
         wait = false;
     }
 
-    std::cout << std::endl;
-    std::cout << std::endl;
+    // std::cout << std::endl;
+    // std::cout << std::endl;
     // int num = 5;
     // for (int index = 0; num > 0; num--, index++) {
     //     // Prints out PID and Instructions
@@ -40,16 +40,16 @@ void CPU::clockTick() {
     //     std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().instrType << std::endl;
     //     std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
     // }
-    std::cout << "PID = " << this->pcb.getPid() << std::endl;
-    std::cout << "Burst Time = " << this->pcb.getBurst() << std::endl;
-    std::cout << "Instruction line " << this->pcb.getProgCount().instrNum << std::endl;
-    std::cout << "Num of instructions " << this->pcb.getInstructions().size() - 1 << std::endl;
-    std::cout << "Instruction type = " << this->pcb.getProgCount().instrType << std::endl;
-    std::cout << "Instruction size = " << this->pcb.getProgCount().remainingCycles << std::endl;
+    // std::cout << "PID = " << this->pcb.getPid() << std::endl;
+    // std::cout << "Burst Time = " << this->pcb.getBurst() << std::endl;
+    // std::cout << "Instruction line " << this->pcb.getProgCount().instrNum << std::endl;
+    // std::cout << "Num of instructions " << this->pcb.getInstructions().size() - 1 << std::endl;
+    // std::cout << "Instruction type = " << this->pcb.getProgCount().instrType << std::endl;
+    // std::cout << "Instruction size = " << this->pcb.getProgCount().remainingCycles << std::endl;
 
     if (wait == false) {
         this->execute();
-        std::cout << "Executing" << std::endl;
+        // std::cout << "Executing" << std::endl;
     }
     // dispatcher.updateQueues();
     scheduler.updateQueues(); // PROBLEM HERE
@@ -58,18 +58,19 @@ void CPU::clockTick() {
 }
 
 void CPU::execute() {
-    std::cout << "Instruction type: " << this->pcb.getProgCount().instrType << std::endl;
+    // std::cout << "Instruction type: " << this->pcb.getProgCount().instrType << std::endl;
     switch (this->pcb.getProgCount().instrType) {
         case 0: // CALCULATE
-            std::cout << "PID: " << this->pcb.getPid() << std::endl;
+            // std::cout << "PID: " << this->pcb.getPid() << std::endl;
             if(this->pcb.getProgCount().remainingCycles > 0) {
-                std::cout << "Remaining cycles: " << this->pcb.getProgCount().remainingCycles << std::endl;
+                // std::cout << "Remaining cycles: " << this->pcb.getProgCount().remainingCycles << std::endl;
                 this->pcb.decrementCycles();
             }
             if(this->pcb.getProgCount().remainingCycles == 0) {
                 if (this->pcb.getProgCount().instrNum >= (this->pcb.getInstructions().size() - 1)) {
-                    std::cout << "FINALLY" << std::endl;
+                    // std::cout << "FINALLY" << std::endl;
                     scheduler.addProcessToTerminatedQueue(this->pcb);
+                    // std::cout << "Process with PID: " << this->pcb.getPid() << " exited" << std::endl;
                     // swapProcess = true;
                     this->pcb = scheduler.getReadyQueue().front();
                     totalProcesses--;
@@ -86,7 +87,7 @@ void CPU::execute() {
             //     std::cout << "instructions size " << this->pcb.getInstructions().size() << std::endl;
             if(this->pcb.getProgCount().instrNum < this->pcb.getInstructions().size() - 1){
 
-                std::cout << "TEST" << std::endl;
+                // std::cout << "TEST" << std::endl;
                 this->pcb.incrementInstrNum();
             }
             else {

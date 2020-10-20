@@ -61,8 +61,8 @@ void Scheduler::updateWaitingQueue() {
     // Move processes that are done waiting to back of ready queue
     if (!(this->waitingQueue.empty())) {
         while (this->waitingQueue.front().getIO() == 0 && this->waitingQueue.size() > 0) {
-            std::cout << "TEST BEFORE" << std::endl;
-            std::cout << "waiting queue size " << this->waitingQueue.size() << std::endl;
+            // std::cout << "TEST BEFORE" << std::endl;
+            // std::cout << "waiting queue size " << this->waitingQueue.size() << std::endl;
             // this->waitingQueue.front().incrementInstrNum();
             this->addProcessToReadyQueue(this->waitingQueue.front());
             this->waitingQueue.pop_front();
@@ -75,7 +75,7 @@ void Scheduler::updateWaitingQueue() {
         if (this->waitingQueue[i].getIO() > 0) {
             int tempIO = this->waitingQueue[i].getIO();
             this->waitingQueue[i].setIO(--tempIO);
-            std::cout << "IO after: " << this->waitingQueue[i].getIO() << std::endl;
+            // std::cout << "IO after: " << this->waitingQueue[i].getIO() << std::endl;
         }
     }
 }
