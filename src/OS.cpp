@@ -46,8 +46,9 @@ void OS::createProcesses(std::string tp, int num) {
         Process newProcess(tp);
         std::cout << "Process created with PID: " << newProcess.getPid() << std::endl;
         for(int z = 0; z < newProcess.getPcb().getInstructions().size(); z++) {
-            std::cout << newProcess.getPcb().getInstructions()[z] << std::endl;
+            std::cout << newProcess.getPcb().getInstructions()[z].instrType << " " << newProcess.getPcb().getInstructions()[z].remainingCycles << std::endl;
         }
+        std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
         scheduler.addProcessToReadyQueue(newProcess.getPcb());
     }
 }

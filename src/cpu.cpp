@@ -14,6 +14,7 @@ CPU::CPU() {
     swapProcess = false;
     pcb = dispatcher.getPcbFromReady();
     interrupted = false;
+    currentInstruction = pcb.getProgCount();
 }
 
 // On every cpu cycle
@@ -21,6 +22,7 @@ void CPU::clockTick() {
     
     // If there are ready processes
     if (!(scheduler.getReadyQueue().empty())) {
+        this->pcb = dispatcher.getPcbFromReady();
         std::cout << "Clock: " << clock << " Executing process with PID " << pcb.getPid() << std::endl;
         this->execute();
     }
@@ -37,14 +39,14 @@ void CPU::clockTick() {
 // One clock cycle execution
 void CPU::execute() {
     // Gets the type of instruction to execute
-    switch (this->pcb.getProgCount().instrType) {
+    switch (this->pcb.getProgCount().instr.instrType) {
         case 0: // CALCULATE
             // Decrement one cycle from calculate instruction for this clock tick
-            if(this->pcb.getProgCount().remainingCycles > 0) {
+            if(this->pcb.getProgCount().instr.remainingCycles > 0) {
                 this->pcb.decrementCycles();
             }
             // If the last cycle was just decremented
-            if(this->pcb.getProgCount().remainingCycles == 0) {
+            if(this->pcb.getProgCount().instr.remainingCycles == 0) {
                 // Checks to see if that was the last instruction in the list of instructions for this process
                 if (this->pcb.getProgCount().instrNum >= (this->pcb.getInstructions().size() - 1)) {
                     // Moves process to terminated queue
@@ -62,7 +64,7 @@ void CPU::execute() {
             break;
         case 1: // IO
             // Sets the number of IO cycles that need to execute
-            this->pcb.setIO(this->pcb.getProgCount().remainingCycles);
+            this->pcb.setIO(this->pcb.getProgCount().instr.remainingCycles);
             // If this wasn't the last instruction in the process
             if(this->pcb.getProgCount().instrNum <= this->pcb.getInstructions().size() - 1){
                 // Move to next instruction

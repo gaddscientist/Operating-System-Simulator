@@ -9,7 +9,8 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     currentState = CurrentState;
     reqMem = ReqMem;
     instructions = ParseTemplate(templateFile);
-    progCount = {0, getInstructionType(0), getInstructionSize(0)};
+    // progCount = {0, getInstructionType(0), getInstructionSize(0)};
+    progCount = {0, instructions[0].instrType, instructions[0].remainingCycles};
     burst = calculateBurst();
     io = -1;
 }
@@ -18,7 +19,8 @@ int PCB::calculateBurst() {
     double burst = 0; 
     std::string::size_type sz;
     for (int i = 0; i < this->instructions.size(); i++) {
-        int instrSize = std::stoi(this->instructions[i].substr(this->instructions[i].find(' ')), &sz);
+        // int instrSize = std::stoi(this->instructions[i].substr(this->instructions[i].find(' ')), &sz);
+        int instrSize = this->instructions[i].remainingCycles;
         burst += instrSize;
     }
 
@@ -27,17 +29,20 @@ int PCB::calculateBurst() {
 
 
 void PCB::decrementCycles() {
-    this->progCount.remainingCycles--;
+    this->progCount.instr.remainingCycles--;
 }
 
 void PCB::incrementInstrNum() {
+    int oldInstr = this->progCount.instrNum;
     this->progCount.instrNum++;
-    this->progCount.instrType = getInstructionType(this->progCount.instrNum);
-    this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum - 1);
+    // this->progCount.instrType = getInstructionType(this->progCount.instrNum);
+    // this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum);
+    this->progCount.instr.instrType = instructions[oldInstr++].instrType;
+    this->progCount.instr.remainingCycles = instructions[oldInstr++].remainingCycles;
 }
 
-std::deque<std::string> PCB::ParseTemplate(const std::string tp) {
-    std::deque<std::string> instructions;
+std::deque<instruction> PCB::ParseTemplate(const std::string tp) {
+    std::deque<instruction> instructions;
     // Opens passed file name or prints error
     std::ifstream in(tp);
     std::string str;
@@ -51,9 +56,10 @@ std::deque<std::string> PCB::ParseTemplate(const std::string tp) {
         // Ensures that the line is not blank
         if(str.size() > 0) {
             // Randomizes the number of instruction cycles for the given line
-            std::string randStr = Randomize(str);
+            instruction randInstr = Randomize(str);
+
             // Adds the randomized instruction to the deque of instructions
-            instructions.push_back(randStr); 
+            instructions.push_back(randInstr); 
         }
     }
 
@@ -64,7 +70,7 @@ std::deque<std::string> PCB::ParseTemplate(const std::string tp) {
 }
 
 // Replaces seeds with appropriate instruction cycles
-std::string PCB::Randomize(std::string& str) {
+instruction PCB::Randomize(std::string& str) {
     int firstSpace = (int)str.find(' '); // Index before min
     int lastSpace = (int)str.rfind(' '); // Index before max
     std::string::size_type sz;           // Size of string
@@ -77,9 +83,9 @@ std::string PCB::Randomize(std::string& str) {
     int randCycles = (rand() % (max - min + 1)) + min;
 
     // Creates a new string with randomized cycles to be returned
-    std::string randomizedStr = str.substr(0, firstSpace) + " " + std::to_string(randCycles);
+    instruction randomizedInstr = {getInstructionType(str.substr(0, firstSpace)), randCycles};
 
-    return randomizedStr;
+    return randomizedInstr;
 }
 
 // Getters
@@ -107,7 +113,7 @@ std::deque<int> PCB::getCpuRegisters() {
     return this->cpuRegisters;
 }
 
-std::deque<std::string> PCB::getInstructions() {
+std::deque<instruction> PCB::getInstructions() {
     return this->instructions;
 }
 
@@ -119,10 +125,11 @@ int PCB::getIO() {
     return this->io;
 }
 
-instructionType PCB::getInstructionType(int lineNum) {
-    int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
-    std::string tempStr = this->instructions[lineNum].substr(0, space);
-    const char * str = tempStr.c_str();
+instructionType PCB::getInstructionType(std::string line) {
+    // int space = (int)line.find(' '); // Index before cycles
+    // std::string tempStr = line.substr(0, space);
+    // const char * str = tempStr.c_str();
+    const char * str = line.c_str();
     if (strcmp(str, "CALCULATE") == 0) {
         return CALCULATE;
     }
@@ -132,10 +139,11 @@ instructionType PCB::getInstructionType(int lineNum) {
 }
 
 int PCB::getInstructionSize(int lineNum) {
-    int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
-    std::string tempStr = this->instructions[lineNum].substr(space);
-    std::string::size_type sz;           // Size of string
-    return std::stoi(tempStr, &sz);
+    // int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
+    // std::string tempStr = this->instructions[lineNum].substr(space);
+    // std::string::size_type sz;           // Size of string
+    // return std::stoi(tempStr, &sz);
+    return this->instructions[lineNum].remainingCycles;
 }
 
 
@@ -164,7 +172,7 @@ void PCB::setCpuRegisters(std::deque<int> cpuRegisters) {
     this->cpuRegisters = cpuRegisters;
 }
 
-void PCB::setInstructions(std::deque<std::string> instructions) {
+void PCB::setInstructions(std::deque<instruction> instructions) {
     this->instructions = instructions;
 }
 

@@ -7,6 +7,7 @@ class CPU {
         PCB pcb;
         bool swapProcess;
         bool interrupted;
+        programCounter currentInstruction;
 
         // Member functions
         void execute();

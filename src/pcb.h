@@ -5,10 +5,14 @@
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
 enum instructionType {CALCULATE, IO, INIT};
 
-struct programCounter {
-    int instrNum;
+struct instruction {
     instructionType instrType;
     int remainingCycles;
+};
+
+struct programCounter {
+    int instrNum;
+    instruction instr;
 };
 
 class PCB {
@@ -19,14 +23,14 @@ private:
     int reqMem;                             // Allocated memory
     int cycle;                              // Current cycle
     std::deque<int> cpuRegisters;           // Register data
-    std::deque<std::string> instructions;   // Instructions text
+    std::deque<instruction> instructions;   // Instructions text
     int burst;                              // Number of cycles for function to complete
     int io;                                 // IO cycles required for IO instruction
 
     // Member functions
     int calculateBurst();
-    std::string Randomize(std::string& str);
-    std::deque<std::string> ParseTemplate(const std::string tp);
+    instruction Randomize(std::string& str);
+    std::deque<instruction> ParseTemplate(const std::string tp);
 
 public:
     // Constructors
@@ -43,10 +47,10 @@ public:
     int getReqMem();
     int getCycle();
     std::deque<int> getCpuRegisters();
-    std::deque<std::string> getInstructions();
+    std::deque<instruction> getInstructions();
     int getBurst();
     int getIO();
-    instructionType getInstructionType(int lineNum);
+    instructionType getInstructionType(std::string line);
     int getInstructionSize(int lineNum);
 
     // Setters
@@ -56,9 +60,10 @@ public:
     void setReqMem(int reqMem);
     void setCycle(int cycle);
     void setCpuRegisters(std::deque<int> cpuRegisters);
-    void setInstructions(std::deque<std::string> instructions);
+    void setInstructions(std::deque<instruction> instructions);
     void setBurst(int burst);
     void setIO(int io);
+    void setInstructionSize(int size);
 
 };
 
