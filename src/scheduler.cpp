@@ -51,7 +51,7 @@ void Scheduler::sortWaitingProcesses() {
     std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.getIO() < b.getIO(); });
 }
 
-
+// Tells queues to update order if needed
 void Scheduler::updateQueues() {
     updateWaitingQueue();
     updateReadyQueue();

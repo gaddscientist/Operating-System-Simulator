@@ -1,17 +1,20 @@
 #pragma once
 #include <string>
 
+// Base class to simulate operating system
 class OS {
 public:
     // Constructor
     OS(std::string, int);
 
-    // Starts up the OS
+    // Starts up the simulator
     void start();
 
 
 private:
     std::string templateFile;
     int numProcesses;
+
+    // Internal functions
     void createProcesses(std::string templateFile, int numProcesses);
 };

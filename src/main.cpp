@@ -10,9 +10,9 @@
 #include "OS.h"
 
 // Global variables
-Scheduler scheduler;
+// Scheduler scheduler;
 // CPU cpu;
-Dispatcher dispatcher;
+// Dispatcher dispatcher;
 
 // Driver function
 int main(int argc, char *argv[]) {
@@ -27,7 +27,6 @@ int main(int argc, char *argv[]) {
     const std::string templateFile = argv[1];   // User specified template
     // Might need to convert better for large numbers
     int numProcesses =  *argv[2] - '0';         // User specified number of processes to create
-    // std::deque<Process> processes;             // deque of created processes 
 
     // Uses current time to as seed for rand()
     srand(time(0));
@@ -35,27 +34,6 @@ int main(int argc, char *argv[]) {
     // CREATE OS OBJECT AND RUN IT
     OS os(templateFile, numProcesses);
     os.start();
-
-    // TESTING
-    // std::cout << std::endl;
-    // int num = 5;
-    // for (int index = 0; num > 0; num--, index++) {
-    //     // Prints out PID and Instructions
-        // std::cout << "PID = " << scheduler.getReadyQueue()[index].getPid() << std::endl;
-        // std::cout << "Burst time = " << scheduler.getReadyQueue()[index].getBurst() << std::endl;
-        // std::cout << "Instruction type = " << scheduler.getReadyQueue()[index].getProgCount().instrType << std::endl;
-        // std::cout << "Instruction size = " << scheduler.getReadyQueue()[index].getProgCount().remainingCycles << std::endl;
-    // }
-
-    // END TESTING
-
-    // CPU cpu;
-    // while(totalProcesses > 0) {
-    //     cpu.clockTick();
-    //     // std::cout << "Clock is: " << cpu.getClock() << std::endl;
-    //     // std::cout << "Total process is: " << totalProcesses << std::endl;
-    // }
-
 
     return 0;
 }

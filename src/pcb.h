@@ -61,3 +61,9 @@ public:
     void setIO(int io);
 
 };
+
+
+
+// MARK GETTERS AS CONST?!
+// CHANGE MEMBER VARIABLES TO HAVE A PRECEDING m_. m_programCounter
+// CHANGE CONSTRUCTORS TO MEMBER INITIALIZATION LIST. important. watch end of video if needed

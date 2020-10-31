@@ -8,7 +8,7 @@
 #include "pcb.h"
 
 // // Global objects
-extern Scheduler scheduler;
+Scheduler scheduler;
 // Dispatcher dispatcher;
 
 OS::OS(std::string tp, int num) {
@@ -36,8 +36,6 @@ void OS::start() {
     CPU cpu;
     while(totalProcesses > 0) {
             cpu.clockTick();
-            // std::cout << "Clock is: " << cpu.getClock() << std::endl;
-            // std::cout << "Total process is: " << totalProcesses << std::endl;
     }
 }
 
