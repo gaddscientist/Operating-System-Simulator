@@ -35,7 +35,7 @@ class Scheduler {
         void sortWaitingProcesses();
 
 
-        void updateQueues();
+        // void updateQueues();
         void updateReadyQueue();
         void updateWaitingQueue();
 

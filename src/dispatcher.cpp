@@ -1,7 +1,6 @@
 #include "dispatcher.h"
 
-extern Scheduler scheduler;
-extern CPU cpu;
+Scheduler scheduler;
 
 Dispatcher::Dispatcher() {
 }
@@ -25,4 +24,9 @@ void Dispatcher::addProcessToWaitingQueue(PCB p) {
     p.setCurrentState(WAITING);
     scheduler.getWaitingQueue().push_back(p);
     scheduler.sortWaitingProcesses();
+}
+
+void Dispatcher::updateQueues() {
+    scheduler.updateReadyQueue();
+    scheduler.updateWaitingQueue();
 }

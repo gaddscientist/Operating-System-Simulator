@@ -52,19 +52,19 @@ void Scheduler::sortWaitingProcesses() {
 }
 
 // Tells queues to update order if needed
-void Scheduler::updateQueues() {
-    updateWaitingQueue();
-    updateReadyQueue();
-}
+// void Scheduler::updateQueues() {
+//     updateWaitingQueue();
+//     updateReadyQueue();
+// }
 
 void Scheduler::updateWaitingQueue() {
     // Move processes that are done waiting to back of ready queue
     if (!(this->waitingQueue.empty())) {
+        // While the process at the front of the waiting queue  has no more IO cycles to complete
         while (this->waitingQueue.front().getIO() == 0 && this->waitingQueue.size() > 0) {
-            // std::cout << "TEST BEFORE" << std::endl;
-            // std::cout << "waiting queue size " << this->waitingQueue.size() << std::endl;
-            // this->waitingQueue.front().incrementInstrNum();
+            // Move it to ready queue
             this->addProcessToReadyQueue(this->waitingQueue.front());
+            // Remove from waiting queue
             this->waitingQueue.pop_front();
         }
     }
@@ -75,7 +75,6 @@ void Scheduler::updateWaitingQueue() {
         if (this->waitingQueue[i].getIO() > 0) {
             int tempIO = this->waitingQueue[i].getIO();
             this->waitingQueue[i].setIO(--tempIO);
-            // std::cout << "IO after: " << this->waitingQueue[i].getIO() << std::endl;
         }
     }
 }
@@ -86,12 +85,14 @@ void Scheduler::updateReadyQueue() {
 
 
 void Scheduler::addProcessToReadyQueue(PCB p) {
+    std::cout << "Process " << p.getPid() << " Moved to ready queue" << std::endl;
     p.setCurrentState(READY);
     this->readyQueue.push_back(p);
     this->sortReadyProcesses();
 }
 
 void Scheduler::addProcessToWaitingQueue(PCB p) {
+    std::cout << "Process " << p.getPid() << " Moved to waiting queue" << std::endl;
     p.setCurrentState(WAITING);
     this->waitingQueue.push_back(p);
     this->readyQueue.pop_front();

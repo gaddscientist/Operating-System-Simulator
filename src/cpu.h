@@ -6,7 +6,7 @@ class CPU {
         int clock;
         PCB pcb;
         bool swapProcess;
-        bool wait;
+        bool interrupted;
 
         // Member functions
         void execute();

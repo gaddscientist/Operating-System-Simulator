@@ -8,8 +8,8 @@
 #include "pcb.h"
 
 // // Global objects
-Scheduler scheduler;
-// Dispatcher dispatcher;
+Dispatcher dispatcher;
+extern Scheduler scheduler;
 
 OS::OS(std::string tp, int num) {
     templateFile = tp;
@@ -45,6 +45,9 @@ void OS::createProcesses(std::string tp, int num) {
         // Creates process and adds to scheduler's "new" queue
         Process newProcess(tp);
         std::cout << "Process created with PID: " << newProcess.getPid() << std::endl;
+        for(int z = 0; z < newProcess.getPcb().getInstructions().size(); z++) {
+            std::cout << newProcess.getPcb().getInstructions()[z] << std::endl;
+        }
         scheduler.addProcessToReadyQueue(newProcess.getPcb());
     }
 }

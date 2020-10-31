@@ -10,3 +10,31 @@ main
 3. Implement system clock instead of int counter
 
 4. Implement C++ threading. Consider running IO cycles on separate thread?
+
+5. Print more information to console so debugging is less of an absolute nightmare
+
+6. Consider adding helper functions to clean code up.  
+
+
+
+OVERVIEW:
+
+1. Add all programs to ready queue(until memory/paging comes into play)
+
+BEGIN MAIN LOOP
+2. Check interrupt flag to see if last execution stopped because it ended or was interrupted
+    2 a) If interrupted, context switch, dispatch process where needed(back to ready queue if quantum, to waiting if IO)
+3. If totalProcesses > 0, continue executing processes
+    3 a) Dispatch process from head of readyQueue to CPU
+    3 b) Execute process until it finishes time slice or hits IO instruction(RR Scheduling)
+END MAIN LOOP
+
+PROCESS EXECUTION
+1. Change state to RUNNING
+2. Get context from pcb(current instruction, which cycle)
+    2 a) If CALCULATE instruction, process calculate until time slice ends or instruction finishes
+        - If instruction finishes, check if last one. If so, move to terminated queue, state=TERMINATED, totalprocess--
+        - Print termination of process w/ process ID(logging/debugging)
+    2 b) If IO instruction, have program wait on waitingQueue until IO cycles are finished before moving back to ready queue
+        - Consider threading to help with concurrency??
+

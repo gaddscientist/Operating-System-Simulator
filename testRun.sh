@@ -1,1 +1,1 @@
-g++ -Wall -g src/*.cpp -o testprocess && ./testprocess templates/test.txt 1
+g++ -Wall -g src/*.cpp -o testprocess && ./testprocess templates/terminal.txt 1

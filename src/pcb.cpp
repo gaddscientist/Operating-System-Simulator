@@ -33,7 +33,7 @@ void PCB::decrementCycles() {
 void PCB::incrementInstrNum() {
     this->progCount.instrNum++;
     this->progCount.instrType = getInstructionType(this->progCount.instrNum);
-    this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum);
+    this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum - 1);
 }
 
 std::deque<std::string> PCB::ParseTemplate(const std::string tp) {
