@@ -14,7 +14,6 @@ CPU::CPU() {
     swapProcess = false;
     pcb = dispatcher.getPcbFromReady();
     interrupted = false;
-    currentInstruction = pcb.getProgCount();
 }
 
 // On every cpu cycle
@@ -22,7 +21,10 @@ void CPU::clockTick() {
     
     // If there are ready processes
     if (!(scheduler.getReadyQueue().empty())) {
-        this->pcb = dispatcher.getPcbFromReady();
+        if(interrupted) {
+            interrupted = false;
+            this->pcb = dispatcher.getPcbFromReady();
+        }
         std::cout << "Clock: " << clock << " Executing process with PID " << pcb.getPid() << std::endl;
         this->execute();
     }
@@ -39,51 +41,65 @@ void CPU::clockTick() {
 // One clock cycle execution
 void CPU::execute() {
     // Gets the type of instruction to execute
-    switch (this->pcb.getProgCount().instr.instrType) {
+    currentInstruction = this->pcb.getNextInstruction();
+    switch (currentInstruction.instrType) {
         case 0: // CALCULATE
             // Decrement one cycle from calculate instruction for this clock tick
-            if(this->pcb.getProgCount().instr.remainingCycles > 0) {
-                this->pcb.decrementCycles();
+            if(currentInstruction.remainingCycles > 0) {
+                currentInstruction.remainingCycles--;
             }
             // If the last cycle was just decremented
-            if(this->pcb.getProgCount().instr.remainingCycles == 0) {
+            if(currentInstruction.remainingCycles == 0) {
                 // Checks to see if that was the last instruction in the list of instructions for this process
-                if (this->pcb.getProgCount().instrNum >= (this->pcb.getInstructions().size() - 1)) {
+                // if (this->pcb.getProgCount().instrNum >= (this->pcb.getInstructions().size() - 1)) {
+                if (this->pcb.getInstructionsRemaining().empty()) {
                     // Moves process to terminated queue
                     scheduler.addProcessToTerminatedQueue(this->pcb); // MOVE TO DISPATCHER
                     // swapProcess = true;
                     // Gets the next process
-                    this->pcb = scheduler.getReadyQueue().front(); // MOVE TO DISPATCHER
+                    // this->pcb = scheduler.getReadyQueue().front(); // MOVE TO DISPATCHER
+                    // this->pcb = dispatcher.getPcbFromReady();
+                    interrupted = true;
                     totalProcesses--;
                 }
-                else {
-                    // Gets the next instruction from the list of instructions
-                    this->pcb.incrementInstrNum();
-                }
+                // else {
+                //     // Gets the next instruction from the list of instructions
+                //     // this->pcb.incrementInstrNum();
+                    
+                // }
+                // scheduler.addProcessToWaitingQueue();
+                this->pcb.incrementInstrNum();
+                std::cout << "Calculate Instruction " << this->pcb.getProgCount() << " from PID: " << this->pcb.getPid() << " Finished" << std::endl;
+            }
+            else {
+                // this->pcb.getInstructionsRemaining().push_front(currentInstruction);
+                this->pcb.pushInstructionBack(currentInstruction);
             }
             break;
         case 1: // IO
             // Sets the number of IO cycles that need to execute
-            this->pcb.setIO(this->pcb.getProgCount().instr.remainingCycles);
+            this->pcb.setIO(currentInstruction.remainingCycles);
             // If this wasn't the last instruction in the process
-            if(this->pcb.getProgCount().instrNum <= this->pcb.getInstructions().size() - 1){
+            if(!(this->pcb.getInstructionsRemaining().empty())){
                 // Move to next instruction
-                this->pcb.incrementInstrNum();
+                // this->pcb.incrementInstrNum();
             }
             else {
-                std::cout << "instrNum: " << this->pcb.getProgCount().instrNum;
-                std::cout << " instructions size: " << this->pcb.getInstructions().size() << std::endl;
+                std::cout << "instrNum: " << this->pcb.getProgCount() << std::endl;
+                // std::cout << " instructions size: " << this->pcb.getInstructions().size() << std::endl;
                 // Terminates process and gets the next one
                 scheduler.addProcessToTerminatedQueue(this->pcb);
-                this->pcb = scheduler.getReadyQueue().front();
+                // this->pcb = scheduler.getReadyQueue().front();
+                interrupted = true;
                 totalProcesses--;
             }
 
             scheduler.addProcessToWaitingQueue(this->pcb);
+            interrupted = true;
 
-            if(!(scheduler.getReadyQueue().empty())) {
-                this->pcb = scheduler.getReadyQueue().front();
-            }
+            // if(!(scheduler.getReadyQueue().empty())) {
+            //     this->pcb = scheduler.getReadyQueue().front();
+            // }
             // totalProcesses--;
             // swapProcess = true;
             break;

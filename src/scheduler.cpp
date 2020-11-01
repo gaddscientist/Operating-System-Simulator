@@ -89,6 +89,10 @@ void Scheduler::addProcessToReadyQueue(PCB p) {
     p.setCurrentState(READY);
     this->readyQueue.push_back(p);
     this->sortReadyProcesses();
+    // PCB tempProcess = this->waitingQueue.front();
+    // if (&tempProcess == &p) {
+    //     std::cout << "IO Instruction from PID: " << p.getPid() << " Finished" << std::endl;
+    // }
 }
 
 void Scheduler::addProcessToWaitingQueue(PCB p) {
@@ -100,6 +104,8 @@ void Scheduler::addProcessToWaitingQueue(PCB p) {
 }
 
 void Scheduler::addProcessToTerminatedQueue(PCB p) {
+    std::cout << "Process " << p.getPid() << " terminated" << std::endl;
     p.setCurrentState(TERMINATED);
     this->terminatedQueue.push_back(p);
+    this->readyQueue.pop_front();
 }

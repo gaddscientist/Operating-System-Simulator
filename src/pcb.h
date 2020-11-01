@@ -10,22 +10,23 @@ struct instruction {
     int remainingCycles;
 };
 
-struct programCounter {
-    int instrNum;
-    instruction instr;
-};
+// struct programCounter {
+//     int instrNum;
+//     instruction instr;
+// };
 
 class PCB {
 private:
-    int pid;                                // Unique identifier of process
-    state currentState;                     // Current state of process
-    programCounter progCount;               // Location of next instruction
-    int reqMem;                             // Allocated memory
-    int cycle;                              // Current cycle
-    std::deque<int> cpuRegisters;           // Register data
-    std::deque<instruction> instructions;   // Instructions text
-    int burst;                              // Number of cycles for function to complete
-    int io;                                 // IO cycles required for IO instruction
+    int pid;                                        // Unique identifier of process
+    state currentState;                             // Current state of process
+    int progCount;                                  // Location of next instruction
+    int reqMem;                                     // Allocated memory
+    int cycle;                                      // Current cycle
+    std::deque<int> cpuRegisters;                   // Register data
+    std::deque<instruction> instructionsList;       // Instructions text
+    std::deque<instruction> instructionsRemaining;  // Instructions text
+    int burst;                                      // Number of cycles for function to complete
+    int io;                                         // IO cycles required for IO instruction
 
     // Member functions
     int calculateBurst();
@@ -43,11 +44,14 @@ public:
     // Getters
     int getPid();
     state getCurrentState();
-    programCounter getProgCount();
+    int getProgCount();
     int getReqMem();
     int getCycle();
     std::deque<int> getCpuRegisters();
-    std::deque<instruction> getInstructions();
+    std::deque<instruction> getInstructionsList();
+    std::deque<instruction> getInstructionsRemaining();
+    instruction getNextInstruction();
+    void pushInstructionBack(instruction instr);
     int getBurst();
     int getIO();
     instructionType getInstructionType(std::string line);
@@ -56,7 +60,7 @@ public:
     // Setters
     void setPid(int pid);
     void setCurrentState(state currentState);
-    void setProgCount(programCounter progCount);
+    void setProgCount(int progCount);
     void setReqMem(int reqMem);
     void setCycle(int cycle);
     void setCpuRegisters(std::deque<int> cpuRegisters);

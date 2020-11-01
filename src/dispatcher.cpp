@@ -11,7 +11,9 @@ Dispatcher::Dispatcher() {
 // }
 
 PCB Dispatcher::getPcbFromReady() {
-    return scheduler.getReadyQueue().front();
+    PCB pcb = scheduler.getReadyQueue().front();
+    scheduler.getReadyQueue().pop_front();
+    return pcb;
 }
 
 void Dispatcher::addProcessToReadyQueue(PCB p) {

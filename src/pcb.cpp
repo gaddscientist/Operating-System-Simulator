@@ -8,9 +8,11 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     pid = PID;
     currentState = CurrentState;
     reqMem = ReqMem;
-    instructions = ParseTemplate(templateFile);
+    instructionsList = ParseTemplate(templateFile);
+    instructionsRemaining = instructionsList;
     // progCount = {0, getInstructionType(0), getInstructionSize(0)};
-    progCount = {0, instructions[0].instrType, instructions[0].remainingCycles};
+    // progCount = {0, instructions[0].instrType, instructions[0].remainingCycles};
+    progCount = 0;
     burst = calculateBurst();
     io = -1;
 }
@@ -18,9 +20,9 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
 int PCB::calculateBurst() {
     double burst = 0; 
     std::string::size_type sz;
-    for (int i = 0; i < this->instructions.size(); i++) {
+    for (int i = 0; i < this->instructionsList.size(); i++) {
         // int instrSize = std::stoi(this->instructions[i].substr(this->instructions[i].find(' ')), &sz);
-        int instrSize = this->instructions[i].remainingCycles;
+        int instrSize = this->instructionsList[i].remainingCycles;
         burst += instrSize;
     }
 
@@ -29,16 +31,18 @@ int PCB::calculateBurst() {
 
 
 void PCB::decrementCycles() {
-    this->progCount.instr.remainingCycles--;
+    // this->progCount.instr.remainingCycles--;
+    // this->instructionsRemaining.remainingCycles--;
 }
 
 void PCB::incrementInstrNum() {
-    int oldInstr = this->progCount.instrNum;
-    this->progCount.instrNum++;
+    // int oldInstr = this->progCount.instrNum;
+    // this->progCount.instrNum++;
     // this->progCount.instrType = getInstructionType(this->progCount.instrNum);
     // this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum);
-    this->progCount.instr.instrType = instructions[oldInstr++].instrType;
-    this->progCount.instr.remainingCycles = instructions[oldInstr++].remainingCycles;
+    // this->progCount.instr.instrType = instructions[oldInstr++].instrType;
+    // this->progCount.instr.remainingCycles = instructions[oldInstr++].remainingCycles;
+    progCount++;
 }
 
 std::deque<instruction> PCB::ParseTemplate(const std::string tp) {
@@ -97,7 +101,7 @@ state PCB::getCurrentState() {
     return this->currentState;
 }
 
-programCounter PCB::getProgCount() {
+int PCB::getProgCount() {
     return this->progCount;
 }
 
@@ -113,8 +117,22 @@ std::deque<int> PCB::getCpuRegisters() {
     return this->cpuRegisters;
 }
 
-std::deque<instruction> PCB::getInstructions() {
-    return this->instructions;
+std::deque<instruction> PCB::getInstructionsList() {
+    return this->instructionsList;
+}
+
+std::deque<instruction> PCB::getInstructionsRemaining() {
+    return this->instructionsRemaining;
+}
+
+instruction PCB::getNextInstruction() {
+    instruction nextInstr = this->instructionsRemaining.front();
+    this->instructionsRemaining.pop_front();
+    return nextInstr;
+}
+
+void PCB::pushInstructionBack(instruction instr) {
+    this->instructionsRemaining.push_front(instr);
 }
 
 int PCB::getBurst() {
@@ -143,7 +161,7 @@ int PCB::getInstructionSize(int lineNum) {
     // std::string tempStr = this->instructions[lineNum].substr(space);
     // std::string::size_type sz;           // Size of string
     // return std::stoi(tempStr, &sz);
-    return this->instructions[lineNum].remainingCycles;
+    // return this->instructions[lineNum].remainingCycles;
 }
 
 
@@ -156,7 +174,7 @@ void PCB::setCurrentState(state currentState) {
     this->currentState = currentState;
 }
 
-void PCB::setProgCount(programCounter progCount) {
+void PCB::setProgCount(int progCount) {
     this->progCount = progCount;
 }
 
@@ -173,7 +191,7 @@ void PCB::setCpuRegisters(std::deque<int> cpuRegisters) {
 }
 
 void PCB::setInstructions(std::deque<instruction> instructions) {
-    this->instructions = instructions;
+    this->instructionsList = instructions;
 }
 
 void PCB::setBurst(int burst) {

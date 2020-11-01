@@ -45,8 +45,8 @@ void OS::createProcesses(std::string tp, int num) {
         // Creates process and adds to scheduler's "new" queue
         Process newProcess(tp);
         std::cout << "Process created with PID: " << newProcess.getPid() << std::endl;
-        for(int z = 0; z < newProcess.getPcb().getInstructions().size(); z++) {
-            std::cout << newProcess.getPcb().getInstructions()[z].instrType << " " << newProcess.getPcb().getInstructions()[z].remainingCycles << std::endl;
+        for(int z = 0; z < newProcess.getPcb().getInstructionsList().size(); z++) {
+            std::cout << newProcess.getPcb().getInstructionsList()[z].instrType << " " << newProcess.getPcb().getInstructionsList()[z].remainingCycles << std::endl;
         }
         std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
         scheduler.addProcessToReadyQueue(newProcess.getPcb());
