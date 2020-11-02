@@ -9,7 +9,7 @@
 
 // // Global objects
 Dispatcher dispatcher;
-extern Scheduler scheduler;
+Scheduler scheduler;
 
 OS::OS(std::string tp, int num) {
     templateFile = tp;
@@ -17,6 +17,9 @@ OS::OS(std::string tp, int num) {
 }
 
 void OS::start() {
+    std::cout << "Operating system starting" << std::endl;
+
+    // Creates processes from template file
     createProcesses(templateFile, numProcesses);
 
     extern int totalProcesses;
@@ -25,7 +28,7 @@ void OS::start() {
     int x;
     std::cout << "What type of scheduler?\n1.SJF\n2.RR" << std::endl;
     // std::cin >> x;
-    x = 1;
+    x = 2;
 
     schedulerType st = static_cast<schedulerType>(x);
 
@@ -34,8 +37,11 @@ void OS::start() {
     std::cout << scheduler.getChosenScheduler() << std::endl;
 
     CPU cpu;
+    totalProcesses = 100;
     while(totalProcesses > 0) {
             cpu.clockTick();
+            // std::cout << totalProcesses << std::endl;
+            // totalProcesses--;
     }
 }
 
@@ -49,6 +55,6 @@ void OS::createProcesses(std::string tp, int num) {
             std::cout << newProcess.getPcb().getInstructionsList()[z].instrType << " " << newProcess.getPcb().getInstructionsList()[z].remainingCycles << std::endl;
         }
         std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
-        scheduler.addProcessToReadyQueue(newProcess.getPcb());
+        dispatcher.addProcessToReadyQueue(newProcess.getPcb());
     }
 }

@@ -1,6 +1,8 @@
+#include <chrono>
 #include "cpu.h"
 #include "scheduler.h"
 #include "dispatcher.h"
+#include <ctime>
 
 //testing
 #include <iostream>
@@ -10,32 +12,40 @@ extern Scheduler scheduler;
 extern int totalProcesses;
 
 CPU::CPU() {
-    clock = 0;
-    swapProcess = false;
     pcb = dispatcher.getPcbFromReady();
     interrupted = false;
+    currentInstruction = pcb.getNextInstruction();
+    // Saves starting time and prints OS start
+    startTime = std::clock();
+}
+
+double CPU::getClock() {
+    double duration = (std::clock() - startTime) / (double) CLOCKS_PER_SEC;
+    return duration;
 }
 
 // On every cpu cycle
 void CPU::clockTick() {
-    
+      
+      std::cout << "Clock is: " << this->getClock() << std::endl;
+      totalProcesses--;
     // If there are ready processes
-    if (!(scheduler.getReadyQueue().empty())) {
-        if(interrupted) {
-            interrupted = false;
-            this->pcb = dispatcher.getPcbFromReady();
-        }
-        std::cout << "Clock: " << clock << " Executing process with PID " << pcb.getPid() << std::endl;
-        this->execute();
-    }
-    else {
-        std::cout << "Clock: " << clock << " CPU idle" << std::endl;
-    }
+    // if (!(scheduler.getReadyQueue().empty())) {
+    //     if(interrupted) {
+    //         interrupted = false;
+    //         this->pcb = dispatcher.getPcbFromReady();
+    //     }
+    //     std::cout << "Clock: " << clock << " Executing process with PID " << pcb.getPid() << std::endl;
+    //     this->execute();
+    // }
+    // else {
+    //     std::cout << "Clock: " << clock << " CPU idle" << std::endl;
+    // }
 
-    dispatcher.updateQueues();
-    // scheduler.updateQueues(); // PROBLEM HERE
+    // dispatcher.updateQueues();
+    // // scheduler.updateQueues(); // PROBLEM HERE
 
-    this->clock++;
+    // this->clock++;
 }
 
 // One clock cycle execution
@@ -111,18 +121,12 @@ void CPU::execute() {
 
 
 // Getters
-int CPU::getClock() {
-    return this->clock;
-}
 
 PCB CPU::getPcb() {
     return this->pcb;
 }
 
 // Setters
-void CPU::setClock(int clock) {
-    this->clock = clock;
-}
 
 void CPU::setPcb(PCB pcb) {
     this->pcb = pcb;

@@ -1,6 +1,6 @@
 #include "dispatcher.h"
 
-Scheduler scheduler;
+extern Scheduler scheduler;
 
 Dispatcher::Dispatcher() {
 }

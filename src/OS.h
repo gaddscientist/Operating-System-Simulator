@@ -1,4 +1,5 @@
 #pragma once
+#include <chrono>
 #include <string>
 
 // Base class to simulate operating system
@@ -12,8 +13,10 @@ public:
 
 
 private:
+    // Process creation variables
     std::string templateFile;
     int numProcesses;
+
 
     // Internal functions
     void createProcesses(std::string templateFile, int numProcesses);
