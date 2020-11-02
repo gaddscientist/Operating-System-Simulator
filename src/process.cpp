@@ -4,7 +4,7 @@
 
 
 // Global variables
-int next_pid = 0;
+int next_pid = 1;
 // extern int totalProcesses;
 int totalProcesses = 0;
 state initialState = NEW;

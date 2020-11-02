@@ -1,4 +1,3 @@
-#include <deque>
 #include <algorithm>
 #include "process.h"
 #include "scheduler.h"
@@ -12,7 +11,7 @@ Scheduler::Scheduler() {
     // All procecsses will fit in ready queue
     this->newQueue = std::deque<PCB>();
     this->readyQueue = std::deque<PCB>();
-    this->waitingQueue = std::deque<PCB>();
+    this->waitingQueue = std::map<int, PCB>();
     this->terminatedQueue = std::deque<PCB>();
 }
 
@@ -25,7 +24,7 @@ std::deque<PCB> Scheduler::getReadyQueue() {
     return this->readyQueue;
 }
 
-std::deque<PCB> Scheduler::getWaitingQueue() {
+std::map<int, PCB> Scheduler::getWaitingQueue() {
     return this->waitingQueue;
 }
 
@@ -47,9 +46,9 @@ void Scheduler::sortReadyProcesses() {
     std::sort(this->readyQueue.begin(), this->readyQueue.end(), [](PCB a, PCB b){ return a.getBurst() < b.getBurst(); });
 }
 
-void Scheduler::sortWaitingProcesses() {
-    std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.getIO() < b.getIO(); });
-}
+// void Scheduler::sortWaitingProcesses() {
+//     std::sort(this->waitingQueue.begin(), this->waitingQueue.end(), [](PCB a, PCB b){ return a.getIO() < b.getIO(); });
+// }
 
 // Tells queues to update order if needed
 // void Scheduler::updateQueues() {

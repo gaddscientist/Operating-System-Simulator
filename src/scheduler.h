@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+#include <map>
 #include "pcb.h"
 
 enum schedulerType {INVALID = 0, SJF, RR};
@@ -12,7 +13,7 @@ class Scheduler {
         schedulerType chosenScheduler;
         std::deque<PCB> newQueue;
         std::deque<PCB> readyQueue;
-        std::deque<PCB> waitingQueue;
+        std::map<int, PCB> waitingQueue;
         // If you want to keep track of finished processes
         std::deque<PCB> terminatedQueue;
 
@@ -23,7 +24,7 @@ class Scheduler {
         // Getters
         std::deque<PCB> getNewQueue();
         std::deque<PCB> getReadyQueue();
-        std::deque<PCB> getWaitingQueue();
+        std::map<int, PCB> getWaitingQueue();
         std::deque<PCB> getTerminatedQueue();
         schedulerType getChosenScheduler();
 

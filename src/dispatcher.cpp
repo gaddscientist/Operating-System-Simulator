@@ -24,8 +24,8 @@ void Dispatcher::addProcessToReadyQueue(PCB p) {
 
 void Dispatcher::addProcessToWaitingQueue(PCB p) {
     p.setCurrentState(WAITING);
-    scheduler.getWaitingQueue().push_back(p);
-    scheduler.sortWaitingProcesses();
+    scheduler.getWaitingQueue()[p.getPid()] = p;
+    // scheduler.sortWaitingProcesses();
 }
 
 void Dispatcher::updateQueues() {

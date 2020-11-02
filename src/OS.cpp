@@ -17,7 +17,6 @@ OS::OS(std::string tp, int num) {
 }
 
 void OS::start() {
-    std::cout << "Operating system starting" << std::endl;
 
     // Creates processes from template file
     createProcesses(templateFile, numProcesses);
@@ -37,9 +36,11 @@ void OS::start() {
     std::cout << scheduler.getChosenScheduler() << std::endl;
 
     CPU cpu;
+    std::cout << std::fixed << cpu.getClock() << " Operating system starting" << std::endl;
     totalProcesses = 100;
     while(totalProcesses > 0) {
-            cpu.clockTick();
+            // cpu.clockTick();
+            cpu.execute();
             // std::cout << totalProcesses << std::endl;
             // totalProcesses--;
     }

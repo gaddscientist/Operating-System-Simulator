@@ -7,7 +7,8 @@ class CPU {
         // Default constructor
         CPU();
 
-        void clockTick();
+        // void clockTick();
+        void execute();
 
         // Getters
         double getClock();
@@ -20,19 +21,19 @@ class CPU {
     private:
         PCB pcb;
         bool interrupted;
-        instruction currentInstruction;
+        int cycleTime;
+        int timeSlice;
         // Beginning of simulation
         // std::chrono::time_point<std::chrono::system_clock> startTime;
         int startTime;
 
         // Member functions
-        void execute();
 
         // Creats an interrupt object that corresponds to the interrupted process
-        // struct Interrupt {
-        //     Interrupt(int id) : pid(id) {}
-        //     int pid;
-        // };
+        struct Interrupt {
+            Interrupt(int id) : pid(id) {}
+            int pid;
+        };
 
-        // std::deque<Interrupt> interrupts;
+        std::deque<Interrupt> interrupts;
 };
