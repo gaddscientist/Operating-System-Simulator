@@ -9,7 +9,7 @@
 
 // // Global objects
 Dispatcher dispatcher;
-Scheduler scheduler;
+extern Scheduler scheduler;
 
 OS::OS(std::string tp, int num) {
     templateFile = tp;
@@ -56,6 +56,7 @@ void OS::createProcesses(std::string tp, int num) {
             std::cout << newProcess.getPcb().getInstructionsList()[z].instrType << " " << newProcess.getPcb().getInstructionsList()[z].remainingCycles << std::endl;
         }
         std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
-        dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+        // dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+        scheduler.addProcessToReadyQueue(newProcess.getPcb());
     }
 }

@@ -1,6 +1,6 @@
 #include "dispatcher.h"
 
-extern Scheduler scheduler;
+Scheduler scheduler;
 
 Dispatcher::Dispatcher() {
 }
@@ -19,7 +19,7 @@ PCB Dispatcher::getPcbFromReady() {
 void Dispatcher::addProcessToReadyQueue(PCB p) {
     p.setCurrentState(READY);
     scheduler.getReadyQueue().push_back(p);
-    scheduler.sortReadyProcesses();
+    // scheduler.sortReadyProcesses();
 }
 
 void Dispatcher::addProcessToWaitingQueue(PCB p) {
@@ -30,5 +30,5 @@ void Dispatcher::addProcessToWaitingQueue(PCB p) {
 
 void Dispatcher::updateQueues() {
     scheduler.updateReadyQueue();
-    scheduler.updateWaitingQueue();
+    // scheduler.updateWaitingQueue();
 }

@@ -12,17 +12,18 @@ extern Scheduler scheduler;
 extern int totalProcesses;
 
 CPU::CPU() {
-    pcb = dispatcher.getPcbFromReady();
+    // pcb = dispatcher.getPcbFromReady(); // ERROR HERE
     interrupted = false;
     cycleTime = 10; // 10ms    
     timeSlice = 15; // 15 cycles before pre-emption
     // Saves starting time and prints OS start
     startTime = std::clock();
+    this->interrupts = std::deque<Interrupt>();
 }
 
 
 // On every cpu cycle
-void CPU::clockTick() {
+// void CPU::clockTick() {
       
 
 
@@ -43,14 +44,14 @@ void CPU::clockTick() {
     // // scheduler.updateQueues(); // PROBLEM HERE
 
     // this->clock++;
-}
+// }
 
 // One clock cycle execution
 void CPU::execute() {
     // Gets the type of instruction to execute
     // currentInstruction = this->pcb.getNextInstruction();
 
-    while(!(scheduler.getReadyQueue().empty()) && !(scheduler.getWaitingQueue().empty())) {
+    while(!(scheduler.getReadyQueue().empty()) || !(scheduler.getWaitingQueue().empty())) {
         // Move interrupted processes back to ready queue
         while(!interrupts.empty()) {
             // For each interrupt, remove it from the list of interrupts
@@ -64,7 +65,7 @@ void CPU::execute() {
 
                 p.setCurrentState(READY);
                 dispatcher.addProcessToReadyQueue(p);
-                std::cout << "Process " << interrupt.pid << " completed IO" << std::endl
+                std::cout << "Process " << interrupt.pid << " completed IO" << std::endl;
             }
         }
 
@@ -88,9 +89,11 @@ void CPU::execute() {
                         cycleCount++;
 
                         std::this_thread::sleep_for(std::chrono::milliseconds(cycleTime));
+                        currentInstruction.remainingCycles--;
 
                         if(cycleCount == timeSlice) {
-                            interrupts.push_back(Interrupt());
+                            // 0 chosen for interrupt as PID's start at 1
+                            interrupts.push_back(Interrupt(0));
                             std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
                         }
                     }
@@ -109,15 +112,18 @@ void CPU::execute() {
                 // IO Instruction
                 case 1:
                 {
-                    std::cout << "Process " << this->pcb.getPid() << " beginning IO" std::endl;
+                    std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
                     // Execute IO on separate thread for concurrency
-                    pid = this->pcb.getPid();
-                    std::thread ioThread([this, currentInstruction, pid]() {
+                    int pid = this->pcb.getPid();
+                    // std::thread ioThread([this, currentInstruction, pid]() {
+                    //     std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
+                    //     std::cout << "Process " << pid << " finished IO" << std::endl;
+                    //     interrupts.push_back(pid);
+                    // });
+                    // ioThread.detach();
                         std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
-                        std::cout << "Process " << pid << " finished IO" std::endl;
+                        std::cout << "Process " << pid << " finished IO" << std::endl;
                         interrupts.push_back(pid);
-                    });
-                    ioThread.detach();
 
                     dispatcher.addProcessToWaitingQueue(this->pcb);
 
@@ -207,7 +213,7 @@ void CPU::execute() {
         //     break;
         // default:
         //     break;
-    }
+    // }
 }
 
 
