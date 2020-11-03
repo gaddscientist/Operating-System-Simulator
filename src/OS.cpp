@@ -57,6 +57,6 @@ void OS::createProcesses(std::string tp, int num) {
         }
         std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
         // dispatcher.addProcessToReadyQueue(newProcess.getPcb());
-        scheduler.addProcessToReadyQueue(newProcess.getPcb());
+        dispatcher.addProcessToReadyQueue(newProcess.getPcb());
     }
 }

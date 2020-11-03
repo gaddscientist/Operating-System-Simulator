@@ -23,8 +23,8 @@ class Scheduler {
 
         // Getters
         std::deque<PCB> getNewQueue();
-        std::deque<PCB> getReadyQueue();
-        std::map<int, PCB> getWaitingQueue();
+        std::deque<PCB>& getReadyQueue();
+        std::map<int, PCB>& getWaitingQueue();
         std::deque<PCB> getTerminatedQueue();
         schedulerType getChosenScheduler();
 

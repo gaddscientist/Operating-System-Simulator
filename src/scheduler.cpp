@@ -20,11 +20,11 @@ std::deque<PCB> Scheduler::getNewQueue() {
     return this->newQueue;
 }
 
-std::deque<PCB> Scheduler::getReadyQueue() {
+std::deque<PCB>& Scheduler::getReadyQueue() {
     return this->readyQueue;
 }
 
-std::map<int, PCB> Scheduler::getWaitingQueue() {
+std::map<int, PCB>& Scheduler::getWaitingQueue() {
     return this->waitingQueue;
 }
 

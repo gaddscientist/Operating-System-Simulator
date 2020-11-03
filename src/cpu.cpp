@@ -115,16 +115,17 @@ void CPU::execute() {
                     std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
                     // Execute IO on separate thread for concurrency
                     int pid = this->pcb.getPid();
-                    // std::thread ioThread([this, currentInstruction, pid]() {
-                    //     std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
-                    //     std::cout << "Process " << pid << " finished IO" << std::endl;
-                    //     interrupts.push_back(pid);
-                    // });
-                    // ioThread.detach();
+                    std::thread ioThread([this, currentInstruction, pid]() {
                         std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
                         std::cout << "Process " << pid << " finished IO" << std::endl;
                         interrupts.push_back(pid);
+                    });
+                    ioThread.detach();
+                        // std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
+                        // std::cout << "Process " << pid << " finished IO" << std::endl;
+                        // interrupts.push_back(pid);
 
+                    this->pcb.setCurrentState(WAITING);
                     dispatcher.addProcessToWaitingQueue(this->pcb);
 
                     break;
@@ -144,6 +145,9 @@ void CPU::execute() {
         // Ready queue has no processes
         else {
             std::cout << "CPU Idle: No processes ready to be executed" << std::endl;
+            std::this_thread::sleep_for(
+                std::chrono::milliseconds(50)
+            ); 
         }
     }
     // switch (currentInstruction.instrType) {
