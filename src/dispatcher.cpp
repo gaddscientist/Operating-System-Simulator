@@ -34,10 +34,6 @@ void Dispatcher::addProcessToWaitingQueue(PCB p) {
 void Dispatcher::addProcessToTerminatedQueue(PCB p) {
     p.setCurrentState(TERMINATED);
     scheduler.getTerminatedQueue().push_back(p);
-    if(scheduler.getReadyQueue().size() > 0) {
-        scheduler.getReadyQueue().pop_front();
-    }
-    totalProcesses--;
 }
 
 void Dispatcher::updateQueues() {

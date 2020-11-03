@@ -35,6 +35,6 @@ int main(int argc, char *argv[]) {
     os.start();
 
     extern int totalProcesses;
-    std::cout << totalProcesses << std::endl;
+    std::cout << "Remaining Processes: " << totalProcesses << std::endl;
     return 0;
 }
