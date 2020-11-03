@@ -14,5 +14,6 @@ class Dispatcher {
         PCB getPcbFromReady();
         void addProcessToReadyQueue(PCB p);
         void addProcessToWaitingQueue(PCB p);
+        void addProcessToTerminatedQueue(PCB p);
         void updateQueues();
 };

@@ -67,6 +67,10 @@ std::deque<instruction> PCB::ParseTemplate(const std::string tp) {
         }
     }
 
+    // Add exit instruction to the end of the queue
+    instruction exitInstr = {EXIT, 0};
+    instructions.push_back(exitInstr);
+
     // Close the file
     in.close();
 

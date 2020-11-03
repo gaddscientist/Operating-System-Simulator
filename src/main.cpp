@@ -34,5 +34,7 @@ int main(int argc, char *argv[]) {
     OS os(templateFile, numProcesses);
     os.start();
 
+    extern int totalProcesses;
+    std::cout << totalProcesses << std::endl;
     return 0;
 }

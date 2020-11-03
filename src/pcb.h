@@ -3,7 +3,7 @@
 #include <string>
 
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
-enum instructionType {CALCULATE, IO, INIT};
+enum instructionType {CALCULATE, IO, EXIT};
 
 struct instruction {
     instructionType instrType;

@@ -37,7 +37,6 @@ void OS::start() {
 
     CPU cpu;
     std::cout << std::fixed << cpu.getClock() << " Operating system starting" << std::endl;
-    totalProcesses = 100;
     while(totalProcesses > 0) {
             // cpu.clockTick();
             cpu.execute();

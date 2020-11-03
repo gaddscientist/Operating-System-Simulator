@@ -136,6 +136,12 @@ void CPU::execute() {
                 }
             }
 
+            if (this->pcb.getInstructionsRemaining().size() <= 1 && this->pcb.getCurrentState() != WAITING) {
+            // if (this->pcb.getInstructionsRemaining().size() <= 1) {
+                this->pcb.setCurrentState(TERMINATED);
+                dispatcher.addProcessToTerminatedQueue(this->pcb);
+            }
+
             // If the processes didnt hit IO instruction or terminate
             if (this->pcb.getCurrentState() == RUNNING) {
                 // Dispatch program from cpu back to ready queue

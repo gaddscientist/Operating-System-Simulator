@@ -28,7 +28,7 @@ std::map<int, PCB>& Scheduler::getWaitingQueue() {
     return this->waitingQueue;
 }
 
-std::deque<PCB> Scheduler::getTerminatedQueue() {
+std::deque<PCB>& Scheduler::getTerminatedQueue() {
     return this->terminatedQueue;
 }
 

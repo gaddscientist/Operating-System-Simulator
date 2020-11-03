@@ -1,6 +1,7 @@
 #include "dispatcher.h"
 
 Scheduler scheduler;
+extern int totalProcesses;
 
 Dispatcher::Dispatcher() {
 }
@@ -12,7 +13,9 @@ Dispatcher::Dispatcher() {
 
 PCB Dispatcher::getPcbFromReady() {
     PCB pcb = scheduler.getReadyQueue().front();
-    scheduler.getReadyQueue().pop_front();
+    if(scheduler.getReadyQueue().size() > 0) {
+        scheduler.getReadyQueue().pop_front();
+    }
     return pcb;
 }
 
@@ -26,6 +29,15 @@ void Dispatcher::addProcessToWaitingQueue(PCB p) {
     p.setCurrentState(WAITING);
     scheduler.getWaitingQueue()[p.getPid()] = p;
     // scheduler.sortWaitingProcesses();
+}
+
+void Dispatcher::addProcessToTerminatedQueue(PCB p) {
+    p.setCurrentState(TERMINATED);
+    scheduler.getTerminatedQueue().push_back(p);
+    if(scheduler.getReadyQueue().size() > 0) {
+        scheduler.getReadyQueue().pop_front();
+    }
+    totalProcesses--;
 }
 
 void Dispatcher::updateQueues() {
