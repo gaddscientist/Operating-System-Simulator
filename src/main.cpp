@@ -1,17 +1,5 @@
 #include <iostream>
-// #include <string>
-// #include <stdio.h>
-// #include <time.h>
-// #include "process.h"
-#include "scheduler.h"
-// #include "cpu.h"
-#include "dispatcher.h"
-#include "OS.h"
-
-// Global variables
-// Scheduler scheduler;
-// CPU cpu;
-// Dispatcher dispatcher;
+#include "os.h"
 
 // Driver function
 int main(int argc, char *argv[]) {
@@ -30,11 +18,11 @@ int main(int argc, char *argv[]) {
     // Uses current time to as seed for rand()
     srand(time(0));
 
-    // CREATE OS OBJECT AND RUN IT
+    // Create os and start it
     OS os(templateFile, numProcesses);
     os.start();
 
-    extern int totalProcesses;
+    extern int totalProcesses;  // Defined in process.cpp
     std::cout << "Remaining Processes: " << totalProcesses << std::endl;
     return 0;
 }

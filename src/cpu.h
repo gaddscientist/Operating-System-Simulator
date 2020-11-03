@@ -2,6 +2,7 @@
 #include <deque>
 #include "pcb.h"
 
+// CPU class to handle execution of process instructions
 class CPU {
     public:
         // Default constructor
@@ -19,21 +20,18 @@ class CPU {
         void setPcb(PCB pcb);
 
     private:
-        PCB pcb;
-        bool interrupted;
-        int cycleTime;
-        int timeSlice;
-        // Beginning of simulation
-        // std::chrono::time_point<std::chrono::system_clock> startTime;
-        int startTime;
+        PCB pcb;        // Current pcb on CPU
+        int cycleTime;  // Time in milliseconds per clock cycle
+        int timeSlice;  // Number of cycles before pre-emption
+        int startTime;  // Start of execution
 
-        // Member functions
 
-        // Creats an interrupt object that corresponds to the interrupted process
+        // Creates an interrupt object that corresponds to the interrupted process
         struct Interrupt {
             Interrupt(int id) : pid(id) {}
             int pid;
         };
 
+        // Queue to hold interrupted processes
         std::deque<Interrupt> interrupts;
 };

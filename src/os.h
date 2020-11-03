@@ -5,6 +5,7 @@
 class OS {
 public:
     // Constructor
+    // Takes a template filename and number of processes to spawn
     OS(std::string, int);
 
     // Starts up the simulator

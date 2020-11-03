@@ -26,6 +26,7 @@ Process::~Process() {
 int Process::getPid() {
     return this->pid;
 }
+
 PCB Process::getPcb() {
     return this->pcb;
 }

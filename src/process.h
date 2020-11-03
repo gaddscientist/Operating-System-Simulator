@@ -5,10 +5,11 @@
 
 extern state initialState;
 
+// Class to define a process object
 class Process {
 private:
-    int pid;
-    PCB pcb;
+    int pid;    // Process ID number
+    PCB pcb;    // PCB associated with this process
 
 public:
     // Constructor

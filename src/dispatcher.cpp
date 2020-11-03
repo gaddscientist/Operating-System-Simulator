@@ -6,11 +6,6 @@ extern int totalProcesses;
 Dispatcher::Dispatcher() {
 }
 
-// Updates the state of the process associated with this PCB
-// void Dispatcher::UpdateState(PCB pcb, state newState) {
-//     pcb.setCurrentState(newState);
-// }
-
 PCB Dispatcher::getPcbFromReady() {
     PCB pcb = scheduler.getReadyQueue().front();
     if(scheduler.getReadyQueue().size() > 0) {
@@ -22,21 +17,26 @@ PCB Dispatcher::getPcbFromReady() {
 void Dispatcher::addProcessToReadyQueue(PCB p) {
     p.setCurrentState(READY);
     scheduler.getReadyQueue().push_back(p);
-    // scheduler.sortReadyProcesses();
+    // Needed for SJF scheduling
+    if(scheduler.getChosenScheduler() == SJF) {
+        scheduler.sortReadyProcesses(); 
+    }
 }
 
-void Dispatcher::addProcessToWaitingQueue(PCB p) {
+void Dispatcher::addProcessToWaitingQueue(PCB& p) {
     p.setCurrentState(WAITING);
     scheduler.getWaitingQueue()[p.getPid()] = p;
     // scheduler.sortWaitingProcesses();
 }
 
-void Dispatcher::addProcessToTerminatedQueue(PCB p) {
+void Dispatcher::addProcessToTerminatedQueue(PCB& p) {
     p.setCurrentState(TERMINATED);
     scheduler.getTerminatedQueue().push_back(p);
+    totalProcesses--;
 }
 
-void Dispatcher::updateQueues() {
-    scheduler.updateReadyQueue();
-    // scheduler.updateWaitingQueue();
+// Function to sort ready queue by remaining time left
+// Only needed for SJF scheduling
+void Dispatcher::updateReadyQueue() {
+    scheduler.sortReadyProcesses();
 }

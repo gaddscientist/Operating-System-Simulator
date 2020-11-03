@@ -1,19 +1,7 @@
-1. Rearrange hierarchy to better represent a real system
-main
-->start OS
---->start cpu/clock/scheduler/dispatcher
---->create processes from template
-
-2. Implement Round Robin scheduling
-2.5 Implement preemption for sjf
-
-3. Implement system clock instead of int counter
-
-4. Implement C++ threading. Consider running IO cycles on separate thread?
-
-5. Print more information to console so debugging is less of an absolute nightmare
-
-6. Consider adding helper functions to clean code up.  
+Possible improvements:
+1. Mark getters as const??
+2. Change member variables to have a preceding m_ ex: m_programCounter
+3. Change constructors to member initializtion list. important. watch end of video if needed
 
 
 

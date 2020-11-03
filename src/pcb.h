@@ -2,18 +2,16 @@
 #include <deque>
 #include <string>
 
+// Possible states of process
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
-enum instructionType {CALCULATE, IO, EXIT};
+// Possible instructions
+enum instructionType {CALCULATE, IO, EXIT, ERROR};
 
+// Instruction struct to store instructions as objects instead of plaintext
 struct instruction {
     instructionType instrType;
     int remainingCycles;
 };
-
-// struct programCounter {
-//     int instrNum;
-//     instruction instr;
-// };
 
 class PCB {
 private:
@@ -38,7 +36,7 @@ public:
     PCB () {}
     PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
 
-    void decrementCycles();
+    // void decrementCycles();
     void incrementInstrNum();
 
     // Getters
@@ -55,7 +53,6 @@ public:
     int getBurst();
     int getIO();
     instructionType getInstructionType(std::string line);
-    int getInstructionSize(int lineNum);
 
     // Setters
     void setPid(int pid);
@@ -70,9 +67,3 @@ public:
     void setInstructionSize(int size);
 
 };
-
-
-
-// MARK GETTERS AS CONST?!
-// CHANGE MEMBER VARIABLES TO HAVE A PRECEDING m_. m_programCounter
-// CHANGE CONSTRUCTORS TO MEMBER INITIALIZATION LIST. important. watch end of video if needed

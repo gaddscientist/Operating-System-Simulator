@@ -10,8 +10,6 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     reqMem = ReqMem;
     instructionsList = ParseTemplate(templateFile);
     instructionsRemaining = instructionsList;
-    // progCount = {0, getInstructionType(0), getInstructionSize(0)};
-    // progCount = {0, instructions[0].instrType, instructions[0].remainingCycles};
     progCount = 0;
     burst = calculateBurst();
     io = -1;
@@ -19,9 +17,7 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
 
 int PCB::calculateBurst() {
     double burst = 0; 
-    std::string::size_type sz;
-    for (int i = 0; i < this->instructionsList.size(); i++) {
-        // int instrSize = std::stoi(this->instructions[i].substr(this->instructions[i].find(' ')), &sz);
+    for (size_t i = 0; i < this->instructionsList.size(); i++) {
         int instrSize = this->instructionsList[i].remainingCycles;
         burst += instrSize;
     }
@@ -30,18 +26,7 @@ int PCB::calculateBurst() {
 }
 
 
-void PCB::decrementCycles() {
-    // this->progCount.instr.remainingCycles--;
-    // this->instructionsRemaining.remainingCycles--;
-}
-
 void PCB::incrementInstrNum() {
-    // int oldInstr = this->progCount.instrNum;
-    // this->progCount.instrNum++;
-    // this->progCount.instrType = getInstructionType(this->progCount.instrNum);
-    // this->progCount.remainingCycles = getInstructionSize(this->progCount.instrNum);
-    // this->progCount.instr.instrType = instructions[oldInstr++].instrType;
-    // this->progCount.instr.remainingCycles = instructions[oldInstr++].remainingCycles;
     progCount++;
 }
 
@@ -148,9 +133,6 @@ int PCB::getIO() {
 }
 
 instructionType PCB::getInstructionType(std::string line) {
-    // int space = (int)line.find(' '); // Index before cycles
-    // std::string tempStr = line.substr(0, space);
-    // const char * str = tempStr.c_str();
     const char * str = line.c_str();
     if (strcmp(str, "CALCULATE") == 0) {
         return CALCULATE;
@@ -158,14 +140,7 @@ instructionType PCB::getInstructionType(std::string line) {
     else if (strcmp(str, "IO") == 0) {
         return IO;
     }
-}
-
-int PCB::getInstructionSize(int lineNum) {
-    // int space = (int)this->instructions[lineNum].find(' '); // Index before cycles
-    // std::string tempStr = this->instructions[lineNum].substr(space);
-    // std::string::size_type sz;           // Size of string
-    // return std::stoi(tempStr, &sz);
-    // return this->instructions[lineNum].remainingCycles;
+    return ERROR;
 }
 
 

@@ -1,19 +1,21 @@
 #pragma once
-
 #include "scheduler.h"
-#include "cpu.h"
 
 
-
+// Dispatcher class to handle moving processes between states/queues
 class Dispatcher {
     public:
+        // Constructor
         Dispatcher();
 
 
         // void UpdateState(PCB pcb, state newState);
         PCB getPcbFromReady();
         void addProcessToReadyQueue(PCB p);
-        void addProcessToWaitingQueue(PCB p);
-        void addProcessToTerminatedQueue(PCB p);
-        void updateQueues();
+        void addProcessToWaitingQueue(PCB& p);
+        void addProcessToTerminatedQueue(PCB& p);
+
+        // Function to sort ready queue by remaining time left
+        // Only needed for SJF scheduling
+        void updateReadyQueue();
 };

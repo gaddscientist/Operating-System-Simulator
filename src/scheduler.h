@@ -6,23 +6,21 @@
 
 enum schedulerType {INVALID = 0, SJF, RR};
 
+// Scheduler class to hold processes in different queues and organize them if needed
 class Scheduler {
     private:
-        // clock
-        // cpu
-        schedulerType chosenScheduler;
-        std::deque<PCB> newQueue;
-        std::deque<PCB> readyQueue;
-        std::map<int, PCB> waitingQueue;
-        // If you want to keep track of finished processes
-        std::deque<PCB> terminatedQueue;
+        schedulerType chosenScheduler;      // Chosen scheduling algorithm
+        std::deque<PCB> newQueue;           // Processes that haven't been alotted memory
+        std::deque<PCB> readyQueue;         // Processes ready to execute
+        std::map<int, PCB> waitingQueue;    // Processes blocked by IO or expired timeslice
+        std::deque<PCB> terminatedQueue;    // To keep track of finished processes
 
     public:
         // Default constructor
         Scheduler ();
 
         // Getters
-        std::deque<PCB> getNewQueue();
+        std::deque<PCB>& getNewQueue();
         std::deque<PCB>& getReadyQueue();
         std::map<int, PCB>& getWaitingQueue();
         std::deque<PCB>& getTerminatedQueue();
@@ -32,16 +30,7 @@ class Scheduler {
         void setSchedulerType(schedulerType st);
 
         // Member functions
+        // Sorts processes in ready queue by their total run times
         void sortReadyProcesses();
-        void sortWaitingProcesses();
 
-
-        // void updateQueues();
-        void updateReadyQueue();
-        void updateWaitingQueue();
-
-
-        void addProcessToReadyQueue(PCB p);
-        void addProcessToWaitingQueue(PCB p);
-        void addProcessToTerminatedQueue(PCB p);
 };
