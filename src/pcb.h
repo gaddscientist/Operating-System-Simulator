@@ -1,11 +1,12 @@
 #pragma once
 #include <deque>
 #include <string>
+#include <vector>
 
 // Possible states of process
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
 // Possible instructions
-enum instructionType {CALCULATE, IO, EXIT, ERROR};
+enum instructionType {CALCULATE, IO, EXIT, CRITICAL, ERROR};
 
 // Instruction struct to store instructions as objects instead of plaintext
 struct instruction {
@@ -25,6 +26,7 @@ private:
     std::deque<instruction> instructionsRemaining;  // Instructions text
     int burst;                                      // Number of cycles for function to complete
     int io;                                         // IO cycles required for IO instruction
+    std::vector<int> childProcesses;                // Dynamic array of associated child processes by pid
 
     // Member functions
     int calculateBurst();
@@ -35,8 +37,8 @@ public:
     // Constructors
     PCB () {}
     PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
+    PCB (int PID, state CurrentState, int ReqMem, std::deque<instruction> instrs);
 
-    // void decrementCycles();
     void incrementInstrNum();
 
     // Getters
@@ -52,6 +54,7 @@ public:
     void pushInstructionBack(instruction instr);
     int getBurst();
     int getIO();
+    std::vector<int> getChildProcesses();
     instructionType getInstructionType(std::string line);
 
     // Setters

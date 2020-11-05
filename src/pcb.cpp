@@ -13,6 +13,18 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     progCount = 0;
     burst = calculateBurst();
     io = -1;
+    childProcesses = std::vector<int>();
+}
+
+PCB::PCB (int PID, state CurrentState, int ReqMem, std::deque<instruction> instrs){
+    pid = PID;
+    currentState = CurrentState;
+    reqMem = ReqMem;
+    instructionsList = instrs;
+    instructionsRemaining = instructionsList;
+    progCount = 0;
+    burst = calculateBurst();
+    io = -1;
 }
 
 int PCB::calculateBurst() {
@@ -130,6 +142,10 @@ int PCB::getBurst() {
 
 int PCB::getIO() {
     return this->io;
+}
+
+std::vector<int> PCB::getChildProcesses() {
+    return this->childProcesses;
 }
 
 instructionType PCB::getInstructionType(std::string line) {

@@ -1,8 +1,7 @@
 Possible improvements:
 1. Mark getters as const??
-2. Change member variables to have a preceding m_ ex: m_programCounter
+2. Change member variables to have a preceding m_
 3. Change constructors to member initializtion list. important. watch end of video if needed
-
 
 
 OVERVIEW:
@@ -26,3 +25,10 @@ PROCESS EXECUTION
     2 b) If IO instruction, have program wait on waitingQueue until IO cycles are finished before moving back to ready queue
         - Consider threading to help with concurrency??
 
+FORKING:
+Create job list to hold all processes(by process not pcb)
+Overload Process constructor to copy of parent process with no template input
+Overload PCB constructor to do the same
+Create map/list/vector/deque to hold child processes in Process class
+Add fork method to Process class to create new child process
+    -Fork method returns child process pcb/pid to be stored in parent

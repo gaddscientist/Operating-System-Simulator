@@ -14,12 +14,15 @@ extern Scheduler scheduler; // Defined in dispatcher.cpp
 OS::OS(std::string tp, int num) {
     templateFile = tp;
     numProcesses = num;
+    this->jobList = std::map<int, PCB>();
 }
 
 void OS::start() {
 
     // Creates processes from template file
-    createProcesses(templateFile, numProcesses);
+    for (int i = numProcesses; i > 0; i--) {
+        createProcess();
+    }
 
     extern int totalProcesses;  // Defined in process.cpp
     std::cout << totalProcesses << " processes were created" << std::endl;
@@ -45,16 +48,35 @@ void OS::start() {
     std::cout << std::fixed << cpu.getClock() << " Operating system ending" << std::endl;
 }
 
-void OS::createProcesses(std::string tp, int num) {
+void OS::createProcess() {
     extern Scheduler scheduler;
-    for (int index = 0; num> 0; num--, index++) {
-        // Creates process and adds to scheduler's "new" queue
-        Process newProcess(tp);
-        std::cout << "Process created with PID: " << newProcess.getPid() << std::endl;
-        for(size_t z = 0; z < newProcess.getPcb().getInstructionsList().size(); z++) {
-            std::cout << newProcess.getPcb().getInstructionsList()[z].instrType << " " << newProcess.getPcb().getInstructionsList()[z].remainingCycles << std::endl;
-        }
-        std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
-        dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+    // Creates process and adds to scheduler's "new" queue
+    Process newProcess(templateFile);
+    std::cout << "Process created with PID: " << newProcess.getPid() << std::endl;
+    for(size_t z = 0; z < newProcess.getPcb().getInstructionsList().size(); z++) {
+        std::cout << newProcess.getPcb().getInstructionsList()[z].instrType << " " << newProcess.getPcb().getInstructionsList()[z].remainingCycles << std::endl;
     }
+    std::cout << "Burst: " << newProcess.getPcb().getBurst() << std::endl;
+    dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+    // Adds newly created process to map of jobs where key, value = pid, pcb
+    this->jobList[newProcess.getPid()] = newProcess.getPcb();
+}
+
+
+
+// Creates a child process
+// Takes in the parent process's pid to fork from
+void OS::fork(int pid) {
+    // Creates a new randomized process
+    Process newProcess(templateFile);
+    // Gets position of FORK instruction to be removed
+    int forkInstrNum = newProcess.getPcb().getProgCount();
+    // Removes FORK instruction from the child processes instructions
+    newProcess.getPcb().getInstructionsList().erase(newProcess.getPcb().getInstructionsList().begin() + forkInstrNum);
+
+    // Adds child process to pool of ready processes
+    dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+    // Adds child process pid to parents list of children
+    jobList[pid].getChildProcesses().push_back(newProcess.getPid());
+
 }

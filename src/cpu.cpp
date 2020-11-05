@@ -50,6 +50,7 @@ void CPU::execute() {
         switch(currentInstruction.instrType) {
             // Calculate Instruction
             case 0:
+            case 3:
             {
                 std::cout << "Executing process " << this->pcb.getPid() << std::endl;
                 // Number of cycles executed this time slice

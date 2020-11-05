@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <map>
+#include "pcb.h"
 
 // Base class to simulate operating system
 class OS {
@@ -8,16 +10,20 @@ public:
     // Takes a template filename and number of processes to spawn
     OS(std::string, int);
 
+    // List of all processes, key:value is pid:pcb
+    std::map<int, PCB> jobList;    
+
     // Starts up the simulator
     void start();
 
+    // Creates a child process from process with given pid
+    void fork(int pid);
 
 private:
     // Process creation variables
     std::string templateFile;
     int numProcesses;
 
-
     // Internal functions
-    void createProcesses(std::string templateFile, int numProcesses);
+    void createProcess();
 };

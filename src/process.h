@@ -14,9 +14,12 @@ private:
 public:
     // Constructor
     Process (std::string templateFile);
+    Process(std::deque<instruction> instrs);
 
     // Destructor
     ~Process();
+
+    int fork();
 
     // Getters
     int getPid();
