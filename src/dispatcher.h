@@ -18,4 +18,6 @@ class Dispatcher {
         // Function to sort ready queue by remaining time left
         // Only needed for SJF scheduling
         void updateReadyQueue();
+
+        void killChildProcesses(PCB& p);
 };

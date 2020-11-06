@@ -84,7 +84,7 @@ void OS::fork(PCB& p) {
 
     // Adds child process to pool of ready processes
     dispatcher.addProcessToReadyQueue(childPCB);
-    // Adds child process pid to parents list of children
-    p.getChildProcesses().push_back(newProcess.getPid());
+    // Adds child process pcb to parents list of children
+    p.getChildProcesses().push_back(*(newProcess.getPcb()));
 
 }

@@ -32,3 +32,8 @@ Overload PCB constructor to do the same
 Create map/list/vector/deque to hold child processes in Process class
 Add fork method to Process class to create new child process
     -Fork method returns child process pcb/pid to be stored in parent
+
+CASCADING TERMINATION:
+When parent process is terminated, loop through children setting state to TERMINATED
+Afterwards, iterate through ready queue, erasing children
+    -If child is not found in ready queue, check waiting queue

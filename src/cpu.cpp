@@ -35,7 +35,14 @@ void CPU::execute() {
         if(interrupt.pid > 0) {
             PCB p = scheduler.getWaitingQueue().at(interrupt.pid);
             scheduler.getWaitingQueue().erase(interrupt.pid);
-            dispatcher.addProcessToReadyQueue(p);
+            // Checks to see if process was killed by parent process
+            // Note: This will only occur if child process gets terminated while IO is executing on separate thread
+            if (p.getCurrentState() == TERMINATED) {
+                dispatcher.addProcessToTerminatedQueue(p);
+            }
+            else {
+                dispatcher.addProcessToReadyQueue(p);
+            }
             std::cout << "Process " << interrupt.pid << " moved to ready queue" << std::endl;
         }
     }
@@ -92,6 +99,7 @@ void CPU::execute() {
             // IO Instruction
             case 1:
             {
+                this->pcb.setCurrentState(WAITING);
                 std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
                 // Execute IO on separate thread for concurrency
                 // Meant to simulate how IO would not tie up the CPU
