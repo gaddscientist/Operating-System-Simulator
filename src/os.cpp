@@ -11,11 +11,6 @@
 Dispatcher dispatcher;
 extern Scheduler scheduler; // Defined in dispatcher.cpp
 
-OS::OS(std::string tp, int num) {
-    templateFile = tp;
-    numProcesses = num;
-    this->jobList = std::map<int, PCB>();
-}
 OS::OS() {
     this->jobList = std::map<int, PCB>();
 }
@@ -73,26 +68,23 @@ void OS::createProcess() {
 
 
 // Creates a child process
-// Takes in the parent process's pid to fork from
-void OS::fork(int pid) {
+// Takes in the parent process's PCB to fork from
+void OS::fork(PCB& p) {
     // Creates a new randomized process
     Process newProcess(templateFile);
 
-    PCB parentPCB = this->jobList[pid];
+    // Gets new processes PCB to manipulate
     PCB childPCB = *(newProcess.getPcb());
-    int forkInstrNum = parentPCB.getProgCount();
-    childPCB.getInstructionsList().erase(parentPCB.getInstructionsList().begin() + forkInstrNum);
-    dispatcher.addProcessToReadyQueue(childPCB);
-
-
     // Gets position of FORK instruction to be removed
-    // int forkInstrNum = newProcess.getPcb().getProgCount();
+    int forkInstrNum = p.getProgCount();
+
     // Removes FORK instruction from the child processes instructions
-    // newProcess.getPcb().getInstructionsList().erase(newProcess.getPcb().getInstructionsList().begin() + forkInstrNum);
+    childPCB.getInstructionsList().erase(childPCB.getInstructionsList().begin() + forkInstrNum);
+    childPCB.getInstructionsRemaining().erase(childPCB.getInstructionsRemaining().begin() + forkInstrNum);
 
     // Adds child process to pool of ready processes
-    // dispatcher.addProcessToReadyQueue(newProcess.getPcb());
+    dispatcher.addProcessToReadyQueue(childPCB);
     // Adds child process pid to parents list of children
-    jobList[pid].getChildProcesses().push_back(newProcess.getPid());
+    p.getChildProcesses().push_back(newProcess.getPid());
 
 }

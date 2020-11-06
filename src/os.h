@@ -8,7 +8,6 @@ class OS {
 public:
     // Constructor
     // Takes a template filename and number of processes to spawn
-    OS(std::string, int);
     OS();
 
     // Process creation variables
@@ -22,7 +21,8 @@ public:
     void start();
 
     // Creates a child process from process with given pid
-    void fork(int pid);
+    // void fork(int pid);
+    void fork(PCB& p);
 
 private:
 

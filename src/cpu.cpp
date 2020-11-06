@@ -115,7 +115,8 @@ void CPU::execute() {
             }
             case 4:
             {
-                os.fork(this->getPcb().getPid());
+                PCB currentPCB = this->getPcb();
+                os.fork(currentPCB);
             }
             default:
             {

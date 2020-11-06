@@ -37,24 +37,23 @@ public:
     // Constructors
     PCB () {}
     PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
-    PCB (int PID, state CurrentState, int ReqMem, std::deque<instruction> instrs);
 
     void incrementInstrNum();
 
     // Getters
     int getPid();
     state getCurrentState();
-    int getProgCount();
+    int& getProgCount();
     int getReqMem();
     int getCycle();
     std::deque<int> getCpuRegisters();
-    std::deque<instruction> getInstructionsList();
-    std::deque<instruction> getInstructionsRemaining();
+    std::deque<instruction>& getInstructionsList();
+    std::deque<instruction>& getInstructionsRemaining();
     instruction getNextInstruction();
     void pushInstructionBack(instruction instr);
     int getBurst();
     int getIO();
-    std::vector<int> getChildProcesses();
+    std::vector<int>& getChildProcesses();
     instructionType getInstructionType(std::string line);
 
     // Setters

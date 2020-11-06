@@ -16,17 +16,6 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     childProcesses = std::vector<int>();
 }
 
-PCB::PCB (int PID, state CurrentState, int ReqMem, std::deque<instruction> instrs){
-    pid = PID;
-    currentState = CurrentState;
-    reqMem = ReqMem;
-    instructionsList = instrs;
-    instructionsRemaining = instructionsList;
-    progCount = 0;
-    burst = calculateBurst();
-    io = -1;
-}
-
 int PCB::calculateBurst() {
     double burst = 0; 
     for (size_t i = 0; i < this->instructionsList.size(); i++) {
@@ -39,7 +28,7 @@ int PCB::calculateBurst() {
 
 
 void PCB::incrementInstrNum() {
-    progCount++;
+    this->progCount++;
 }
 
 std::deque<instruction> PCB::ParseTemplate(const std::string tp) {
@@ -102,7 +91,7 @@ state PCB::getCurrentState() {
     return this->currentState;
 }
 
-int PCB::getProgCount() {
+int& PCB::getProgCount() {
     return this->progCount;
 }
 
@@ -118,11 +107,11 @@ std::deque<int> PCB::getCpuRegisters() {
     return this->cpuRegisters;
 }
 
-std::deque<instruction> PCB::getInstructionsList() {
+std::deque<instruction>& PCB::getInstructionsList() {
     return this->instructionsList;
 }
 
-std::deque<instruction> PCB::getInstructionsRemaining() {
+std::deque<instruction>& PCB::getInstructionsRemaining() {
     return this->instructionsRemaining;
 }
 
@@ -144,7 +133,7 @@ int PCB::getIO() {
     return this->io;
 }
 
-std::vector<int> PCB::getChildProcesses() {
+std::vector<int>& PCB::getChildProcesses() {
     return this->childProcesses;
 }
 
