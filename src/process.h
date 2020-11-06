@@ -9,7 +9,7 @@ extern state initialState;
 class Process {
 private:
     int pid;    // Process ID number
-    PCB pcb;    // PCB associated with this process
+    PCB* pcb;    // PCB associated with this process
 
 public:
     // Constructor
@@ -23,9 +23,9 @@ public:
 
     // Getters
     int getPid();
-    PCB getPcb();
+    PCB* getPcb();
 
     // Setters
     void setPid(int pid);
-    void setPcb(PCB pcb);
+    void setPcb(PCB* pcb);
 };

@@ -4,10 +4,12 @@
 #include "cpu.h"
 #include "scheduler.h"
 #include "dispatcher.h"
+#include "os.h"
 
 extern Dispatcher dispatcher;   // Defined in os.cpp
 extern Scheduler scheduler;     // Defined in dispatcher.cpp
 extern int totalProcesses;      // Defined in process.cpp
+extern OS os;
 
 CPU::CPU() {
     cycleTime = 10; // 10ms    
@@ -110,6 +112,10 @@ void CPU::execute() {
                 dispatcher.addProcessToWaitingQueue(this->pcb);
 
                 break;
+            }
+            case 4:
+            {
+                os.fork(this->getPcb().getPid());
             }
             default:
             {

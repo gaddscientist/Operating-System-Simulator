@@ -9,6 +9,11 @@ public:
     // Constructor
     // Takes a template filename and number of processes to spawn
     OS(std::string, int);
+    OS();
+
+    // Process creation variables
+    std::string templateFile;
+    int numProcesses;
 
     // List of all processes, key:value is pid:pcb
     std::map<int, PCB> jobList;    
@@ -20,9 +25,6 @@ public:
     void fork(int pid);
 
 private:
-    // Process creation variables
-    std::string templateFile;
-    int numProcesses;
 
     // Internal functions
     void createProcess();

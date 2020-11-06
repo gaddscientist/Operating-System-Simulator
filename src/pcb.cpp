@@ -156,6 +156,12 @@ instructionType PCB::getInstructionType(std::string line) {
     else if (strcmp(str, "IO") == 0) {
         return IO;
     }
+    else if (strcmp(str, "CRITICAL") == 0) {
+        return CRITICAL;
+    }
+    else if (strcmp(str, "FORK") == 0) {
+        return FORK;
+    }
     return ERROR;
 }
 
