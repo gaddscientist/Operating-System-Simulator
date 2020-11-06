@@ -26,7 +26,8 @@ private:
     std::deque<instruction> instructionsRemaining;  // Instructions text
     int burst;                                      // Number of cycles for function to complete
     int io;                                         // IO cycles required for IO instruction
-    std::vector<PCB*> childProcesses;                // Dynamic array of associated child processes by pid
+    std::vector<PCB*> childProcesses;               // Dynamic array of associated child processes by pid
+
 
     // Member functions
     int calculateBurst();

@@ -47,6 +47,11 @@ void CPU::execute() {
         }
     }
 
+    // Pops child process that was terminated
+    if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() == TERMINATED) {
+        scheduler.getReadyQueue().pop_front();
+    }
+
     // If the ready queue has processes
     if(!(scheduler.getReadyQueue().empty())) {
         this->pcb = dispatcher.getPcbFromReady();
@@ -121,10 +126,11 @@ void CPU::execute() {
 
                 break;
             }
+            // FORK
             case 4:
             {
-                PCB currentPCB = this->getPcb();
-                PCB* childPCB = os.fork(currentPCB);
+                PCB* childPCB = os.fork(this->getPcb());
+                childPCB->setCurrentState(READY);
                 this->getPcb().getChildProcesses().push_back(childPCB);
                 break;
             }
@@ -162,7 +168,7 @@ double CPU::getClock() {
     return duration;
 }
 
-PCB CPU::getPcb() {
+PCB& CPU::getPcb() {
     return this->pcb;
 }
 

@@ -91,7 +91,4 @@ PCB* OS::fork(PCB& p) {
     // Returns reference to newly created process's PCB
     return newProcess.getPcb();
 
-    // Adds child process pcb to parents list of children
-    // p.getChildProcesses().push_back(*(newProcess.getPcb()));
-
 }

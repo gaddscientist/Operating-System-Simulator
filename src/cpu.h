@@ -13,7 +13,7 @@ class CPU {
 
         // Getters
         double getClock();
-        PCB getPcb();
+        PCB& getPcb();
 
         // Setters
         void setClock(int clock);

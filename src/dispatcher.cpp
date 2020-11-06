@@ -1,3 +1,4 @@
+#include <iostream>
 #include "dispatcher.h"
 
 Scheduler scheduler;
@@ -49,6 +50,7 @@ void Dispatcher::killChildProcesses(PCB& p) {
 
     // Loops through all child processes in vector
     for(int i = 0; i < numChildProcesses; i++) {
+        int childPID = p.getChildProcesses()[i]->getPid();
         // For processes that are ready, find them in the ready queue
         if(p.getChildProcesses()[i]->getCurrentState() == READY) {
             // Iterator to beginning of ready queue
@@ -60,6 +62,8 @@ void Dispatcher::killChildProcesses(PCB& p) {
                 if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
                     // Murder
                     scheduler.getReadyQueue().erase(it);
+                    totalProcesses--;
+                    break;
                 }
             }
         }
@@ -72,6 +76,7 @@ void Dispatcher::killChildProcesses(PCB& p) {
             if(it != scheduler.getWaitingQueue().end()) {
                 // Murder
                 scheduler.getWaitingQueue().erase(it);
+                totalProcesses--;
             }
         }
         // For when memory is implemented
@@ -82,6 +87,9 @@ void Dispatcher::killChildProcesses(PCB& p) {
         // Regardless, set the child processes state to terminated and add it to terminated queue
         p.getChildProcesses()[i]->setCurrentState(TERMINATED);
         scheduler.getTerminatedQueue().push_back(*(p.getChildProcesses()[i]));
+
+        std::cout << "Child Process with pid: " << childPID << " terminating early" << std::endl;
+
         // Remove process from parents list of child processes
         std::vector<PCB*>::iterator it = p.getChildProcesses().begin();
         p.getChildProcesses().erase(it + i);
