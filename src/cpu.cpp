@@ -124,7 +124,9 @@ void CPU::execute() {
             case 4:
             {
                 PCB currentPCB = this->getPcb();
-                os.fork(currentPCB);
+                PCB* childPCB = os.fork(currentPCB);
+                this->getPcb().getChildProcesses().push_back(childPCB);
+                break;
             }
             default:
             {

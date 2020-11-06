@@ -13,7 +13,7 @@ PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
     progCount = 0;
     burst = calculateBurst();
     io = -1;
-    childProcesses = std::vector<PCB>();
+    childProcesses = std::vector<PCB*>();
 }
 
 int PCB::calculateBurst() {
@@ -133,7 +133,7 @@ int PCB::getIO() {
     return this->io;
 }
 
-std::vector<PCB>& PCB::getChildProcesses() {
+std::vector<PCB*>& PCB::getChildProcesses() {
     return this->childProcesses;
 }
 

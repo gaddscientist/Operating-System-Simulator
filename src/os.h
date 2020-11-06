@@ -22,7 +22,7 @@ public:
 
     // Creates a child process from process with given pid
     // void fork(int pid);
-    void fork(PCB& p);
+    PCB* fork(PCB& p);
 
 private:
 

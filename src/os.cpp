@@ -69,7 +69,7 @@ void OS::createProcess() {
 
 // Creates a child process
 // Takes in the parent process's PCB to fork from
-void OS::fork(PCB& p) {
+PCB* OS::fork(PCB& p) {
     // Creates a new randomized process
     Process newProcess(templateFile);
 
@@ -84,7 +84,14 @@ void OS::fork(PCB& p) {
 
     // Adds child process to pool of ready processes
     dispatcher.addProcessToReadyQueue(childPCB);
+
+    // Adds new process to total job list
+    jobList[newProcess.getPid()] = *(newProcess.getPcb());
+
+    // Returns reference to newly created process's PCB
+    return newProcess.getPcb();
+
     // Adds child process pcb to parents list of children
-    p.getChildProcesses().push_back(*(newProcess.getPcb()));
+    // p.getChildProcesses().push_back(*(newProcess.getPcb()));
 
 }
