@@ -8,14 +8,13 @@
 // Counting semaphore
 class Semaphore {
 public:
-    std::queue<std::thread::id> blockedProcesses;
+    std::queue<PCB> blockedProcesses;
 
     Semaphore();
 
     void wait();
     void signal();
 
-private:
     int count;
     std::mutex mutex;
     std::condition_variable cond;

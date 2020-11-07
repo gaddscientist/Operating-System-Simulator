@@ -6,7 +6,7 @@
 // Possible states of process
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
 // Possible instructions
-enum instructionType {CALCULATE, IO, EXIT, CRITICAL, FORK, ERROR};
+enum instructionType {CALCULATE, IO, CRITICAL, FORK, EXIT, ERROR};
 
 // Instruction struct to store instructions as objects instead of plaintext
 struct instruction {

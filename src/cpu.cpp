@@ -10,6 +10,7 @@ extern Dispatcher dispatcher;   // Defined in os.cpp
 extern Scheduler scheduler;     // Defined in dispatcher.cpp
 extern int totalProcesses;      // Defined in process.cpp
 extern OS os;
+Semaphore S;
 
 CPU::CPU() {
     cycleTime = 10; // 10ms    
@@ -64,7 +65,6 @@ void CPU::execute() {
         switch(currentInstruction.instrType) {
             // Calculate Instruction
             case 0:
-            case 3:
             {
                 std::cout << "Executing process " << this->pcb.getPid() << std::endl;
                 // Number of cycles executed this time slice
@@ -126,8 +126,49 @@ void CPU::execute() {
 
                 break;
             }
+            // CRITICAL
+            case 2:
+            {
+                wait(S);
+
+                std::cout << "Executing critical section for process " << this->pcb.getPid() << std::endl;
+                // Number of cycles executed this time slice
+                int cycleCount = 0;
+
+                // Continue executing while there are cycles left in the instruction
+                // and the instruction's time slice hasn't expired
+                while(currentInstruction.remainingCycles > 0 && interrupts.empty()) {
+                    cycleCount++;
+
+                    // Sleep the thread for a number of milliseconds to simulate
+                    // actual time needed to execute a clock cycle
+                    std::this_thread::sleep_for(std::chrono::milliseconds(cycleTime));
+                    currentInstruction.remainingCycles--;
+
+                    // Checks to see if time slice has expired
+                    if(cycleCount == timeSlice) {
+                        // -1 chosen as its an impossible PID
+                        interrupts.push_back(Interrupt(-1));
+                        std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
+                    }
+                }
+
+                // If instruction finished
+                if (currentInstruction.remainingCycles == 0) {
+                    std::cout << "Process " << this->pcb.getPid() << " critical section has finished" << std::endl;
+                    // Increments the program counter if instruction completed
+                    this->pcb.incrementInstrNum();
+                }
+                else {
+                    // Otherwise put at front of instruction queue
+                    this->pcb.pushInstructionBack(currentInstruction);
+                }
+
+                signal(S);
+                break;
+            }
             // FORK
-            case 4:
+            case 3:
             {
                 PCB* childPCB = os.fork(this->getPcb());
                 childPCB->setCurrentState(READY);
@@ -177,5 +218,24 @@ void CPU::setPcb(PCB pcb) {
     this->pcb = pcb;
 }
 
+void CPU::wait(Semaphore S) {
+    if (S.count == 1) {
+        S.count = 0;
+    }
+    else {
+        S.blockedProcesses.push_back(this->pcb);
+    }
+}
 
-
+void CPU::signal(Semaphore S) {
+    if (S.blockedProcesses.empty()) {
+        S.count = 1;
+    }
+    else {
+        S.count = 1;
+        if(S.blockedProcesses.size() > 0) {
+            dispatcher.addCriticalToReadyQueue(S.blockedProcesses.front());
+            S.blockedProcesses.pop_front();
+        }
+    }
+}

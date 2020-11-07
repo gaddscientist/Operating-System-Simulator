@@ -2,6 +2,12 @@
 #include <deque>
 #include "pcb.h"
 
+// Semaphore
+struct Semaphore {
+    int count = 1;
+    std::deque<PCB> blockedProcesses = std::deque<PCB>();
+};
+
 // CPU class to handle execution of process instructions
 class CPU {
     public:
@@ -34,4 +40,8 @@ class CPU {
 
         // Queue to hold interrupted processes
         std::deque<Interrupt> interrupts;
+
+        // Semaphore methods 
+        void wait(Semaphore S);
+        void signal(Semaphore S);
 };
