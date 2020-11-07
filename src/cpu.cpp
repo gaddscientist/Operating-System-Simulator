@@ -170,8 +170,11 @@ void CPU::execute() {
             // FORK
             case 3:
             {
+                // Creates a child process
                 PCB* childPCB = os.fork(this->getPcb());
+                // Sets child to READY as opposed to NEW since memory isnt implemented
                 childPCB->setCurrentState(READY);
+                // Gives parent a pointer to the child
                 this->getPcb().getChildProcesses().push_back(childPCB);
                 break;
             }
