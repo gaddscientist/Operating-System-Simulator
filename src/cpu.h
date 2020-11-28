@@ -25,6 +25,9 @@ class CPU {
         void setClock(int clock);
         void setPcb(PCB pcb);
 
+        const int totalCache = 5; // Kilobytes
+        int remainingCache;
+
     private:
         PCB pcb;        // Current pcb on CPU
         int cycleTime;  // Time in milliseconds per clock cycle

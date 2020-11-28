@@ -15,6 +15,8 @@ Semaphore S;
 CPU::CPU() {
     cycleTime = 10; // 10ms    
     timeSlice = 15; // 15 cycles before pre-emption
+    remainingCache = totalCache;
+
     // Saves starting time and prints OS start
     startTime = std::clock();
     this->interrupts = std::deque<Interrupt>();
@@ -58,6 +60,7 @@ void CPU::execute() {
         this->pcb = dispatcher.getPcbFromReady();
         std::cout << "Process " << this->pcb.getPid() << " on CPU" << std::endl;
         this->pcb.setCurrentState(RUNNING);
+        remainingCache -= this->pcb.getReqMem();
 
         // Retrieve instruction to be executed
         instruction currentInstruction = this->pcb.getNextInstruction();
@@ -85,6 +88,8 @@ void CPU::execute() {
                         // -1 chosen as its an impossible PID
                         interrupts.push_back(Interrupt(-1));
                         std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
+                        // Frees cache memory as process is put back into main memory
+                        remainingCache += this->pcb.getReqMem();
                     }
                 }
 
@@ -165,6 +170,7 @@ void CPU::execute() {
                         // -1 chosen as its an impossible PID
                         interrupts.push_back(Interrupt(-1));
                         std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
+                        remainingCache += this->pcb.getReqMem();
                     }
                 }
 
@@ -203,12 +209,14 @@ void CPU::execute() {
         if (this->pcb.getInstructionsRemaining().size() <= 1 && this->pcb.getCurrentState() != WAITING) {
             dispatcher.addProcessToTerminatedQueue(this->pcb);
             std::cout << "Process " << this->pcb.getPid() << " terminated" << std::endl;
+            remainingCache += this->pcb.getReqMem();
         }
 
         // If the processes didnt hit IO instruction or terminate
         if (this->pcb.getCurrentState() == RUNNING) {
             // Dispatch program from cpu back to ready queue
             dispatcher.addProcessToReadyQueue(this->pcb);
+            remainingCache += this->pcb.getReqMem();
         }
     }
     // Ready queue has no processes
