@@ -58,11 +58,8 @@ void Dispatcher::killChildProcesses(PCB& p) {
         int childPID = p.getChildProcesses()[i]->getPid();
         // For processes that are ready, find them in the ready queue
         if(p.getChildProcesses()[i]->getCurrentState() == READY) {
-            // Iterator to beginning of ready queue
-            std::deque<PCB>::iterator it = scheduler.getReadyQueue().begin();
-
             // Checks the ready queue for the process index and removes it
-            for (; it != scheduler.getReadyQueue().end(); it++) {
+            for (std::deque<PCB>::iterator it = scheduler.getReadyQueue().begin(); it != scheduler.getReadyQueue().end(); it++) {
                 // If child process is found
                 if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
                     // Murder

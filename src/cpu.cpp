@@ -112,9 +112,24 @@ void CPU::execute() {
                 // Process sleeps until IO instructions have completed
                 std::thread ioThread([this, currentInstruction, pid]() {
                     std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
-                    std::cout << "Process " << pid << " finished IO" << std::endl;
-                    // Once IO has finished, signal interrupt
-                    interrupts.push_back(pid);
+
+                    // Checks to see if process was terminated early by cascading termination while sleeping for IO
+                    bool killed = false;
+                    // Checks the terminated queue for the process index
+                    for (std::deque<PCB>::iterator it = scheduler.getTerminatedQueue().begin(); it != scheduler.getTerminatedQueue().end(); it++) {
+                        // If child process is found
+                        if((*it).getPid() == this->getPcb().getPid()) {
+                            killed = true;
+                            totalProcesses--;
+                        }
+                    }
+
+                    if(!killed) {
+                        std::cout << "Process " << pid << " finished IO" << std::endl;
+                        // Once IO has finished, signal interrupt
+                        interrupts.push_back(pid);
+                    }
+
                 });
                 // Exception thrown if thread not detached or joined. Join would cause parent thread to wait
                 ioThread.detach();
@@ -198,7 +213,10 @@ void CPU::execute() {
     }
     // Ready queue has no processes
     else {
-        std::cout << "CPU Idle: No processes ready to be executed" << std::endl;
+        // Stops idle logging when waiting for last processes IO to complete on separate thread
+        if(scheduler.getTerminatedQueue().size() < (size_t)os.numProcesses) {
+            std::cout << "CPU Idle: No processes ready to be executed" << std::endl;
+        }
         // Thread sleeps so there is less output while idle
         std::this_thread::sleep_for(std::chrono::milliseconds(80)); 
     }

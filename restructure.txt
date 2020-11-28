@@ -37,3 +37,23 @@ CASCADING TERMINATION:
 When parent process is terminated, loop through children setting state to TERMINATED
 Afterwards, iterate through ready queue, erasing children
     -If child is not found in ready queue, check waiting queue
+
+
+MEMORY:
+Each process needs a randomized(?) amount of memory assigned to it
+Memory should be its own cpp file and will be included via the scheduler or OS
+All processes will start in the new queue on OS start up and will then be added to ready queue until its full
+To add a process to ready queue, free memory must be larger than total instruction size(?), then decrease free memory
+When process is terminated, alotted memory if freed
+For cacheing, cpu will have cache that holds up to one full PCB. Could just be current PCB
+
+IO:
+Could create separate instructions for different IO, or add functionality into IO threading to reference instruction name(?) and add
+    to relevant waiting queue
+Threading should still handle IO functionality fine and will block process until process is done sleeping(blocked)
+
+PROCESS MANAGEMENT:
+Use 2 core system, each process gets its own thread(?) and while there is a free cpu core, a process is dispatched to it.
+Each clock tick the scheduler ensures both cpu core's are executing processes if there are any to execute.
+
+Another idea, each cpu core(subclass of CPU) runs on a separate thread(to simulate physical independence from eachother).  
