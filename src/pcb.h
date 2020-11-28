@@ -37,7 +37,7 @@ private:
 public:
     // Constructors
     PCB () {}
-    PCB (int PID, state CurrentState, int ReqMem, std::string templateFile);
+    PCB (int PID, state CurrentState, std::string templateFile);
 
     void incrementInstrNum();
 
@@ -61,7 +61,6 @@ public:
     void setPid(int pid);
     void setCurrentState(state currentState);
     void setProgCount(int progCount);
-    void setReqMem(int reqMem);
     void setCycle(int cycle);
     void setCpuRegisters(std::deque<int> cpuRegisters);
     void setInstructions(std::deque<instruction> instructions);

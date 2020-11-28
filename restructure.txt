@@ -44,8 +44,9 @@ Each process needs a randomized(?) amount of memory assigned to it
 Memory should be its own cpp file and will be included via the scheduler or OS
 All processes will start in the new queue on OS start up and will then be added to ready queue until its full
 To add a process to ready queue, free memory must be larger than total instruction size(?), then decrease free memory
-When process is terminated, alotted memory if freed
-For cacheing, cpu will have cache that holds up to one full PCB. Could just be current PCB
+When process is terminated, alotted memory is freed
+For cacheing, cpu will have cache that holds up to one full PCB.  Should make this one per core
+Cache will be a 5kb store and will decrement with the reqMem of the pcb executing
 
 IO:
 Could create separate instructions for different IO, or add functionality into IO threading to reference instruction name(?) and add

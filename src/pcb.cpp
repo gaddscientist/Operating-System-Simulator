@@ -4,10 +4,10 @@
 #include "pcb.h"
 
 // PCB constructor
-PCB::PCB (int PID, state CurrentState, int ReqMem, std::string templateFile){
+PCB::PCB (int PID, state CurrentState, std::string templateFile){
     pid = PID;
     currentState = CurrentState;
-    reqMem = ReqMem;
+    reqMem = (rand() % 5 + 1); // Random memory assignment between 1 and 5 Kilobytes
     instructionsList = ParseTemplate(templateFile);
     instructionsRemaining = instructionsList;
     progCount = 0;
@@ -166,10 +166,6 @@ void PCB::setCurrentState(state currentState) {
 
 void PCB::setProgCount(int progCount) {
     this->progCount = progCount;
-}
-
-void PCB::setReqMem(int reqMem) {
-    this->reqMem = reqMem;
 }
 
 void PCB::setCycle(int cycle) {

@@ -61,7 +61,7 @@ void OS::createProcess() {
         std::cout << tempPCB.getInstructionsList()[z].instrType << " " << tempPCB.getInstructionsList()[z].remainingCycles << std::endl;
     }
     std::cout << "Burst: " << tempPCB.getBurst() << std::endl;
-    dispatcher.addProcessToReadyQueue(*(newProcess.getPcb()));
+    dispatcher.addProcessToNewQueue(*(newProcess.getPcb()));
     // Adds newly created process to map of jobs where key, value = pid, pcb
     this->jobList[newProcess.getPid()] = *(newProcess.getPcb());
 }
@@ -84,7 +84,7 @@ PCB* OS::fork(PCB& p) {
     childPCB.getInstructionsRemaining().erase(childPCB.getInstructionsRemaining().begin() + forkInstrNum);
 
     // Adds child process to pool of ready processes
-    dispatcher.addProcessToReadyQueue(childPCB);
+    dispatcher.addProcessToNewQueue(childPCB);
 
     // Adds new process to total job list
     jobList[newProcess.getPid()] = *(newProcess.getPcb());

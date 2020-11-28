@@ -13,7 +13,7 @@ extern Dispatcher dispatcher;
 // Process constructor
 Process::Process (std::string templateFile) {
     pid = next_pid++;
-    pcb = new PCB(pid, initialState, 1000, templateFile);
+    pcb = new PCB(pid, initialState, templateFile);
     totalProcesses++;
 }
 

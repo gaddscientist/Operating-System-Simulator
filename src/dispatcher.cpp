@@ -1,7 +1,9 @@
 #include <iostream>
 #include "dispatcher.h"
+#include "memory.h"
 
 Scheduler scheduler;
+extern Memory memory;
 extern int totalProcesses;
 
 Dispatcher::Dispatcher() {
@@ -13,6 +15,16 @@ PCB Dispatcher::getPcbFromReady() {
         scheduler.getReadyQueue().pop_front();
     }
     return pcb;
+}
+
+void Dispatcher::addProcessToNewQueue(PCB p) {
+    if(memory.getRemainingMemory() > p.getReqMem()) {
+        addProcessToReadyQueue(p);
+        memory.takeMemory(p.getReqMem());
+    }
+    else {
+        scheduler.getNewQueue().push_back(p);
+    }
 }
 
 void Dispatcher::addProcessToReadyQueue(PCB p) {
@@ -37,9 +49,11 @@ void Dispatcher::addProcessToWaitingQueue(PCB& p) {
 
 void Dispatcher::addProcessToTerminatedQueue(PCB& p) {
     p.setCurrentState(TERMINATED);
+    memory.returnMemory(p.getReqMem());
     killChildProcesses(p);
     scheduler.getTerminatedQueue().push_back(p);
     totalProcesses--;
+    readyNewProcesses();
 }
 
 // Function to sort ready queue by remaining time left
@@ -90,10 +104,23 @@ void Dispatcher::killChildProcesses(PCB& p) {
         p.getChildProcesses()[i]->setCurrentState(TERMINATED);
         scheduler.getTerminatedQueue().push_back(*(p.getChildProcesses()[i]));
 
+        // Free's the child processes memory
+        memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
+
         std::cout << "Child Process with pid: " << childPID << " terminating early" << std::endl;
 
         // Remove process from parents list of child processes
         std::vector<PCB*>::iterator it = p.getChildProcesses().begin();
         p.getChildProcesses().erase(it + i);
+    }
+}
+
+// Adds NEW processes to the ready queue while memory permits
+// Pulls from new queue in strict FIFO manner
+// Could be changed to first process small enough to fit in main memory
+void Dispatcher::readyNewProcesses() {
+    while((!scheduler.getNewQueue().empty()) && scheduler.getNewQueue().front().getReqMem() < memory.getRemainingMemory()) {
+        addProcessToReadyQueue(scheduler.getNewQueue().front());
+        scheduler.getNewQueue().pop_front();
     }
 }
