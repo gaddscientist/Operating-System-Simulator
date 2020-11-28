@@ -1,13 +1,14 @@
 #include <string>
 #include <iostream>
 #include "os.h"
+#include "memory.h"
 #include "scheduler.h"
 #include "dispatcher.h"
 #include "cpu.h"
 #include "process.h"
-#include "pcb.h"
 
-// // Global objects
+// Global objects
+Memory memory;
 Dispatcher dispatcher;
 extern Scheduler scheduler; // Defined in dispatcher.cpp
 
