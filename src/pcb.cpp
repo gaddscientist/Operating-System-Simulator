@@ -1,4 +1,4 @@
-#include <string.h>
+#include <string>
 #include <fstream>
 #include <iostream>
 #include "pcb.h"
@@ -54,7 +54,7 @@ std::deque<instruction> PCB::ParseTemplate(const std::string tp) {
     }
 
     // Add exit instruction to the end of the queue
-    instruction exitInstr = {EXIT, 0};
+    instruction exitInstr = {EXIT, NONE, 0};
     instructions.push_back(exitInstr);
 
     // Close the file
@@ -75,9 +75,12 @@ instruction PCB::Randomize(std::string& str) {
 
     // Randomly generates a number of cycles in the given range
     int randCycles = (rand() % (max - min + 1)) + min;
+    // Finds instruction type and IO device if instruction is IO
+    instructionType type = getInstructionType(str.substr(0, firstSpace));
+    ioType iotype = getIOType(str.substr(3, firstSpace - 3));
 
     // Creates a new string with randomized cycles to be returned
-    instruction randomizedInstr = {getInstructionType(str.substr(0, firstSpace)), randCycles};
+    instruction randomizedInstr = {type, iotype, randCycles};
 
     return randomizedInstr;
 }
@@ -138,20 +141,32 @@ std::vector<PCB*>& PCB::getChildProcesses() {
 }
 
 instructionType PCB::getInstructionType(std::string line) {
-    const char * str = line.c_str();
-    if (strcmp(str, "CALCULATE") == 0) {
+    if(line.compare("CALCULATE") == 0) {
         return CALCULATE;
     }
-    else if (strcmp(str, "IO") == 0) {
+    else if(line.compare(0, 2, "IO") == 0) {
         return IO;
     }
-    else if (strcmp(str, "CRITICAL") == 0) {
+    else if(line.compare("CRITICAL") == 0) {
         return CRITICAL;
     }
-    else if (strcmp(str, "FORK") == 0) {
+    else if(line.compare("FORK") == 0) {
         return FORK;
     }
     return ERROR;
+}
+
+ioType PCB::getIOType(std::string line) {
+    if(line.compare("Keyboard") == 0) {
+        return KEYBOARD;
+    }
+    else if(line.compare("Monitor") == 0) {
+        return MONITOR;
+    }
+    else if(line.compare("Disk") == 0) {
+        return DISK;
+    }
+    return NONE;
 }
 
 

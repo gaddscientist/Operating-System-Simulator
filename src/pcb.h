@@ -7,10 +7,13 @@
 enum state {NEW, RUNNING, WAITING, READY, TERMINATED};
 // Possible instructions
 enum instructionType {CALCULATE, IO, CRITICAL, FORK, EXIT, ERROR};
+// Possible IO devices
+enum ioType {NONE, KEYBOARD, MONITOR, DISK};
 
 // Instruction struct to store instructions as objects instead of plaintext
 struct instruction {
     instructionType instrType;
+    ioType device;
     int remainingCycles;
 };
 
@@ -56,6 +59,7 @@ public:
     int getIO();
     std::vector<PCB*>& getChildProcesses();
     instructionType getInstructionType(std::string line);
+    ioType getIOType(std::string line);
 
     // Setters
     void setPid(int pid);
