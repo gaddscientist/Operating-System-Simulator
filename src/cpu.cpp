@@ -55,7 +55,6 @@ void CPU::execute() {
         this->pcb = dispatcher.getPcbFromReady();
         std::cout << "Process " << this->pcb.getPid() << " on CPU" << std::endl;
         this->pcb.setCurrentState(RUNNING);
-        remainingCache -= this->pcb.getReqMem();
 
         // Retrieve instruction to be executed
         instruction currentInstruction = this->pcb.getNextInstruction();
@@ -65,6 +64,7 @@ void CPU::execute() {
             case 0:
             {
                 std::cout << "Executing process " << this->pcb.getPid() << std::endl;
+                remainingCache -= this->pcb.getReqMem();
                 // Number of cycles executed this time slice
                 int cycleCount = 0;
 
@@ -83,8 +83,6 @@ void CPU::execute() {
                         // -1 chosen as its an impossible PID
                         interrupts.push_back(Interrupt(-1));
                         std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
-                        // Frees cache memory as process is put back into main memory
-                        remainingCache += this->pcb.getReqMem();
                     }
                 }
 
@@ -147,6 +145,7 @@ void CPU::execute() {
                 wait(S);
 
                 std::cout << "Executing critical section for process " << this->pcb.getPid() << std::endl;
+                remainingCache -= this->pcb.getReqMem();
                 // Number of cycles executed this time slice
                 int cycleCount = 0;
 
@@ -165,7 +164,6 @@ void CPU::execute() {
                         // -1 chosen as its an impossible PID
                         interrupts.push_back(Interrupt(-1));
                         std::cout << "Time slice for process " << this->pcb.getPid() << " Expired" << std::endl;
-                        remainingCache += this->pcb.getReqMem();
                     }
                 }
 
@@ -186,11 +184,17 @@ void CPU::execute() {
             // FORK
             case 3:
             {
+                remainingCache -= this->pcb.getReqMem();
                 // Creates a child process
                 PCB* childPCB = os.fork(this->getPcb());
                 // Gives parent a pointer to the child
                 this->getPcb().getChildProcesses().push_back(childPCB);
                 break;
+            }
+            // EXIT
+            case 4:
+            {
+                remainingCache -= this->pcb.getReqMem();
             }
             default:
             {
