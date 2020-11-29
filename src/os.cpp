@@ -74,19 +74,14 @@ PCB* OS::fork(PCB& p) {
     // Creates a new randomized process
     Process newProcess(templateFile);
 
-    // Gets new processes PCB to manipulate
-    // PCB childPCB = *(newProcess.getPcb());
     // Gets position of FORK instruction to be removed
     int forkInstrNum = p.getProgCount();
 
     // Removes FORK instruction from the child processes instructions
-    // childPCB.getInstructionsList().erase(childPCB.getInstructionsList().begin() + forkInstrNum);
     (*(newProcess.getPcb())).getInstructionsList().erase((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum);
-    // childPCB.getInstructionsRemaining().erase(childPCB.getInstructionsRemaining().begin() + forkInstrNum);
     (*(newProcess.getPcb())).getInstructionsRemaining().erase((*(newProcess.getPcb())).getInstructionsRemaining().begin() + forkInstrNum);
 
     // Adds child process to pool of ready processes
-    // dispatcher.addProcessToNewQueue(childPCB);
     dispatcher.addProcessToNewQueue(*(newProcess.getPcb()));
 
     // Adds new process to total job list

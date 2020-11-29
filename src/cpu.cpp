@@ -50,13 +50,8 @@ void CPU::execute() {
         }
     }
 
-    // Pops child process that was terminated
-    if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() == TERMINATED) {
-        scheduler.getReadyQueue().pop_front();
-    }
-
     // If the ready queue has processes
-    if(!(scheduler.getReadyQueue().empty())) {
+    if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() != TERMINATED) {
         this->pcb = dispatcher.getPcbFromReady();
         std::cout << "Process " << this->pcb.getPid() << " on CPU" << std::endl;
         this->pcb.setCurrentState(RUNNING);
@@ -193,7 +188,6 @@ void CPU::execute() {
             {
                 // Creates a child process
                 PCB* childPCB = os.fork(this->getPcb());
-                // childPCB->setCurrentState(NEW);
                 // Gives parent a pointer to the child
                 this->getPcb().getChildProcesses().push_back(childPCB);
                 break;

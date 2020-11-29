@@ -12,7 +12,10 @@ public:
     int getRemainingMemory();
 
 private:
-    const int totalMemory = 10;//4096; // Kilobytes
+    // totalMemory changed to 10 to demonstrate when not all
+    // processes can be loaded into main memory
+    // const int totalMemory = 4096; // Kilobytes
+    const int totalMemory = 10; // Kilobytes
     int remainingMemory;
 
 };
