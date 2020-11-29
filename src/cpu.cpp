@@ -45,8 +45,8 @@ void CPU::execute() {
             }
             else {
                 dispatcher.addProcessToReadyQueue(p);
+                std::cout << "Process " << interrupt.pid << " moved to ready queue" << std::endl;
             }
-            std::cout << "Process " << interrupt.pid << " moved to ready queue" << std::endl;
         }
     }
 
@@ -109,7 +109,7 @@ void CPU::execute() {
             // IO Instruction
             case 1:
             {
-                this->pcb.setCurrentState(WAITING);
+                // this->pcb.setCurrentState(WAITING);
                 std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
                 // Execute IO on separate thread for concurrency
                 // Meant to simulate how IO would not tie up the CPU
@@ -123,7 +123,7 @@ void CPU::execute() {
                     // Checks the terminated queue for the process index
                     for (std::deque<PCB>::iterator it = scheduler.getTerminatedQueue().begin(); it != scheduler.getTerminatedQueue().end(); it++) {
                         // If child process is found
-                        if((*it).getPid() == this->getPcb().getPid()) {
+                        if((*it).getPid() == pid) {
                             killed = true;
                             totalProcesses--;
                         }
@@ -193,8 +193,7 @@ void CPU::execute() {
             {
                 // Creates a child process
                 PCB* childPCB = os.fork(this->getPcb());
-                // Sets child to READY as opposed to NEW since memory isnt implemented
-                childPCB->setCurrentState(READY);
+                // childPCB->setCurrentState(NEW);
                 // Gives parent a pointer to the child
                 this->getPcb().getChildProcesses().push_back(childPCB);
                 break;

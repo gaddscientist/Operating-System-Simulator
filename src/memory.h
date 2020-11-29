@@ -12,7 +12,7 @@ public:
     int getRemainingMemory();
 
 private:
-    const int totalMemory = 4096; // Kilobytes
+    const int totalMemory = 10;//4096; // Kilobytes
     int remainingMemory;
 
 };

@@ -58,3 +58,8 @@ Use 2 core system, each process gets its own thread(?) and while there is a free
 Each clock tick the scheduler ensures both cpu core's are executing processes if there are any to execute.
 
 Another idea, each cpu core(subclass of CPU) runs on a separate thread(to simulate physical independence from eachother).  
+
+
+
+MULTI-LEVEL PARENT CHILD
+Add a number next to the fork instruction for how many levels to create!

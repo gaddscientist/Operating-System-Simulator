@@ -17,8 +17,8 @@ PCB Dispatcher::getPcbFromReady() {
     return pcb;
 }
 
-void Dispatcher::addProcessToNewQueue(PCB p) {
-    if(memory.getRemainingMemory() > p.getReqMem()) {
+void Dispatcher::addProcessToNewQueue(PCB& p) {
+    if(memory.getRemainingMemory() >= p.getReqMem()) {
         addProcessToReadyQueue(p);
         memory.takeMemory(p.getReqMem());
     }
@@ -27,7 +27,7 @@ void Dispatcher::addProcessToNewQueue(PCB p) {
     }
 }
 
-void Dispatcher::addProcessToReadyQueue(PCB p) {
+void Dispatcher::addProcessToReadyQueue(PCB& p) {
     p.setCurrentState(READY);
     scheduler.getReadyQueue().push_back(p);
     // Needed for SJF scheduling
@@ -36,7 +36,7 @@ void Dispatcher::addProcessToReadyQueue(PCB p) {
     }
 }
 
-void Dispatcher::addCriticalToReadyQueue(PCB p) {
+void Dispatcher::addCriticalToReadyQueue(PCB& p) {
     p.setCurrentState(READY);
     scheduler.getReadyQueue().push_front(p);
 }
@@ -79,6 +79,8 @@ void Dispatcher::killChildProcesses(PCB& p) {
                     // Murder
                     scheduler.getReadyQueue().erase(it);
                     totalProcesses--;
+                    // Free's the child processes memory
+                    memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
                     break;
                 }
             }
@@ -93,19 +95,27 @@ void Dispatcher::killChildProcesses(PCB& p) {
                 // Murder
                 scheduler.getWaitingQueue().erase(it);
                 totalProcesses--;
+                // Free's the child processes memory
+                memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
             }
         }
         // For when memory is implemented
         else if(p.getChildProcesses()[i]->getCurrentState() == NEW) {
-            // Do something when memory is implemented
+            // Checks the new queue for the process index and removes it
+            for (std::deque<PCB>::iterator it = scheduler.getNewQueue().begin(); it != scheduler.getNewQueue().end(); it++) {
+                // If child process is found
+                if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
+                    // Murder
+                    scheduler.getNewQueue().erase(it);
+                    totalProcesses--;
+                    break;
+                }
+            }
         }
 
         // Regardless, set the child processes state to terminated and add it to terminated queue
         p.getChildProcesses()[i]->setCurrentState(TERMINATED);
         scheduler.getTerminatedQueue().push_back(*(p.getChildProcesses()[i]));
-
-        // Free's the child processes memory
-        memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
 
         std::cout << "Child Process with pid: " << childPID << " terminating early" << std::endl;
 
@@ -121,6 +131,7 @@ void Dispatcher::killChildProcesses(PCB& p) {
 void Dispatcher::readyNewProcesses() {
     while((!scheduler.getNewQueue().empty()) && scheduler.getNewQueue().front().getReqMem() < memory.getRemainingMemory()) {
         addProcessToReadyQueue(scheduler.getNewQueue().front());
+        memory.takeMemory(scheduler.getNewQueue().front().getReqMem());
         scheduler.getNewQueue().pop_front();
     }
 }

@@ -11,9 +11,9 @@ public:
 
     // void UpdateState(PCB pcb, state newState);
     PCB getPcbFromReady();
-    void addProcessToNewQueue(PCB p);
-    void addProcessToReadyQueue(PCB p);
-    void addCriticalToReadyQueue(PCB p);
+    void addProcessToNewQueue(PCB& p);
+    void addProcessToReadyQueue(PCB& p);
+    void addCriticalToReadyQueue(PCB& p);
     void addProcessToWaitingQueue(PCB& p);
     void addProcessToTerminatedQueue(PCB& p);
 
