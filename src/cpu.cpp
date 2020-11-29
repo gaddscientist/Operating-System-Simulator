@@ -36,8 +36,24 @@ void CPU::execute() {
         // Moves the interrupted process from waiting to ready queue
         // Process ID's start at 1, pid=0 signifies an expired time slice interrupt
         if(interrupt.pid > 0) {
-            PCB p = scheduler.getWaitingQueue().at(interrupt.pid);
-            scheduler.getWaitingQueue().erase(interrupt.pid);
+            PCB p;
+            // Gets the process from the appropriate waiting queue and removes it
+            if(interrupt.device == KEYBOARD) {
+                p = scheduler.getKeyboardWaitingQueue().at(interrupt.pid);
+                scheduler.getKeyboardWaitingQueue().erase(interrupt.pid);
+                std::cout << "Process " << interrupt.pid << " finished keyboard IO" << std::endl;
+            }
+            else if(interrupt.device == MONITOR) {
+                p = scheduler.getMonitorWaitingQueue().at(interrupt.pid);
+                scheduler.getMonitorWaitingQueue().erase(interrupt.pid);
+                std::cout << "Process " << interrupt.pid << " finished monitor IO" << std::endl;
+            }
+            else if(interrupt.device == DISK) {
+                p = scheduler.getDiskWaitingQueue().at(interrupt.pid);
+                scheduler.getDiskWaitingQueue().erase(interrupt.pid);
+                std::cout << "Process " << interrupt.pid << " finished disk IO" << std::endl;
+            }
+
             // Checks to see if process was killed by parent process
             // Note: This will only occur if child process gets terminated while IO is executing on separate thread
             if (p.getCurrentState() == TERMINATED) {
@@ -102,14 +118,32 @@ void CPU::execute() {
             // IO Instruction
             case 1:
             {
-                std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
+                int pid = this->pcb.getPid();
+
+                if(currentInstruction.device == KEYBOARD) {
+                    std::cout << "Process " << pid << " beginning keyboard IO" << std::endl;
+                }
+                else if(currentInstruction.device == MONITOR) {
+                    std::cout << "Process " << pid << " beginning monitor IO" << std::endl;
+                }
+                else if(currentInstruction.device == MONITOR) {
+                    std::cout << "Process " << pid << " beginning disk IO" << std::endl;
+                }
+                // Increments the program counter
+                this->pcb.incrementInstrNum();
+                // Add process to appropriate waiting queue until its moved back to ready queue
+                if(currentInstruction.device == KEYBOARD) {
+                    dispatcher.addProcessToKeyboardWaitingQueue(this->pcb);
+                }
+                else if(currentInstruction.device == MONITOR) {
+                    dispatcher.addProcessToMonitorWaitingQueue(this->pcb);
+                }
+                else if(currentInstruction.device == DISK) {
+                    dispatcher.addProcessToDiskWaitingQueue(this->pcb);
+                }
+
                 // Execute IO on separate thread for concurrency
                 // Meant to simulate how IO would not tie up the CPU
-                int pid = this->pcb.getPid();
-                // Increments the program counter if instruction completed
-                this->pcb.incrementInstrNum();
-                // Add process to waiting queue until its moved back to ready queue
-                dispatcher.addProcessToWaitingQueue(this->pcb);
                 // Process sleeps until IO instructions have completed
                 std::thread ioThread([this, currentInstruction, pid]() {
                     std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
@@ -126,7 +160,6 @@ void CPU::execute() {
                     }
 
                     if(!killed) {
-                        std::cout << "Process " << pid << " finished IO" << std::endl;
                         // Once IO has finished, signal interrupt
                         interrupts.push_back(Interrupt(pid, currentInstruction.device));
                     }

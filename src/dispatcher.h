@@ -14,7 +14,9 @@ public:
     void addProcessToNewQueue(PCB& p);
     void addProcessToReadyQueue(PCB& p);
     void addCriticalToReadyQueue(PCB& p);
-    void addProcessToWaitingQueue(PCB& p);
+    void addProcessToKeyboardWaitingQueue(PCB& p);
+    void addProcessToMonitorWaitingQueue(PCB& p);
+    void addProcessToDiskWaitingQueue(PCB& p);
     void addProcessToTerminatedQueue(PCB& p);
 
     // Function to sort ready queue by remaining time left

@@ -63,3 +63,4 @@ Another idea, each cpu core(subclass of CPU) runs on a separate thread(to simula
 
 MULTI-LEVEL PARENT CHILD
 Add a number next to the fork instruction for how many levels to create!
+call killchildprocesses() at beginning of function recursively if child has children

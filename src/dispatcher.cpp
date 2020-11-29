@@ -41,9 +41,21 @@ void Dispatcher::addCriticalToReadyQueue(PCB& p) {
     scheduler.getReadyQueue().push_front(p);
 }
 
-void Dispatcher::addProcessToWaitingQueue(PCB& p) {
+void Dispatcher::addProcessToKeyboardWaitingQueue(PCB& p) {
     p.setCurrentState(WAITING);
-    scheduler.getWaitingQueue()[p.getPid()] = p;
+    scheduler.getKeyboardWaitingQueue()[p.getPid()] = p;
+    // scheduler.sortWaitingProcesses();
+}
+
+void Dispatcher::addProcessToMonitorWaitingQueue(PCB& p) {
+    p.setCurrentState(WAITING);
+    scheduler.getMonitorWaitingQueue()[p.getPid()] = p;
+    // scheduler.sortWaitingProcesses();
+}
+
+void Dispatcher::addProcessToDiskWaitingQueue(PCB& p) {
+    p.setCurrentState(WAITING);
+    scheduler.getDiskWaitingQueue()[p.getPid()] = p;
     // scheduler.sortWaitingProcesses();
 }
 
@@ -70,6 +82,7 @@ void Dispatcher::killChildProcesses(PCB& p) {
     // Loops through all child processes in vector
     for(int i = 0; i < numChildProcesses; i++) {
         int childPID = p.getChildProcesses()[i]->getPid();
+
         // Checks the ready queue for the process index and removes it if found
         for (std::deque<PCB>::iterator it = scheduler.getReadyQueue().begin(); it != scheduler.getReadyQueue().end(); it++) {
             // If child process is found
@@ -82,17 +95,42 @@ void Dispatcher::killChildProcesses(PCB& p) {
                 break;
             }
         }
-        // Checks the waiting queue for the process index and removes it if found
-        // Iterator to index in waiting queue
-        std::map<int, PCB>::iterator it = scheduler.getWaitingQueue().find(p.getChildProcesses()[i]->getPid());
+
+
+        // Checks the waiting queues for the process index and removes it if found
+
+        // Iterator to index in keyboard waiting queue
+        std::map<int, PCB>::iterator itk = scheduler.getKeyboardWaitingQueue().find(p.getChildProcesses()[i]->getPid());
         // If the process is found in waiting queue
-        if(it != scheduler.getWaitingQueue().end()) {
+        if(itk != scheduler.getKeyboardWaitingQueue().end()) {
             // Murder
-            scheduler.getWaitingQueue().erase(it);
+            scheduler.getKeyboardWaitingQueue().erase(itk);
             totalProcesses--;
             // Free's the child processes memory
             memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
         }
+        // Iterator to index in monitor waiting queue
+        std::map<int, PCB>::iterator itm = scheduler.getMonitorWaitingQueue().find(p.getChildProcesses()[i]->getPid());
+        // If the process is found in waiting queue
+        if(itm != scheduler.getMonitorWaitingQueue().end()) {
+            // Murder
+            scheduler.getMonitorWaitingQueue().erase(itm);
+            totalProcesses--;
+            // Free's the child processes memory
+            memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
+        }
+        // Iterator to index in disk waiting queue
+        std::map<int, PCB>::iterator itd = scheduler.getDiskWaitingQueue().find(p.getChildProcesses()[i]->getPid());
+        // If the process is found in waiting queue
+        if(itd != scheduler.getDiskWaitingQueue().end()) {
+            // Murder
+            scheduler.getDiskWaitingQueue().erase(itd);
+            totalProcesses--;
+            // Free's the child processes memory
+            memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
+        }
+
+
         // Checks the new queue for the process index and removes it if found
         for (std::deque<PCB>::iterator it = scheduler.getNewQueue().begin(); it != scheduler.getNewQueue().end(); it++) {
             // If child process is found

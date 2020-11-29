@@ -5,7 +5,9 @@
 Scheduler::Scheduler() {
     this->newQueue = std::deque<PCB>();
     this->readyQueue = std::deque<PCB>();
-    this->waitingQueue = std::map<int, PCB>();
+    this->keyboardWaitingQueue = std::map<int, PCB>();
+    this->monitorWaitingQueue = std::map<int, PCB>();
+    this->diskWaitingQueue = std::map<int, PCB>();
     this->terminatedQueue = std::deque<PCB>();
 }
 
@@ -18,8 +20,16 @@ std::deque<PCB>& Scheduler::getReadyQueue() {
     return this->readyQueue;
 }
 
-std::map<int, PCB>& Scheduler::getWaitingQueue() {
-    return this->waitingQueue;
+std::map<int, PCB>& Scheduler::getKeyboardWaitingQueue() {
+    return this->keyboardWaitingQueue;
+}
+
+std::map<int, PCB>& Scheduler::getMonitorWaitingQueue() {
+    return this->monitorWaitingQueue;
+}
+
+std::map<int, PCB>& Scheduler::getDiskWaitingQueue() {
+    return this->diskWaitingQueue;
 }
 
 std::deque<PCB>& Scheduler::getTerminatedQueue() {
