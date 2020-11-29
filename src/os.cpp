@@ -89,5 +89,4 @@ PCB* OS::fork(PCB& p) {
 
     // Returns reference to newly created process's PCB
     return newProcess.getPcb();
-
 }

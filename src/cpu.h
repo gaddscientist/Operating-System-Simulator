@@ -37,8 +37,15 @@ class CPU {
 
         // Creates an interrupt object that corresponds to the interrupted process
         struct Interrupt {
-            Interrupt(int id) : pid(id) {}
-            int pid;
+            int pid;        // Interrupted processes id
+            ioType device;  // Which device caused interrupt
+
+            // Constructor for quantum expiration interrupt
+            Interrupt(int id) 
+                : pid(id), device(NONE) {}
+            // Constructor for IO interrupt
+            Interrupt(int id, ioType io)
+                : pid(id), device(io) {}
         };
 
         // Queue to hold interrupted processes

@@ -70,48 +70,40 @@ void Dispatcher::killChildProcesses(PCB& p) {
     // Loops through all child processes in vector
     for(int i = 0; i < numChildProcesses; i++) {
         int childPID = p.getChildProcesses()[i]->getPid();
-        // For processes that are ready, find them in the ready queue
-        if(p.getChildProcesses()[i]->getCurrentState() == READY) {
-            // Checks the ready queue for the process index and removes it
-            for (std::deque<PCB>::iterator it = scheduler.getReadyQueue().begin(); it != scheduler.getReadyQueue().end(); it++) {
-                // If child process is found
-                if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
-                    // Murder
-                    scheduler.getReadyQueue().erase(it);
-                    totalProcesses--;
-                    // Free's the child processes memory
-                    memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
-                    break;
-                }
-            }
-        }
-        // If child process has a state of waiting, could be in waiting queue
-        // or could be blocked while IO cycles execute
-        else if(p.getChildProcesses()[i]->getCurrentState() == WAITING) {
-            // Iterator to index in waiting queue
-            std::map<int, PCB>::iterator it = scheduler.getWaitingQueue().find(p.getChildProcesses()[i]->getPid());
-            // If the process is found in waiting queue
-            if(it != scheduler.getWaitingQueue().end()) {
+        // Checks the ready queue for the process index and removes it if found
+        for (std::deque<PCB>::iterator it = scheduler.getReadyQueue().begin(); it != scheduler.getReadyQueue().end(); it++) {
+            // If child process is found
+            if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
                 // Murder
-                scheduler.getWaitingQueue().erase(it);
+                scheduler.getReadyQueue().erase(it);
                 totalProcesses--;
                 // Free's the child processes memory
                 memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
+                break;
             }
         }
-        // For when memory is implemented
-        else if(p.getChildProcesses()[i]->getCurrentState() == NEW) {
-            // Checks the new queue for the process index and removes it
-            for (std::deque<PCB>::iterator it = scheduler.getNewQueue().begin(); it != scheduler.getNewQueue().end(); it++) {
-                // If child process is found
-                if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
-                    // Murder
-                    scheduler.getNewQueue().erase(it);
-                    totalProcesses--;
-                    break;
-                }
+        // Checks the waiting queue for the process index and removes it if found
+        // Iterator to index in waiting queue
+        std::map<int, PCB>::iterator it = scheduler.getWaitingQueue().find(p.getChildProcesses()[i]->getPid());
+        // If the process is found in waiting queue
+        if(it != scheduler.getWaitingQueue().end()) {
+            // Murder
+            scheduler.getWaitingQueue().erase(it);
+            totalProcesses--;
+            // Free's the child processes memory
+            memory.returnMemory(p.getChildProcesses()[i]->getReqMem());
+        }
+        // Checks the new queue for the process index and removes it if found
+        for (std::deque<PCB>::iterator it = scheduler.getNewQueue().begin(); it != scheduler.getNewQueue().end(); it++) {
+            // If child process is found
+            if((*it).getPid() == p.getChildProcesses()[i]->getPid()) {
+                // Murder
+                scheduler.getNewQueue().erase(it);
+                totalProcesses--;
+                break;
             }
         }
+
 
         // Regardless, set the child processes state to terminated and add it to terminated queue
         p.getChildProcesses()[i]->setCurrentState(TERMINATED);
@@ -120,8 +112,8 @@ void Dispatcher::killChildProcesses(PCB& p) {
         std::cout << "Child Process with pid: " << childPID << " terminating early" << std::endl;
 
         // Remove process from parents list of child processes
-        std::vector<PCB*>::iterator it = p.getChildProcesses().begin();
-        p.getChildProcesses().erase(it + i);
+        std::vector<PCB*>::iterator iter = p.getChildProcesses().begin();
+        p.getChildProcesses().erase(iter + i);
     }
 }
 

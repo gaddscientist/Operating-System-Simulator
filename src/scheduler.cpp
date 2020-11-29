@@ -1,14 +1,8 @@
 #include <algorithm>
 #include "process.h"
 #include "scheduler.h"
-#include "pcb.h"
-
-// testing
-#include <iostream>
 
 Scheduler::Scheduler() {
-    // Note: For this iteration, we're assuming no memory constraint.
-    // All procecsses will fit in ready queue
     this->newQueue = std::deque<PCB>();
     this->readyQueue = std::deque<PCB>();
     this->waitingQueue = std::map<int, PCB>();

@@ -51,7 +51,7 @@ void CPU::execute() {
     }
 
     // If the ready queue has processes
-    if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() != TERMINATED) {
+    if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() != NEW) {
         this->pcb = dispatcher.getPcbFromReady();
         std::cout << "Process " << this->pcb.getPid() << " on CPU" << std::endl;
         this->pcb.setCurrentState(RUNNING);
@@ -102,11 +102,14 @@ void CPU::execute() {
             // IO Instruction
             case 1:
             {
-                // this->pcb.setCurrentState(WAITING);
                 std::cout << "Process " << this->pcb.getPid() << " beginning IO" << std::endl;
                 // Execute IO on separate thread for concurrency
                 // Meant to simulate how IO would not tie up the CPU
                 int pid = this->pcb.getPid();
+                // Increments the program counter if instruction completed
+                this->pcb.incrementInstrNum();
+                // Add process to waiting queue until its moved back to ready queue
+                dispatcher.addProcessToWaitingQueue(this->pcb);
                 // Process sleeps until IO instructions have completed
                 std::thread ioThread([this, currentInstruction, pid]() {
                     std::this_thread::sleep_for(std::chrono::milliseconds(currentInstruction.remainingCycles * cycleTime));
@@ -125,17 +128,13 @@ void CPU::execute() {
                     if(!killed) {
                         std::cout << "Process " << pid << " finished IO" << std::endl;
                         // Once IO has finished, signal interrupt
-                        interrupts.push_back(pid);
+                        interrupts.push_back(Interrupt(pid, currentInstruction.device));
                     }
 
                 });
                 // Exception thrown if thread not detached or joined. Join would cause parent thread to wait
                 ioThread.detach();
 
-                // Increments the program counter if instruction completed
-                this->pcb.incrementInstrNum();
-                // Add process to waiting queue until its moved back to ready queue
-                dispatcher.addProcessToWaitingQueue(this->pcb);
 
                 break;
             }
