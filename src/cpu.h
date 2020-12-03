@@ -1,6 +1,7 @@
 #pragma once
 #include <deque>
 #include "pcb.h"
+#include "core.h"
 
 // Semaphore
 struct Semaphore {
@@ -8,50 +9,45 @@ struct Semaphore {
     std::deque<PCB> blockedProcesses = std::deque<PCB>();
 };
 
+// Creates an interrupt object that corresponds to the interrupted process
+struct Interrupt {
+    int pid;        // Interrupted processes id
+    ioType device;  // Which device caused interrupt
+
+    // Constructor for quantum expiration interrupt
+    Interrupt(int id) 
+        : pid(id), device(NONE) {}
+    // Constructor for IO interrupt
+    Interrupt(int id, ioType io)
+        : pid(id), device(io) {}
+};
+
 // CPU class to handle execution of process instructions
 class CPU {
-    public:
-        // Default constructor
-        CPU();
+public:
+    // Default constructor
+    CPU();
 
-        // void clockTick();
-        void execute();
+    // void clockTick();
+    void execute();
 
-        // Getters
-        double getClock();
-        PCB& getPcb();
+    // Getters
+    double getClock();
+    // PCB& getPcb();
 
-        // Setters
-        void setClock(int clock);
-        void setPcb(PCB pcb);
+    // Setters
+    void setClock(int clock);
 
-        const int totalCache = 5; // Kilobytes
-        int remainingCache;
+    // Queue to hold interrupted processes
+    std::deque<Interrupt> interrupts;
+    
+    // Semaphore methods 
+    void wait(Semaphore S);
+    void signal(Semaphore S);
+    Core* core1;
+    Core* core2;
 
-    private:
-        PCB pcb;        // Current pcb on CPU
-        int cycleTime;  // Time in milliseconds per clock cycle
-        int timeSlice;  // Number of cycles before pre-emption
-        int startTime;  // Start of execution
+private:
+    int startTime;  // Start of execution
 
-
-        // Creates an interrupt object that corresponds to the interrupted process
-        struct Interrupt {
-            int pid;        // Interrupted processes id
-            ioType device;  // Which device caused interrupt
-
-            // Constructor for quantum expiration interrupt
-            Interrupt(int id) 
-                : pid(id), device(NONE) {}
-            // Constructor for IO interrupt
-            Interrupt(int id, ioType io)
-                : pid(id), device(io) {}
-        };
-
-        // Queue to hold interrupted processes
-        std::deque<Interrupt> interrupts;
-
-        // Semaphore methods 
-        void wait(Semaphore S);
-        void signal(Semaphore S);
 };

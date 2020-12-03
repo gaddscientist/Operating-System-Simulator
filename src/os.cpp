@@ -10,6 +10,7 @@
 // Global objects
 Memory memory;
 Dispatcher dispatcher;
+CPU cpu;
 extern Scheduler scheduler; // Defined in dispatcher.cpp
 
 OS::OS() {
@@ -37,7 +38,6 @@ void OS::start() {
     scheduler.setSchedulerType(st);
     std::cout << scheduler.getChosenScheduler() << std::endl;
 
-    CPU cpu;
     std::cout << std::fixed << cpu.getClock() << " Operating system starting" << std::endl;
     // Until all processes have terminated
     while(totalProcesses > 0) {
