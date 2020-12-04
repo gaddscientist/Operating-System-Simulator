@@ -16,7 +16,7 @@ CPU::CPU() {
     // Saves starting time and prints OS start
     startTime = std::clock();
     this->interrupts = std::deque<Interrupt>();
-    this->numCores = 1;
+    this->numCores = 2;
     this->cores = std::vector<Core>();
     for(int i = 0; i < numCores; ++i) {
         cores.push_back(Core(i));
