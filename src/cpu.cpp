@@ -9,7 +9,6 @@
 extern Dispatcher dispatcher;   // Defined in os.cpp
 extern Scheduler scheduler;     // Defined in dispatcher.cpp
 extern int totalProcesses;      // Defined in process.cpp
-extern OS os;
 Semaphore S;
 
 CPU::CPU() {
@@ -20,6 +19,14 @@ CPU::CPU() {
     this->cores = std::vector<Core>();
     for(int i = 0; i < numCores; ++i) {
         cores.push_back(Core(i));
+    }
+
+    // Clears set of cores set by underlying operating system
+    CPU_ZERO(&physicalCores);
+    
+    // Adds a core to the set of cores to work with based on how many simulator allows for
+    for(int i = 0; i < numCores; i++) {
+        CPU_SET(i, &physicalCores);
     }
 }
 
@@ -67,15 +74,6 @@ void CPU::execute() {
         }
     }
 
-    // Creates a set of logical cpu's(cores) for operating system
-    cpu_set_t physicalCores;
-    // Clears set of cores set by underlying operating system
-    CPU_ZERO(&physicalCores);
-    
-    // Adds a core to the set of cores to work with based on how many simulator allows for
-    for(int i = 0; i < numCores; i++) {
-        CPU_SET(i, &physicalCores);
-    }
 
     // Vector to track threads created per execution cycle
     std::vector<std::thread> threads;

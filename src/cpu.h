@@ -44,8 +44,12 @@ public:
     // Semaphore methods 
     void wait(Semaphore S, PCB& p);
     void signal(Semaphore S);
+
+    // Multi-core variables
     std::vector<Core> cores;
     int numCores;
+    // Creates a set of logical cpu's(cores) for operating system
+    cpu_set_t physicalCores;
 
 private:
     int startTime;  // Start of execution

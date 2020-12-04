@@ -13,6 +13,7 @@ extern Scheduler scheduler;
 extern int totalProcesses;
 extern Semaphore S;
 
+// For single core implementation
 Core::Core() {
     coreNum = 1;
     cycleTime = 10; // 10ms    
@@ -20,6 +21,7 @@ Core::Core() {
     remainingCache = totalCache;
 }
 
+// For multi-core implementation
 Core::Core(int num) {
     coreNum = num;
     cycleTime = 10; // 10ms    
@@ -27,6 +29,7 @@ Core::Core(int num) {
     remainingCache = totalCache;
 }
 
+// Gets called by CPU on a thread
 void Core::execute() {
     // If the ready queue has processes
     if(!(scheduler.getReadyQueue().empty()) && scheduler.getReadyQueue().front().getCurrentState() != NEW) {
