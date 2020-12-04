@@ -67,14 +67,30 @@ void CPU::execute() {
         }
     }
 
-    // this->core1->execute();
-    // this->core2->execute();
+    // Creates a set of logical cpu's(cores) for operating system
+    cpu_set_t physicalCores;
+    // Clears set of cores set by underlying operating system
+    CPU_ZERO(&physicalCores);
+    
+    // Adds a core to the set of cores to work with based on how many simulator allows for
+    for(int i = 0; i < numCores; i++) {
+        CPU_SET(i, &physicalCores);
+    }
+
+    // Vector to track threads created per execution cycle
     std::vector<std::thread> threads;
+
+    // Creates a thread and has a core execute it
     for(int i = 0; i < numCores; ++i) {
         threads.push_back(std::thread([this, i] {
             this->cores[i].execute();
         }));
+
+        // Sets created thread's affinity to only run on cores in the defined set
+        pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &physicalCores);
     }
+    
+    // Forces loop to wait for threads to finish their cycles before next iteration
     for(auto& t : threads) {
         t.join();
     }
