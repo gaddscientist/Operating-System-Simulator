@@ -42,10 +42,10 @@ public:
     std::deque<Interrupt> interrupts;
     
     // Semaphore methods 
-    void wait(Semaphore S);
+    void wait(Semaphore S, PCB& p);
     void signal(Semaphore S);
-    Core* core1;
-    Core* core2;
+    std::vector<Core> cores;
+    int numCores;
 
 private:
     int startTime;  // Start of execution

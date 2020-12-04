@@ -136,7 +136,7 @@ void Core::execute() {
             // CRITICAL
             case 2:
             {
-                cpu.wait(S);
+                cpu.wait(S, this->getPcb());
 
                 std::cout << "Executing critical section for process " << this->pcb.getPid() << std::endl;
                 remainingCache -= this->pcb.getReqMem();

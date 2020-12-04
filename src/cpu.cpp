@@ -16,8 +16,11 @@ CPU::CPU() {
     // Saves starting time and prints OS start
     startTime = std::clock();
     this->interrupts = std::deque<Interrupt>();
-    this->core1 = new Core(1);
-    this->core2 = new Core(2);
+    this->numCores = 1;
+    this->cores = std::vector<Core>();
+    for(int i = 0; i < numCores; ++i) {
+        cores.push_back(Core(i));
+    }
 }
 
 // Execute process until interruption
@@ -64,8 +67,17 @@ void CPU::execute() {
         }
     }
 
-    this->core1->execute();
-    this->core2->execute();
+    // this->core1->execute();
+    // this->core2->execute();
+    std::vector<std::thread> threads;
+    for(int i = 0; i < numCores; ++i) {
+        threads.push_back(std::thread([this, i] {
+            this->cores[i].execute();
+        }));
+    }
+    for(auto& t : threads) {
+        t.join();
+    }
 }
 
 
@@ -76,12 +88,12 @@ double CPU::getClock() {
     return duration;
 }
 
-void CPU::wait(Semaphore S) {
+void CPU::wait(Semaphore S, PCB& p) {
     if (S.count == 1) {
         S.count = 0;
     }
     else {
-        S.blockedProcesses.push_back(this->core1->getPcb());
+        S.blockedProcesses.push_back(p);
     }
 }
 
