@@ -77,9 +77,20 @@ PCB* OS::fork(PCB& p) {
     // Gets position of FORK instruction to be removed
     int forkInstrNum = p.getProgCount();
 
-    // Removes FORK instruction from the child processes instructions
-    (*(newProcess.getPcb())).getInstructionsList().erase((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum);
-    (*(newProcess.getPcb())).getInstructionsRemaining().erase((*(newProcess.getPcb())).getInstructionsRemaining().begin() + forkInstrNum);
+    // Gets fork instruction from new process
+    instruction parentInstr = *(p.getInstructionsList().begin() + forkInstrNum);
+    instruction currentInstr = *((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum);
+
+    if (parentInstr.remainingCycles > 1) {
+        currentInstr.remainingCycles = --(parentInstr.remainingCycles);
+        *((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum) = currentInstr;
+    }
+    else {
+        // Removes FORK instruction from the child processes instructions
+        (*(newProcess.getPcb())).getInstructionsList().erase((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum);
+        (*(newProcess.getPcb())).getInstructionsRemaining().erase((*(newProcess.getPcb())).getInstructionsRemaining().begin() + forkInstrNum);
+    }
+
 
     // Adds child process to pool of ready processes
     dispatcher.addProcessToNewQueue(*(newProcess.getPcb()));
