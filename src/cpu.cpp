@@ -245,6 +245,7 @@ void CPU::execute() {
         if (this->pcb.getCurrentState() == RUNNING) {
             // Dispatch program from cpu back to ready queue
             dispatcher.addProcessToReadyQueue(this->pcb);
+            std::cout << "Process " << this->pcb.getPid() << " put at back of ready queue" << std::endl;
             remainingCache += this->pcb.getReqMem();
         }
     }
