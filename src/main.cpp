@@ -28,6 +28,6 @@ int main(int argc, char *argv[]) {
     os.start();
 
     extern int totalProcesses;  // Defined in process.cpp
-    std::cout << "Remaining Processes: " << totalProcesses << std::endl;
+    // std::cout << "Remaining Processes: " << totalProcesses << std::endl;
     return 0;
 }

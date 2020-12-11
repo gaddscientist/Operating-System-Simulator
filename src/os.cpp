@@ -77,10 +77,11 @@ PCB* OS::fork(PCB& p) {
     // Gets position of FORK instruction to be removed
     int forkInstrNum = p.getProgCount();
 
-    // Gets fork instruction from new process
+    // Gets fork instruction from new process and parent process
     instruction parentInstr = *(p.getInstructionsList().begin() + forkInstrNum);
     instruction currentInstr = *((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum);
 
+    // Checks to see if last level of parent-child creation
     if (parentInstr.remainingCycles > 1) {
         currentInstr.remainingCycles = --(parentInstr.remainingCycles);
         *((*(newProcess.getPcb())).getInstructionsList().begin() + forkInstrNum) = currentInstr;
